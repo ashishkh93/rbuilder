@@ -1,0 +1,10 @@
+node_modules
+
+/.cache
+/build
+.vscode
+.env
+.vercel
+yarn.lock
+
+.DS_Store
