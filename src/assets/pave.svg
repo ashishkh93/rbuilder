@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="31.148" height="11.641">
+    <g data-name="Group 10696">
+        <g data-name="Group 10648">
+            <g data-name="Group 1970" transform="translate(.1 .043)">
+                <path d="M.629 4.233h8.41a.635.635 0 0 1 .629.629v1.771a.635.635 0 0 1-.629.629H.629A.635.635 0 0 1 0 6.633V4.805a.588.588 0 0 1 .629-.572ZM21.91 4.233h8.409a.635.635 0 0 1 .629.629v1.771a.635.635 0 0 1-.629.629H21.91a.635.635 0 0 1-.629-.629V4.805a.588.588 0 0 1 .629-.572Z" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".2"/>
+                <g data-name="Group 1935">
+                    <g data-name="Group 1934" transform="translate(21.252 4.372)" fill="none" stroke="#000" stroke-width=".243">
+                        <path d="m.226 0 .159.009a1.324 1.324 0 0 1 1.2 1.352A1.408 1.408 0 0 1 .411 2.709a.617.617 0 0 1-.185.012C.124 2.671-.227.1.226 0Z"/>
+                        <circle cx="1.361" cy="1.361" transform="translate(1.587)" stroke-miterlimit="10" r="1.361"/>
+                        <circle cx="1.361" cy="1.361" transform="translate(4.195)" stroke-miterlimit="10" r="1.361"/>
+                        <circle cx="1.361" cy="1.361" transform="translate(6.803)" stroke-miterlimit="10" r="1.361"/>
+                    </g>
+                </g>
+                <g data-name="Group 1938">
+                    <g data-name="Group 1937" transform="translate(.114 4.36)" fill="none" stroke="#000" stroke-width=".243">
+                        <circle cx="1.367" cy="1.367" transform="translate(5.467)" stroke-miterlimit="10" r="1.367"/>
+                        <path d="M9.547.218c.035.045-.094 2.514-.095 2.516l-.162-.009a1.329 1.329 0 0 1-1.204-1.358A1.412 1.412 0 0 1 9.313.007c-.076.006.125.211.234.211Z"/>
+                        <circle cx="1.367" cy="1.367" transform="translate(2.733)" stroke-miterlimit="10" r="1.367"/>
+                        <circle cx="1.367" cy="1.367" stroke-miterlimit="10" r="1.367"/>
+                    </g>
+                </g>
+                <circle cx="5.721" cy="5.721" transform="translate(9.725 .057)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".2" r="5.721"/>
+                <g data-name="Group 1952" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".2">
+                    <path d="M15.389 0v2.689M19.507 1.773l-1.659 1.602M18.477 5.778h2.689M17.791 7.952l1.716 1.773M15.389 8.867v2.631M13.215 7.952l-1.831 1.831M12.299 5.778H9.668M13.215 3.547l-1.888-1.831M15.442 2.517l2.345.858.8 2.345-.8 2.288-2.345.973-2.345-1.03-.855-2.234.858-2.288Z"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+    width="36"
+    height="36"
+    viewBox="0 0 36 36"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+>
+    <path
+        d="M10.8741 3.91081L14.2024 0.57251H21.2409L24.5692 3.91081L17.7183 10.0039L10.8741 3.91081Z"
+        stroke="currentColor"
+        stroke-miterlimit="10"
+    />
+    <path
+        d="M16.2128 5.73338L14.2544 3.93149L15.547 2.63538"
+        stroke="currentColor"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+    />
+    <path
+        d="M17.7188 9.91987L20.7672 3.94029L18.4297 0.58252"
+        stroke="currentColor"
+        stroke-miterlimit="10"
+    />
+    <path
+        d="M11.4913 4.461L17.7217 10.0077L23.9581 4.461"
+        stroke="currentColor"
+        stroke-miterlimit="10"
+    />
+    <path
+        d="M23.0797 9.99799C25.4403 11.2008 27.3273 13.1634 28.4365 15.5695C29.5458 17.9756 29.8126 20.685 29.1941 23.2613C28.5756 25.8376 27.1078 28.1306 25.0271 29.7708C22.9464 31.4111 20.3741 32.3031 17.7247 32.3031C15.0752 32.3031 12.5029 31.4111 10.4222 29.7708C8.34157 28.1305 6.87373 25.8375 6.25523 23.2613C5.63672 20.685 5.90358 17.9756 7.01281 15.5695C8.12203 13.1634 10.009 11.2008 12.3697 9.99799"
+        stroke="currentColor"
+        stroke-linecap="round"
+    />
+</svg>

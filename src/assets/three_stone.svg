@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30.949" height="8.444">
+    <g data-name="Group 10695">
+        <g data-name="Group 10650" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width=".2">
+            <path data-name="Path 2045" d="M30.493 5.77h-4.378a4.092 4.092 0 0 0 0-2.93c-.007-.025 4.378 0 4.378 0a.356.356 0 0 1 .356.356v2.218a.356.356 0 0 1-.356.356Z"/>
+            <path data-name="Path 2046" d="M.456 2.833h4.378a4.092 4.092 0 0 0 0 2.93c.007.025-4.378 0-4.378 0A.356.356 0 0 1 .1 5.407V3.189a.356.356 0 0 1 .356-.356Z"/>
+            <g data-name="Group 464" transform="translate(11.324 .1)">
+                <circle data-name="Ellipse 33" cx="4.122" cy="4.122" r="4.122"/>
+                <path data-name="Line 26" d="M4.122 0v1.905"/>
+                <path data-name="Line 27" d="M7.069 1.242 5.87 2.416"/>
+                <path data-name="Line 28" d="M6.339 4.122h1.905"/>
+                <path data-name="Line 29" d="m5.819 5.71 1.258 1.258"/>
+                <path data-name="Line 30" d="M4.122 6.339v1.905"/>
+                <path data-name="Line 31" d="M2.534 5.701 1.212 7.023"/>
+                <path data-name="Line 32" d="M1.905 4.122H0"/>
+                <path data-name="Line 33" d="M2.559 2.526 1.199 1.2"/>
+                <path data-name="Path 2047" d="m4.147 1.783 1.672.633.583 1.672-.557 1.647-1.672.709-1.672-.735-.608-1.622.633-1.647Z"/>
+            </g>
+            <g data-name="Group 465" transform="translate(19.638 .898)">
+                <circle data-name="Ellipse 34" cx="3.365" cy="3.365" r="3.365"/>
+                <path data-name="Line 34" d="M3.365 0v1.556"/>
+                <path data-name="Line 35" d="m5.771 1.014-.979.958"/>
+                <path data-name="Line 36" d="M5.175 3.365h1.556"/>
+                <path data-name="Line 37" d="m4.751 4.662 1.027 1.027"/>
+                <path data-name="Line 38" d="M3.365 5.175v1.556"/>
+                <path data-name="Line 39" d="M2.068 4.655.989 5.734"/>
+                <path data-name="Line 40" d="M1.556 3.365H0"/>
+                <path data-name="Line 41" d="M2.089 2.063.979.98"/>
+                <path data-name="Path 2048" d="m3.385 1.456 1.365.517.476 1.365-.455 1.345-1.365.579-1.365-.6-.5-1.324.517-1.345Z"/>
+            </g>
+            <g data-name="Group 466" transform="translate(4.561 .898)">
+                <circle data-name="Ellipse 35" cx="3.365" cy="3.365" r="3.365"/>
+                <path data-name="Line 42" d="M3.365 0v1.556"/>
+                <path data-name="Line 43" d="m5.771 1.014-.979.958"/>
+                <path data-name="Line 44" d="M5.175 3.365h1.556"/>
+                <path data-name="Line 45" d="m4.751 4.662 1.027 1.027"/>
+                <path data-name="Line 46" d="M3.365 5.175v1.556"/>
+                <path data-name="Line 47" d="M2.068 4.655.989 5.734"/>
+                <path data-name="Line 48" d="M1.556 3.365H0"/>
+                <path data-name="Line 49" d="M2.089 2.063.979.98"/>
+                <path data-name="Path 2049" d="m3.386 1.456 1.365.517.476 1.365-.455 1.345-1.365.579-1.365-.6-.5-1.324.517-1.345Z"/>
+            </g>
+        </g>
+    </g>
+</svg>

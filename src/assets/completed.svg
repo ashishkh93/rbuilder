@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+    width="24"
+    height="24"
+    viewBox="0 0 29 28"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+>
+    <rect
+        x="1.16663"
+        y="0.5"
+        width="27"
+        height="27"
+        rx="13.5"
+        fill="#EBFAE8"
+    />
+    <rect
+        x="1.16663"
+        y="0.5"
+        width="27"
+        height="27"
+        rx="13.5"
+        stroke="#58A23E"
+    />
+    <path
+        d="M20.1666 10.6957L13.558 17.3044L9.16663 12.913"
+        stroke="#58A23E"
+        stroke-miterlimit="10"
+    />
+</svg>
