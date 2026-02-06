@@ -6,26 +6,26 @@ import {
   METAL_COLORS,
   METAL_OPTIONS,
   SHAPE_OPTIONS,
-} from "../icons/metalConfig";
+} from "../../icons/metalConfig";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { MEDIA_QUERIES } from "@/lib/utils";
 import MobileSelectedFilters from "./MobileSelectedFilters";
 import { useAppDispatch, useAppSelector } from "@/store";
-import {
-  selectMetalFilter,
-  selectShapeFilter,
-} from "@/store/filters/filters.selectors";
-import { setMetal, setShape } from "@/store/filters/filters.slice";
-import { MetalRingIcon } from "../icons/MetalRingIcon";
-import { SHAPE_ICONS } from "../icons/shapeIcon";
-import { memo } from "react";
+import { selectActiveFilters } from "@/store/filters/filters.selectors";
+import { setMetal, setShape, setSort } from "@/store/filters/filters.slice";
+import { MetalRingIcon } from "../../icons/MetalRingIcon";
+import { SHAPE_ICONS } from "../../icons/shapeIcon";
+import { getPriceLabel } from "@/utils/constants";
+import { shallowEqual } from "react-redux";
 
 const FilterSection = () => {
   const isMobile = useMediaQuery(MEDIA_QUERIES.mobile);
   const dispatch = useAppDispatch();
 
-  const metal = useAppSelector(selectMetalFilter);
-  const shape = useAppSelector(selectShapeFilter);
+  const { metal, shape, sort } = useAppSelector(
+    selectActiveFilters,
+    shallowEqual
+  );
 
   return (
     <>
@@ -76,16 +76,21 @@ const FilterSection = () => {
 
         <FilterDropdown
           filterKey="price"
-          triggerLabel="Price (low-to-high)"
+          triggerLabel={getPriceLabel(sort || "")}
           title="Select Price"
           options={[]}
-          customDropDownComponent={<PriceFilter />}
+          customDropDownComponent={
+            <PriceFilter
+              onChange={(id) => dispatch(setSort(id as SortOrder))}
+              value={sort || ""}
+            />
+          }
         />
       </div>
 
-      {isMobile && <MobileSelectedFilters onClick={() => {}} />}
+      {isMobile && <MobileSelectedFilters />}
     </>
   );
 };
 
-export default memo(FilterSection);
+export default FilterSection;

@@ -8,25 +8,23 @@ import { forwardRef } from "react";
  */
 export const virtuosoGridComponents = {
   List: forwardRef<HTMLDivElement, any>(
-    ({ style, children, ...props }, ref) => (
-      <div ref={ref} {...props} style={style} className="flex flex-wrap w-full">
+    ({ style, children, context, ...props }, ref) => (
+      <div
+        ref={ref}
+        {...props}
+        style={style}
+        className={context?.listClassName || "flex flex-wrap w-full"}
+      >
         {children}
       </div>
     )
   ),
 
-  Item: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-};
-
-type VirtualizedInfiniteListProps<T> = {
-  data: T[];
-  isLoading: boolean;
-  hasMore: boolean;
-  loadMore: () => void;
-  // children: (item: T, index: number) => React.ReactNode;
-  initialLoader?: React.ReactNode;
-  footerLoader?: React.ReactNode;
-  itemContent?: (index: number, item: T) => React.ReactNode;
+  Item: ({ children, ...props }: any) => (
+    <div {...props} className="w-full h-full">
+      {children}
+    </div>
+  ),
 };
 
 const VirtualizedInfiniteGrid = <T,>({
@@ -34,10 +32,11 @@ const VirtualizedInfiniteGrid = <T,>({
   isLoading,
   hasMore,
   loadMore,
-  children,
   initialLoader,
   footerLoader,
   itemContent,
+  listClassName,
+  overscan = 500,
 }: VirtualizedInfiniteListProps<T>) => {
   if (isLoading && data.length === 0) {
     return <>{initialLoader}</>;
@@ -46,19 +45,19 @@ const VirtualizedInfiniteGrid = <T,>({
   return (
     <VirtuosoGrid
       data={data}
-    //   useWindowScroll
+      useWindowScroll
+      overscan={overscan}
       endReached={() => {
         if (!hasMore || isLoading) return;
         loadMore();
       }}
       itemContent={itemContent}
+      context={{ listClassName }}
       components={{
         ...virtuosoGridComponents,
         Footer: () =>
           hasMore && isLoading ? (
-            <div className="w-full py-6 flex justify-center">
-              {footerLoader}
-            </div>
+            <div className="w-full">{footerLoader}</div>
           ) : null,
       }}
     />

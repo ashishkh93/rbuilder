@@ -63,46 +63,55 @@ export const SHAPE_OPTIONS = [
     id: "round",
     label: "Round",
     icon: <img src={SHAPE_ICONS.round} alt="Round" />,
+    iconSrc: SHAPE_ICONS.round,
   },
   {
     id: "oval",
     label: "Oval",
     icon: <img src={SHAPE_ICONS.oval} alt="Oval" />,
+    iconSrc: SHAPE_ICONS.oval,
   },
   {
     id: "pear",
     label: "Pear",
     icon: <img src={SHAPE_ICONS.pear} alt="Emerald" />,
+    iconSrc: SHAPE_ICONS.pear,
   },
   {
     id: "cushion",
     label: "Cushion",
     icon: <img src={SHAPE_ICONS.cushion} alt="Cushion" />,
+    iconSrc: SHAPE_ICONS.cushion,
   },
   {
     id: "emerald",
     label: "Emerald",
     icon: <img src={SHAPE_ICONS.emerald} alt="Emerald" />,
+    iconSrc: SHAPE_ICONS.emerald,
   },
   {
     id: "princess",
     label: "Princess",
     icon: <img src={SHAPE_ICONS.princess} alt="Princess" />,
+    iconSrc: SHAPE_ICONS.princess,
   },
   {
     id: "marquise",
     label: "Marquise",
     icon: <img src={SHAPE_ICONS.marquise} alt="Marquise" />,
+    iconSrc: SHAPE_ICONS.marquise,
   },
   {
     id: "radiant",
     label: "Radiant",
     icon: <img src={SHAPE_ICONS.radiant} alt="Radiant" />,
+    iconSrc: SHAPE_ICONS.radiant,
   },
   {
     id: "asscher",
     label: "Asscher",
     icon: <img src={SHAPE_ICONS.asscher} alt="Asscher" />,
+    iconSrc: SHAPE_ICONS.asscher,
   },
 ];
 

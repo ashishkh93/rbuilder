@@ -45,6 +45,7 @@ export const selectActiveFilters = createSelector(
     shape: filters.shape,
     style: filters.style,
     price: filters.price,
+    sort: filters.sort,
   })
 );
 
@@ -112,3 +113,22 @@ export const selectFiltersForQuery = createSelector(
     };
   }
 );
+
+// DIAMOND FILTER SELECTORS
+
+export const selectDiamondFilter = (s: RootState) => s.filters.diamondFilter;
+
+export const selectPrice = (s: RootState) => s.filters.diamondFilter.price;
+
+export const selectShape = (s: RootState) => s.filters.diamondFilter.shape;
+
+export const selectCarat = (s: RootState) => s.filters.diamondFilter.carat;
+
+export const selectCut = (s: RootState) => s.filters.diamondFilter.cut;
+
+export const selectColor = (s: RootState) => s.filters.diamondFilter.color;
+
+export const selectPriceSort = (s: RootState) =>
+  s.filters.diamondFilter.priceSort;
+
+export const selectClarity = (s: RootState) => s.filters.diamondFilter.clarity;

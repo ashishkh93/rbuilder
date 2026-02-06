@@ -17,7 +17,7 @@ export default function AppLayout() {
 
         <RBuilderStepper />
 
-        <div className="mt-4 md:mt-10">
+        <div className="mt-4 md:mt-8">
           <Outlet />
         </div>
       </div>

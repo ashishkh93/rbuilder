@@ -1,7 +1,12 @@
-export const ENG_RING = {
+export const ENG_RING_HEADER = {
   headerText: "Engagement Rings",
   subHeaderText:
     "Discover our collection of made to order engagement rings and customize it to your preference",
+};
+
+export const STONE_HEADER = {
+  headerText: "Select your Stone Shape and Quality",
+  subHeaderText: "Use the filters below to design your perfect engagement ring",
 };
 
 export const RING_PRODUCTS = [

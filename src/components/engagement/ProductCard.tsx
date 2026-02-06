@@ -8,11 +8,16 @@ const ProductCard = ({
   hoverImage,
   currency,
   badge,
+  onClick,
 }: ProductCardProps) => {
   return (
     <Link
       to={`/rings/${id}`}
-      preventScrollReset={true}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick?.(id);
+      }}
+      viewTransition={true}
       className="group rounded-2xl bg-white overflow-hidden hover:shadow-gray-200 transition-all duration-500 shadow-xl p-2 cursor-pointer"
     >
       {/* Image area */}

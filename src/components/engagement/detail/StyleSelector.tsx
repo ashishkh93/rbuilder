@@ -1,6 +1,6 @@
 import { RING_TYPE_ICONS } from "@/components/shared/icons/ringTypeIcon";
 import OptionGroup from "./OptionGroup";
-import RingCategoryCard from "../RingCategoryCard";
+import SelectableCard from "@/components/common/SelectableCard";
 
 const StyleSelector = () => {
   const categories = [
@@ -9,9 +9,9 @@ const StyleSelector = () => {
   ];
 
   return (
-    <OptionGroup title="Style">
+    <OptionGroup title="Style" subTitle="Solitaire">
       {categories.map((item) => (
-        <RingCategoryCard
+        <SelectableCard
           key={item.label}
           label={item.label}
           iconSrc={RING_TYPE_ICONS[item.icon as keyof typeof RING_TYPE_ICONS]}

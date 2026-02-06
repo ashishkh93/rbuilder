@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { X, RotateCcw } from "lucide-react";
 import MobileFilterSection from "./MobileFilterSection";
 import {
@@ -6,13 +5,13 @@ import {
   getShapeLabel,
   METAL_OPTIONS,
   SHAPE_OPTIONS,
-} from "../icons/metalConfig";
+} from "../../icons/metalConfig";
 
 import { useAppDispatch, useAppSelector } from "@/store";
 import {
   setMetal,
   setShape,
-  resetFilters,
+  resetRingFilters,
 } from "@/store/filters/filters.slice";
 import {
   selectMetalFilter,
@@ -34,7 +33,7 @@ const FiltersSheet = () => {
       <div className="flex items-center justify-between px-4 py-3 border-b">
         <button
           className="p-2 cursor-pointer"
-          onClick={() => dispatch(resetFilters())}
+          onClick={() => dispatch(resetRingFilters())}
         >
           <RotateCcw size={18} />
         </button>
@@ -80,4 +79,4 @@ const FiltersSheet = () => {
   );
 };
 
-export default memo(FiltersSheet);
+export default FiltersSheet;

@@ -8,13 +8,12 @@ import {
   selectProductCards,
   selectProductsLoading,
 } from "@/store/products/products.selectors";
-import ProductCardSkeleton, {
-  SingleCardSkeleton,
-} from "../common/skeletons/ProductCardSkeleton";
+import ProductCardSkeleton from "../common/skeletons/ProductCardSkeleton";
 import VirtualizedInfiniteList from "../common/VirtualizedInfiniteList";
 import { useEngagementSetting } from "@/hooks/useEngagementSetting";
 import { shallowEqual } from "react-redux";
 import { useCallback } from "react";
+import { setStepData } from "@/store/builder/builder.slice";
 
 const ProductsList = () => {
   const isMobile = useMediaQuery(MEDIA_QUERIES.xSmall);
@@ -22,6 +21,8 @@ const ProductsList = () => {
   const isLoading = useAppSelector(selectProductsLoading);
   const hasMore = useAppSelector(selectHasMoreProducts);
   const pageInfo = useAppSelector(selectPageInfo, shallowEqual);
+
+  const dispatch = useAppDispatch();
 
   const { loadEngagementSettings } = useEngagementSetting();
 
@@ -36,20 +37,35 @@ const ProductsList = () => {
 
   return (
     <section className="w-full">
-      <div className="grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-        <VirtualizedInfiniteList
-          data={products}
-          isLoading={isLoading}
-          hasMore={hasMore}
-          loadMore={loadMore}
-          initialLoader={<SingleCardSkeleton />}
-          footerLoader={<ProductCardSkeleton count={4} />}
-          itemContent={(index) => (
-            // @ts-ignore
-            <ProductCard key={index} {...products[index]} />
-          )}
-        />
-      </div>
+      <VirtualizedInfiniteList
+        data={products}
+        isLoading={isLoading}
+        hasMore={hasMore}
+        loadMore={loadMore}
+        initialLoader={<ProductCardSkeleton count={8} />}
+        footerLoader={<ProductCardSkeleton count={1} />}
+        listClassName={`grid gap-x-4! gap-y-4! ${
+          isMobile ? "grid-cols-1" : "grid-cols-2 sm:grid-cols-3 xl:grid-cols-4"
+        }`}
+        itemContent={(index) => (
+          // @ts-ignore
+          <ProductCard
+            key={index}
+            {...products[index]}
+            onClick={(id) => {
+              const product = products.find((p) => p.id === id);
+              if (!product) return;
+              // @ts-ignore
+              dispatch(
+                setStepData({
+                  step: 1,
+                  data: { meta: product.title, price: Number(product.price) },
+                })
+              );
+            }}
+          />
+        )}
+      />
     </section>
   );
 };

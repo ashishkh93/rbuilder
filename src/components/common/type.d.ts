@@ -1,9 +1,17 @@
-import type { PropsWithChildren, ReactNode } from "react";
+import type { ButtonHTMLAttributes, PropsWithChildren, ReactNode } from "react";
 
 declare global {
   interface BreadcrumbItem {
     label: string;
     path?: string;
+  }
+
+  interface ListPageHeaderProps {
+    headerText: string;
+    subHeaderText: string;
+    className?: string;
+    headerClassName?: string;
+    subHeaderClassName?: string;
   }
 
   interface BreadcrumbProps {
@@ -80,9 +88,100 @@ declare global {
     isLoading: boolean;
     hasMore: boolean;
     loadMore: () => void;
-    // children: (item: T, index: number) => ReactNode;
-    initialLoader?: ReactNode;
-    footerLoader?: ReactNode;
-    className?: string;
+    initialLoader?: React.ReactNode;
+    footerLoader?: React.ReactNode;
+    itemContent?: (index: number, item: T) => React.ReactNode;
+    listClassName?: string;
+    overscan?: number;
   };
+
+  type CustomTabItem<T extends string> = {
+    value: T;
+    label: string;
+    icon?: ReactNode;
+  };
+
+  interface CustomTabsProps<T extends string> {
+    value: T;
+    onChange: (value: T) => void;
+    items: CustomTabItem<T>[];
+    className?: string;
+    iconClassName?: string;
+    heightClass?: string;
+  }
+
+  interface SelectableCardProps {
+    label: string;
+    iconSrc: string;
+    active?: boolean;
+    className?: string;
+    iconClass?: string;
+    labelClass?: string;
+    onClick?: () => void;
+  }
+
+  interface ResponsiveHorizontalGridProps {
+    children: ReactNode;
+    className?: string;
+  }
+
+  interface CategoryItem {
+    id: string | number;
+    label: string;
+    iconSrc: string;
+  }
+
+  interface SelectableCategoryGridProps<T extends string | number> {
+    items: CategoryItem[];
+    activeId: T | null;
+    onSelect: (id: T | null) => void;
+    iconClass?: string;
+  }
+
+  type SliderValue = string | number | [number, number];
+
+  interface FilterRangeSliderProps {
+    label: string;
+
+    value: SliderValue;
+    onChange: (value: SliderValue) => void;
+
+    min: number;
+    max: number;
+    step?: number;
+
+    showInputs?: boolean;
+    formatValue?: (v: number) => string;
+
+    marks?: {
+      value: number | string;
+      label: string;
+    }[];
+
+    className?: string;
+    ticks?: number[];
+  }
+
+  interface StoneAccordionItemProps {
+    value: string;
+    title: string;
+    icon: ReactNode;
+    children: ReactNode;
+    defaultOpen?: boolean;
+  }
+
+  interface MediaTileProps {
+    src: string;
+    alt?: string;
+    index?: number;
+    className?: string;
+    shouldHaveGradient?: boolean;
+    additionalInfoComp?: React.ReactNode;
+    imageContainerClass?: string;
+  }
+
+  interface CommonCTAProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    label: string;
+    className?: string;
+  }
 }

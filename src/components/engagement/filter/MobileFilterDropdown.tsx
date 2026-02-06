@@ -1,5 +1,3 @@
-// src/components/common/FilterDropdown.tsx
-
 import { memo } from "react";
 import { Drawer, DrawerContent } from "../../ui/drawer";
 import FiltersSheet from "./FiltersSheet";

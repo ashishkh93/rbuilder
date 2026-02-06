@@ -1,5 +1,5 @@
 import { memo, useMemo } from "react";
-import Button from "@/components/shared/button/Buttton";
+import Button from "@/components/shared/button/Button";
 import { SlidersHorizontal } from "lucide-react";
 import {
   selectMetalFilter,
@@ -23,10 +23,10 @@ const MobileFilterButton = ({
   );
 
   return (
-    <Button onClick={onClick} className="py-[6px]! px-3!">
+    <Button onClick={onClick} className="py-[6px]! min-h-[38px]! px-3!">
       <SlidersHorizontal className="w-4 h-4 text-black" strokeWidth={1.75} />
       <span className="text-xs md:text-sm">{label}</span>
-      {selectedCount && (
+      {selectedCount > 0 && (
         <span className="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">
           {selectedCount}
         </span>

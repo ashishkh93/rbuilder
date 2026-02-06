@@ -1,6 +1,3 @@
-// components/ring/ProductHeader.tsx
-import { Hand, Mail } from "lucide-react";
-
 const ProductHeader = () => {
   return (
     <div className="space-y-2">
@@ -20,7 +17,7 @@ const ProductHeader = () => {
       <p className="text-xl font-medium">$1,700</p>
 
       <p className="text-xs text-gray-600 leading-relaxed py-2!">
-        Discover The Kamellie, a Keyzar bestseller that epitomizes timeless
+        Discover The Kamellie, a RBuilder bestseller that epitomizes timeless
         elegance. This exquisite solitaire engagement ring features a sleek and
         slender band that offers a modern touch while ensuring the center stone
         remains the star. What sets The Kamellie apart is its hidden halo,

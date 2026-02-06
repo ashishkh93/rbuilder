@@ -1,0 +1,25 @@
+import PriceBlock from "./PriceBlock";
+import ShippingPill from "./ShippingPill";
+import AddToBagButton from "./AddToBagButton";
+import StoneTrustBadges from "../stone/detail/summary/StoneTrustBadges";
+
+const FinalCheckoutSummary = ({
+  totalPrice,
+  originalPrice,
+  shippingText = "Ships in 2–3 weeks",
+  onAddToBag,
+}: FinalCheckoutSummaryProps) => {
+  return (
+    <section className="flex flex-col items-center gap-6">
+      <PriceBlock totalPrice={totalPrice} originalPrice={originalPrice} />
+
+      <ShippingPill text={shippingText} />
+
+      <AddToBagButton onClick={onAddToBag} />
+
+      <StoneTrustBadges />
+    </section>
+  );
+};
+
+export default FinalCheckoutSummary;

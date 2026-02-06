@@ -14,3 +14,8 @@ interface SingleOptionWithIconProps {
   labelClass?: string;
   iconClass?: string;
 }
+
+interface PriceFilterProps {
+  onChange: (value: SortOrder) => void;
+  value: SortOrder;
+}

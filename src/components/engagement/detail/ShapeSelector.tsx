@@ -1,12 +1,12 @@
 // components/ring/ShapeSelector.tsx
 import SingleOptionWithIcon from "../filter/SingleOptionWithIcon";
-import { SHAPE_OPTIONS } from "../icons/metalConfig";
+import { SHAPE_OPTIONS } from "../../icons/metalConfig";
 import OptionGroup from "./OptionGroup";
 ``;
 
 const ShapeSelector = () => {
   return (
-    <OptionGroup title="Center Stone Shape: Marquise">
+    <OptionGroup title="Center Stone Shape" subTitle="Marquise">
       {SHAPE_OPTIONS.map((opt) => {
         const isActive = false;
         return (

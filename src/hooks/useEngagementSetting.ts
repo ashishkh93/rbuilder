@@ -202,7 +202,7 @@ export const useEngagementSetting = () => {
                 append: loadMore,
               })
             );
-          }, 1500);
+          }, 500);
         } catch (err) {
           if (!axios.isCancel(err)) {
             console.error("Engagement fetch failed", err);

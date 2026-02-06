@@ -7,6 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export const BREAKPOINTS = {
   xSmall: 434,
+  small: 640,
   mobile: 767,
   tablet: 1023,
   desktop: 1279,
@@ -15,6 +16,7 @@ export const BREAKPOINTS = {
 
 export const MEDIA_QUERIES = {
   xSmall: `(max-width: ${BREAKPOINTS.xSmall}px)`,
+  small: `(max-width: ${BREAKPOINTS.small}px)`,
   mobile: `(max-width: ${BREAKPOINTS.mobile}px)`,
   tablet: `(max-width: ${BREAKPOINTS.tablet}px)`,
   desktop: `(min-width: ${BREAKPOINTS.desktop + 1}px)`,

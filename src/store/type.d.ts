@@ -29,6 +29,18 @@ type BuilderState = {
 
 type SortOrder = "price-asc" | "price-desc";
 
+type DiamondFilter = {
+  cut: SliderValue | null;
+  color: SliderValue | null;
+  clarity: SliderValue | null;
+  shape: SliderValue | null;
+  carat: DiamondRange;
+  price: DiamondRange;
+  priceSort: SortOrder;
+};
+
+type DiamondRange = [number, number];
+
 type FiltersState = {
   currentActiveFilterDropdown: string;
   metal: string | null;
@@ -36,6 +48,7 @@ type FiltersState = {
   style: string | null;
   price: [number, number];
   sort: SortOrder;
+  diamondFilter: DiamondFilter;
 };
 
 type MoneyV2 = {
@@ -152,6 +165,7 @@ type ProductsState = {
 };
 
 type EngagementRing = {
+  id?: string;
   currency?: string;
   selectedVariantId: string;
   handle: string;

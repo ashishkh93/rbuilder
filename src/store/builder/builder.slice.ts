@@ -3,16 +3,16 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 const initialState: BuilderState = {
   currentStep: 1,
   completedSteps: {
-    1: true,
+    1: false,
     2: false,
     3: false,
   },
   stepData: {
-    1: { meta: "The Kamellie", price: 1700 },
+    1: {},
     2: {},
     3: {},
   },
-  selectedSettingId: "setting_123",
+  selectedSettingId: null,
   selectedStoneId: null,
 };
 

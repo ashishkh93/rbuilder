@@ -63,7 +63,7 @@ const HorizontalScroller = ({
       {/* SCROLL AREA */}
       <div
         ref={scrollRef}
-        className={`flex flex-nowrap gap-6 overflow-x-scroll scroll-smooth snap-x snap-mandatory
+        className={`flex flex-nowrap gap-2 md:gap-6 overflow-x-scroll scroll-smooth snap-x snap-mandatory
         ${hideArrowsOn}:flex-wrap
         ${hideArrowsOn}:justify-center
         ${hideArrowsOn}:overflow-visible

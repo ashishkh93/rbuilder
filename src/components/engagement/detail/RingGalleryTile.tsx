@@ -8,13 +8,7 @@ export function GalleryTile({ index, ct }: { index: number; ct?: string }) {
 
   return (
     <div
-      className={`
-        relative
-        aspect-square
-        overflow-hidden
-        bg-white
-        ${radiusMap[index]}
-      `}
+      className={`relative aspect-square overflow-hidden bg-white ${radiusMap[index]}`}
     >
       <div className="absolute inset-0 rounded-sm! overflow-hidden">
         {/* Light background */}

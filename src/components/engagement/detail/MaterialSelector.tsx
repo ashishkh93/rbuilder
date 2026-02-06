@@ -1,11 +1,11 @@
 // components/ring/MaterialSelector.tsx
 import SingleOptionWithIcon from "../filter/SingleOptionWithIcon";
-import { METAL_OPTIONS } from "../icons/metalConfig";
+import { METAL_OPTIONS } from "../../icons/metalConfig";
 import OptionGroup from "./OptionGroup";
 
 const MaterialSelector = () => {
   return (
-    <OptionGroup title="Material: Platinum">
+    <OptionGroup title="Material" subTitle="Platinum">
       {METAL_OPTIONS.map((opt) => {
         const isActive = false;
         return (

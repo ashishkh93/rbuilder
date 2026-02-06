@@ -13,7 +13,8 @@ const SingleOptionWithIcon = ({
       className={`min-w-20.5 shrink-0 p-2 cursor-pointer md:px-1 md:min-w-0 text-center select-none rounded-md border transition-colors bg-customGray-75! hover:bg-customGray-150! md:bg-white! md:hover:bg-customGray-150! ${isActive ? "border-black/60" : "border-gray-300"}`}
     >
       {opt.icon && (
-        <div className={`w-13.5 h-13.5 md:w-9 md:h-9 mx-auto flex justify-center my-1 ${iconClass}`}>
+        // <div className={`w-13.5 h-13.5 md:w-9 md:h-9 mx-auto flex justify-center my-1 ${iconClass}`}>
+        <div className={`w-9 h-9 mx-auto flex justify-center my-1 ${iconClass}`}>
           {opt.icon}
         </div>
       )}

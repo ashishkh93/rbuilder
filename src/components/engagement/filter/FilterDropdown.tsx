@@ -1,19 +1,14 @@
 // src/components/common/FilterDropdown.tsx
 import { ChevronDown } from "lucide-react";
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useMemo, useRef, useState } from "react";
 import ButtonWithIcon from "../../common/ButttonWithIcon";
-import { MetalRingIcon } from "../icons/MetalRingIcon";
-import { METAL_COLORS } from "../icons/metalConfig";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import MobileFilterDropdown from "./MobileFilterDropdown";
 import FilterButttonWithValue from "./FilterButttonWithValue";
 import SettingOptionsRenderer from "./SettingOptionsRenderer";
 import { MEDIA_QUERIES } from "@/lib/utils";
 import MobileFilterButton from "./MobileFilterButton";
-import {
-  selectMetalFilter,
-  selectCurrentActiveFilterDropdown,
-} from "@/store/filters/filters.selectors";
+import { selectCurrentActiveFilterDropdown } from "@/store/filters/filters.selectors";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { setCurrentActiveFilterDropdown } from "@/store/filters/filters.slice";
 
@@ -39,7 +34,7 @@ const FilterDropdown = ({
 
   const open = useMemo(
     () =>
-      currentActiveFilterDropdown === "mobile" ||
+      (currentActiveFilterDropdown === "mobile" && filterKey !== "price") ||
       currentActiveFilterDropdown === filterKey,
     [currentActiveFilterDropdown, filterKey]
   );

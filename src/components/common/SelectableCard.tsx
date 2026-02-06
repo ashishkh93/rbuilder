@@ -1,4 +1,4 @@
-const RingCategoryCard = ({
+const SelectableCard = ({
   label,
   iconSrc,
   active = false,
@@ -6,7 +6,7 @@ const RingCategoryCard = ({
   iconClass,
   labelClass,
   onClick,
-}: RingCategoryCardProps) => {
+}: SelectableCardProps) => {
   return (
     <div
       onClick={onClick}
@@ -27,4 +27,4 @@ const RingCategoryCard = ({
   );
 };
 
-export default RingCategoryCard;
+export default SelectableCard;

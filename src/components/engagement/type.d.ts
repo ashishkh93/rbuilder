@@ -16,6 +16,7 @@ type ProductCardProps = {
   hoverImage: string;
   badge?: string;
   currency?: string;
+  onClick?: (id: string) => void;
 };
 
 type Product = {

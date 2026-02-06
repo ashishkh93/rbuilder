@@ -1,5 +1,5 @@
 import { memo } from "react";
-import Button from "../shared/button/Buttton";
+import Button from "../shared/button/Button";
 
 const ButtonWithIcon = ({
   triggerLabel,
