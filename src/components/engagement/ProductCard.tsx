@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ROUTES } from "../../config/global-config";
 
 const ProductCard = ({
   id,
@@ -12,7 +13,8 @@ const ProductCard = ({
 }: ProductCardProps) => {
   return (
     <Link
-      to={`/rings/${id}`}
+      // to={`/rings/${id}`}
+      to={`${ROUTES.engagementRings}/products/${id}`}
       onClick={(e) => {
         e.stopPropagation();
         onClick?.(id);

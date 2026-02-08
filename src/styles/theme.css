@@ -216,9 +216,9 @@
 }
 
 @layer base {
-  #tw-app-root {
+  /* #tw-app-root {
     all: revert-layer;
-  }
+  } */
 
   * {
     @apply border-border outline-ring/50;

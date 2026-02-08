@@ -184,4 +184,13 @@ declare global {
     label: string;
     className?: string;
   }
+
+  interface AppCarouselProps<T> {
+    items: T[];
+    renderItem: (item: T, index: number) => React.ReactNode;
+    className?: string;
+    contentClassName?: string;
+    dotClassName?: string;
+    activeDotClassName?: string;
+  }
 }

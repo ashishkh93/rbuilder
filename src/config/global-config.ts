@@ -1,5 +1,5 @@
 export const GLOBAL_CONFIG = {
-  shouldAPICall: false,
+  shouldAPICall: true,
   currencySymbol: import.meta.env.VITE_SHOPIFY_CURRENCY_SYMBOL,
   currencyCode: import.meta.env.VITE_SHOPIFY_CURRENCY_CODE,
   availableCurrencies: import.meta.env.VITE_SHOPIFY_AVAILABLE_CURRENCIES,
@@ -25,4 +25,13 @@ export const GLOBAL_CONFIG = {
   storefrontApiAccessToken: import.meta.env
     .VITE_SHOPIFY_STOREFRONT_API_ACCESS_TOKEN,
   adminApiAccessToken: import.meta.env.VITE_SHOPIFY_ADMIN_API_ACCESS_TOKEN,
+  diamondDetailApiFunc: "diamondById",
+};
+
+export const ROUTES = {
+  engagementRings: "/engagement-rings",
+  engagementRingDetail: "/engagement-rings/products/:id",
+  diamondType: "/:diamondType",
+  shape: "/:shape",
+  completeRingBuilder: "/complete-ring-builder",
 };

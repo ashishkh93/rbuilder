@@ -10,9 +10,13 @@ const RBuilderStepper = () => {
   const steps = useAppSelector(selectBuilderSteps);
   const navigate = useNavigate();
 
-  const onClickChange = useCallback((step: number) => {
-    if (Number(step) === 1) {
-      navigate("/rings");
+  const onClickChange = useCallback((stepId: number) => {
+    if (Number(stepId) === 1) {
+      navigate("/engagement-rings");
+    } else if (Number(stepId) === 2) {
+      navigate("/stones");
+    } else if (Number(stepId) === 3) {
+    navigate("/complete-ring-builder");
     }
   }, []);
 
@@ -23,6 +27,7 @@ const RBuilderStepper = () => {
           <Fragment key={step.id}>
             <div
               className={`relative flex items-center w-full lg:px-8 md:px-4 px-2 py-2 border border-gray-300 transition-colors ${index !== 0 ? "-ml-px" : ""} ${step.status === "active" ? "z-10 border-black!" : "z-0"} ${step.status === "active" ? "bg-white" : "bg-[#f7f7f7]"}`}
+              onClick={() => onClickChange(step.id)}
               //   style={{
               //     clipPath: isLast
               //       ? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
@@ -71,9 +76,9 @@ const RBuilderStepper = () => {
                     </div>
                   </div>
                 ) : (
-                  <p className="hidden text-end sm:block underline text-10 md:text-xs! text-gray-400">
+                  <div className="hidden text-end sm:block underline text-10 md:text-xs! text-gray-400">
                     Browse {firstLetterCapitalize(step.title)}
-                  </p>
+                  </div>
                 ))}
 
               {/* Right Icon Area */}
