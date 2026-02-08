@@ -1,4 +1,4 @@
-type StoneType = "lab-grown" | "natural";
+type  = "lab" | "natural";
 
 interface StoneTypeTabsProps {
   value: StoneType;

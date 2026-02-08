@@ -1,16 +1,10 @@
-import { lazy, Suspense, useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import EngagementHeader from "../../components/engagement/EngagementHeader";
 import { useEngagementSetting } from "../../hooks/useEngagementSetting";
+import FilterSection from "../../components/engagement/filter/FilterSection";
+import RingCategoryGrid from "../../components/engagement/RingCategoryGrid";
+import ProductsList from "../../components/engagement/ProductsList";
 
-const FilterSection = lazy(
-  () => import("../../components/engagement/filter/FilterSection")
-);
-const RingCategoryGrid = lazy(
-  () => import("../../components/engagement/RingCategoryGrid")
-);
-const ProductsList = lazy(
-  () => import("../../components/engagement/ProductsList")
-);
 
 const EngagementRingList = () => {
   // debugger
@@ -23,19 +17,10 @@ const EngagementRingList = () => {
   return (
     <section className="py-2">
       <EngagementHeader />
-
-      <Suspense fallback={null}>
-        <RingCategoryGrid />
-      </Suspense>
+      <RingCategoryGrid />
       <hr className="mt-8 mb-4 border-gray-300" />
-
-      <Suspense fallback={null}>
-        <FilterSection />
-      </Suspense>
-
-      <Suspense fallback={null}>
-        <ProductsList />
-      </Suspense>
+      <FilterSection />
+      <ProductsList />
     </section>
   );
 };

@@ -8,6 +8,7 @@ const initialState: FiltersState = {
   price: [0, 50000],
   sort: "price-asc",
   diamondFilter: {
+    type: 'lab',
     price: [0, 50000],
     carat: [0, 5],
     cut: [1, 3], // GD → EX

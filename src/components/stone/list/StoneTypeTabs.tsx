@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FlaskConical, Gem } from "lucide-react";
 
 const StoneTypeTabs = () => {
-  const [value, setValue] = useState<StoneType>("lab-grown");
+  const [value, setValue] = useState<StoneType>("lab");
 
   return (
     <div className="stone-type-outer-wrapper max-w-70 md:max-w-124 mx-auto flex justify-center items-center w-400">
@@ -13,7 +13,7 @@ const StoneTypeTabs = () => {
         heightClass="h-12 md:h-14! w-90 md:w-120 cursor-pointer!"
         items={[
           {
-            value: "lab-grown",
+            value: "lab",
             label: "Lab Grown",
             icon: <FlaskConical />,
           },

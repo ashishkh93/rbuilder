@@ -35,6 +35,7 @@ type DiamondFilter = {
   clarity: SliderValue | null;
   shape: SliderValue | null;
   carat: DiamondRange;
+  type: StoneType;
   price: DiamondRange;
   priceSort: SortOrder;
 };

@@ -15,7 +15,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         "ring-builder": "src/main.tsx",
-        // "choose-setting": 'src/choose-setting.jsx',
+        "choose-setting": 'src/choose-setting.jsx',
       },
       output: {
         dir: "../assets",
@@ -24,7 +24,7 @@ export default defineConfig({
         assetFileNames: "[name].[ext]",
         // Prevent code splitting to ensure single React instance
         // This fixes "Invalid hook call" error in production
-        inlineDynamicImports: true,
+        // inlineDynamicImports: true,
         // Alternatively, you can use manualChunks to keep React together
         // manualChunks: undefined,
       },

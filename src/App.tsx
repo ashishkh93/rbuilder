@@ -5,12 +5,12 @@ import { Route, Routes } from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 import { Spinner } from "./components/ui/spinner";
 import StonesLayout from "./pages/StonesList/StonesLayout";
+import EngagementRingList from "./pages/EngagementRingList";
+import EngagementRingDetail from "./pages/EngagementRingDetail";
+import StonesList from "./pages/StonesList";
+import StoneDetail from "./pages/StoneDetail";
+import FinalRingBuilder from "./pages/FinalRingBuilder";
 
-const EngagementRingList = lazy(() => import("./pages/EngagementRingList"));
-const EngagementRingDetail = lazy(() => import("./pages/EngagementRingDetail"));
-const StonesList = lazy(() => import("./pages/StonesList"));
-const StoneDetail = lazy(() => import("./pages/StoneDetail"));
-const FinalRingBuilder = lazy(() => import("./pages/FinalRingBuilder"));
 
 function App() {
   useEffect(() => {
@@ -19,20 +19,6 @@ function App() {
       initLoader.style.display = "none";
     }
   }, []);
-
-  const getStoneListComp = () => {
-    return (
-      <Suspense
-        fallback={
-          <div className="flex items-center justify-center">
-            <Spinner className="w-8 h-8" />
-          </div>
-        }
-      >
-        <StonesList />
-      </Suspense>
-    );
-  };
 
   return (
     <div>
@@ -43,37 +29,21 @@ function App() {
           <Route
             path="engagement-rings"
             element={
-              <Suspense
-                fallback={
-                  <div className="flex items-center justify-center">
-                    <Spinner className="w-8 h-8" />
-                  </div>
-                }
-              >
-                <EngagementRingList />
-              </Suspense>
+              <EngagementRingList />
             }
           />
           <Route
             path="engagement-rings/products/:id"
             element={
-              <Suspense
-                fallback={
-                  <div className="flex items-center justify-center">
-                    <Spinner className="w-8 h-8" />
-                  </div>
-                }
-              >
-                <EngagementRingDetail />
-              </Suspense>
+              <EngagementRingDetail />
             }
           />
           {/* Engagement Ring End*/}
 
           {/* Stones Start */}
           <Route path=":diamondType" element={<StonesLayout />}>
-            <Route index element={getStoneListComp()} />
-            <Route path=":shape" element={getStoneListComp()} />
+            <Route index element={<StonesList />} />
+            <Route path=":shape" element={<StonesList />} />
           </Route>
 
           {/* <Route path="lab-diamond" element={getStoneListComp()} />
@@ -113,15 +83,7 @@ function App() {
           <Route
             path="complete-ring-builder"
             element={
-              <Suspense
-                fallback={
-                  <div className="flex items-center justify-center">
-                    <Spinner className="w-8 h-8" />
-                  </div>
-                }
-              >
-                <FinalRingBuilder />
-              </Suspense>
+              <FinalRingBuilder />
             }
           />
         </Route>
