@@ -192,17 +192,15 @@ export const useEngagementSetting = () => {
               };
             }) ?? [];
 
-          setTimeout(() => {
-            dispatch(
-              receiveProducts({
-                // @ts-ignore
-                items: products,
-                pageInfo: res?.data?.data?.products?.pageInfo,
-                diamondCount: products.length,
-                append: loadMore,
-              })
-            );
-          }, 500);
+          dispatch(
+            receiveProducts({
+              // @ts-ignore
+              items: products,
+              pageInfo: res?.data?.data?.products?.pageInfo,
+              diamondCount: products.length,
+              append: loadMore,
+            })
+          );
         } catch (err) {
           if (!axios.isCancel(err)) {
             console.error("Engagement fetch failed", err);

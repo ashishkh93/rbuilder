@@ -8,9 +8,9 @@ const initialState: FiltersState = {
   price: [0, 50000],
   sort: "price-asc",
   diamondFilter: {
-    type: 'lab',
+    type: "lab",
     price: [0, 50000],
-    carat: [0, 5],
+    carat: [0.5, 5],
     cut: [1, 3], // GD → EX
     color: [0, 9], // M → D
     clarity: [3, 8], // VS2 → FL,
@@ -64,7 +64,7 @@ const filtersSlice = createSlice({
       if (key === "priceSort") {
         s.diamondFilter.priceSort = value as SortOrder;
       } else {
-        s.diamondFilter[key as Exclude<SingleKeys, "priceSort">] =
+        s.diamondFilter[key as Exclude<SingleKeys, "priceSort" | "type">] =
           value as SliderValue | null;
       }
     },

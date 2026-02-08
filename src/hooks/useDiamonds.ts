@@ -2,22 +2,24 @@
 import { useCallback, useMemo, useRef } from "react";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { selectFiltersForQuery } from "@/store/filters/filters.selectors";
-import {
-  requestProducts,
-  receiveProducts,
-} from "@/store/products/products.slice";
+import { selectDiamondFilter } from "@/store/filters/filters.selectors";
 import { GLOBAL_CONFIG } from "@/config/global-config";
-import { RING_PRODUCTS_GRAPHQL_RESP } from "@/mock/engagement-ring";
-import { getFilteredProducts } from "./hook-helper";
 import { shallowEqual } from "react-redux";
+import { selectDiamondPageInfo } from "@/store/diamonds/diamonds.selectors";
+import {
+  receiveDiamonds,
+  requestDiamonds,
+  setNoDataFound,
+} from "@/store/diamonds/diamonds.slice";
+import { clarityMarks, colorMarks, cutMarks } from "@/utils/constants";
 
-const DEBOUNCE_DELAY = 400;
+const DEBOUNCE_DELAY = 300;
 
 export const useDiamonds = () => {
   const dispatch = useAppDispatch();
 
-  const filters = useAppSelector(selectFiltersForQuery, shallowEqual);
+  const diamondFilter = useAppSelector(selectDiamondFilter, shallowEqual);
+  const diamondPageInfo = useAppSelector(selectDiamondPageInfo, shallowEqual);
 
   /** Refs for debounce & cancel */
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -25,8 +27,29 @@ export const useDiamonds = () => {
     typeof axios.CancelToken.source
   > | null>(null);
 
-  /** Build GraphQL query (pure & memoized) */
-  const buildDiamondQuery = useCallback(
+  const getColorField = useCallback(() => {
+    const currentColorRange = diamondFilter?.color as [number, number];
+    const startIndex = colorMarks.indexOf(currentColorRange[0]?.toString());
+    const endIndex = colorMarks.indexOf(currentColorRange[1]?.toString());
+    return colorMarks.slice(startIndex, endIndex + 1).join(",");
+  }, [diamondFilter?.color]);
+
+  const getClarityField = useCallback(() => {
+    const currentColorRange = diamondFilter?.clarity as [number, number];
+    const startIndex = clarityMarks.indexOf(currentColorRange[0]?.toString());
+    const endIndex = clarityMarks.indexOf(currentColorRange[1]?.toString());
+    return clarityMarks.slice(startIndex, endIndex + 1).join(",");
+  }, [diamondFilter?.clarity]);
+
+  const getCutField = useCallback(() => {
+    const currentcutRange = diamondFilter?.cut as [number, number];
+    const startIndex = cutMarks.indexOf(currentcutRange[0]?.toString());
+    const endIndex = cutMarks.indexOf(currentcutRange[1]?.toString());
+    return cutMarks.slice(startIndex, endIndex + 1).join(",");
+  }, [diamondFilter?.cut]);
+
+  /**GraphQL query (pure & memoized) */
+  const buildDiamondListQuery = useCallback(
     ({
       pageNumber,
       shapes,
@@ -63,7 +86,7 @@ export const useDiamonds = () => {
         args.push(`carat:"${filters.carat[0]},${filters.carat[1]}"`);
       }
 
-      if (filters?.clarity) args.push(`clarity:"${filters.clarity}"`);
+      if (!!getClarityField()) args.push(`clarity:"${getClarityField()}"`);
       if (filters?.symmetry) args.push(`symmetry:"${filters.symmetry}"`);
       if (filters?.polish) args.push(`polish:"${filters.polish}"`);
 
@@ -80,7 +103,7 @@ export const useDiamonds = () => {
       }
 
       if (shapes?.includes("round") && filters?.cut) {
-        args.push(`cut:"${filters.cut}"`);
+        args.push(`cut:"${getCutField()}"`);
       }
 
       if (filters?.fluorescence) {
@@ -104,6 +127,7 @@ export const useDiamonds = () => {
           diamondsReturned
           pageNo
           diamond {
+
             diamondId
             shape
             caratWeight
@@ -141,47 +165,67 @@ export const useDiamonds = () => {
   );
 
   /** Main loader (stable, reusable) */
-  const loadDiamonds = useCallback(
-    async ({
-      loadMore = false,
-      cursor,
-      isToSelling = false,
-    }: {
-      loadMore?: boolean;
-      cursor?: string | null;
-      isToSelling?: boolean;
-    }) => {
-      const query = buildDiamondQuery({
-        pageNumber: 1,
-        shapes: filters.shape || "",
-        filters: filters,
-        tab: "lab",
-        colorField: "color",
-        colorValue: "",
-        colorFlag: "",
-        minAppliedPrice: 0,
-        maxAppliedPrice: 1000000,
-        graphqlSortField: "",
-        currencyCode: "USD",
-      });
+  const loadDiamonds = useCallback(async () => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
 
-      const res = await axios.post(
-        GLOBAL_CONFIG.productFetchApi,
-        { query },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "X-Shopify-Storefront-Access-Token":
-              GLOBAL_CONFIG.storefrontApiAccessToken,
-          },
-          cancelToken: cancelTokenRef.current?.token,
+    debounceRef.current = setTimeout(async () => {
+      try {
+        dispatch(requestDiamonds());
+        const query = buildDiamondListQuery({
+          pageNumber: diamondPageInfo.page,
+          shapes: (diamondFilter.shape as string) || "",
+          filters: diamondFilter,
+          tab: diamondFilter.type || "",
+          colorField: "color",
+          colorValue: (getColorField() as string) || "",
+          colorFlag: "",
+          minAppliedPrice: diamondFilter.price[0],
+          maxAppliedPrice: diamondFilter.price[1],
+          graphqlSortField: "",
+          currencyCode: GLOBAL_CONFIG.currencyCode,
+        });
+
+        const res = await axios.post(
+          GLOBAL_CONFIG.productFetchApi,
+          { query },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "X-Shopify-Storefront-Access-Token":
+                GLOBAL_CONFIG.storefrontApiAccessToken,
+            },
+            cancelToken: cancelTokenRef.current?.token,
+          }
+        );
+
+        console.log(res?.data, res?.status, "actualRes=");
+        if (res?.status === 200) {
+          const actualRes = res?.data?.data;
+
+          dispatch(
+            receiveDiamonds({
+              diamonds: actualRes?.diamondData?.diamond,
+              pageInfo: {
+                dataCount: actualRes?.diamondData?.dataCount,
+                diamondsReturned: actualRes?.diamondData?.diamondsReturned,
+                page: Number(
+                  actualRes?.diamondData?.pageNo || diamondPageInfo.page
+                ),
+              },
+              dataCount: actualRes?.diamondData?.dataCount,
+            })
+          );
+        } else {
+          dispatch(setNoDataFound());
         }
-      );
-
-      console.log(res, "res==");
-    },
-    [dispatch, filters, buildDiamondQuery]
-  );
+      } catch (err) {
+        dispatch(setNoDataFound());
+        if (!axios.isCancel(err)) {
+          console.error("Engagement fetch failed", err);
+        }
+      }
+    }, DEBOUNCE_DELAY);
+  }, [dispatch, diamondFilter, diamondPageInfo, buildDiamondListQuery]);
 
   return useMemo(
     () => ({

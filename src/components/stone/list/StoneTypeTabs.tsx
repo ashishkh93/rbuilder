@@ -1,15 +1,18 @@
 import CustomTabs from "@/components/common/CustomTabs";
-import { useState } from "react";
 import { FlaskConical, Gem } from "lucide-react";
+import { selectType } from "@/store/filters/filters.selectors";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { setDiamondSingle } from "@/store/filters/filters.slice";
 
 const StoneTypeTabs = () => {
-  const [value, setValue] = useState<StoneType>("lab");
+  const diamondType = useAppSelector(selectType);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="stone-type-outer-wrapper max-w-70 md:max-w-124 mx-auto flex justify-center items-center w-400">
       <CustomTabs<StoneType>
-        value={value}
-        onChange={setValue}
+        value={diamondType}
+        onChange={(value) => dispatch(setDiamondSingle({ key: "type", value }))}
         heightClass="h-12 md:h-14! w-90 md:w-120 cursor-pointer!"
         items={[
           {

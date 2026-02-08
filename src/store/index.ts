@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import builderReducer from "./builder/builder.slice";
 import filtersReducer from "./filters/filters.slice";
 import productsReducer from "./products/products.slice";
+import diamondsReducer from "./diamonds/diamonds.slice";
 import { type TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     builder: builderReducer,
     filters: filtersReducer,
     products: productsReducer,
+    diamonds: diamondsReducer,
   },
   devTools: true,
 });

@@ -1,6 +1,6 @@
 type RagneKeys = "price" | "carat";
 
-type SingleKeys = "cut" | "color" | "clarity" | "shape" | "priceSort";
+type SingleKeys = "cut" | "color" | "clarity" | "shape" | "priceSort" | "type";
 
 interface DiamondFilterConfig {
   key: RagneKeys | SingleKeys;

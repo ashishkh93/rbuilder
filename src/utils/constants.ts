@@ -22,6 +22,10 @@ export const getPriceLabel = (id: string) => {
   return PRICE_FILTER_OPTIONS.find((opt) => opt.id === id)?.label || "";
 };
 
+export const colorMarks = ["M", "L", "K", "J", "I", "H", "G", "F", "E", "D"];
+export const cutMarks = ["FR", "GD", "VG", "EX", "ID"];
+export const clarityMarks = ["I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1", "IF", "FL"];
+
 export const STONE_FILTERS: DiamondFilterConfig[] = [
   {
     key: "price",
@@ -36,8 +40,8 @@ export const STONE_FILTERS: DiamondFilterConfig[] = [
     key: "carat",
     label: "CARAT",
     type: "range",
-    min: 0,
-    max: 5,
+    min: 0.5,
+    max: 11,
     step: 0.1,
     showInputs: true,
   },
@@ -48,7 +52,7 @@ export const STONE_FILTERS: DiamondFilterConfig[] = [
     min: 0,
     max: 5, // marks.length
     step: 1,
-    marks: ["FR", "GD", "VG", "EX", "ID"],
+    marks: cutMarks,
   },
   {
     key: "color",
@@ -57,7 +61,7 @@ export const STONE_FILTERS: DiamondFilterConfig[] = [
     min: 0,
     max: 10,
     step: 1,
-    marks: ["M", "L", "K", "J", "I", "H", "G", "F", "E", "D"],
+    marks: colorMarks,
   },
   {
     key: "clarity",
@@ -66,7 +70,7 @@ export const STONE_FILTERS: DiamondFilterConfig[] = [
     min: 0,
     max: 9,
     step: 1,
-    marks: ["I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1", "IF", "FL"],
+    marks: clarityMarks,
   },
 ] as const;
 

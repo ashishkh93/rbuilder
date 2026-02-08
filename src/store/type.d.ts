@@ -52,6 +52,44 @@ type FiltersState = {
   diamondFilter: DiamondFilter;
 };
 
+type DiamondPageInfo = {
+  page: number;
+  dataCount: number;
+  diamondsReturned: number;
+};
+
+type Diamond = {
+  diamondId: string;
+  shape: string;
+  caratWeight: string;
+  color: string;
+  clarity: string;
+  cut: string;
+  symmetry: string;
+  polish: string;
+  deptPerc: string;
+  tablePerc: string;
+  price: string;
+  length: string;
+  width: string;
+  depth: string;
+  ratio: string;
+  girdleMin: string;
+  girdleMax: string;
+  culet: string;
+  fancyColor: string;
+  flourIntensity: string;
+  certificateFile: string;
+  lab: string;
+  certificateNumber: string;
+  stockNumber: string;
+  diamondImage: string;
+  diamondVideo: string;
+  diamondType: string;
+  currencyCode: string;
+  currencySymbol: string;
+};
+
 type MoneyV2 = {
   amount: string;
   currencyCode: string;
@@ -163,6 +201,14 @@ type ProductsState = {
   page: number;
   diamondCount: number;
   pageInfo: PageInfo;
+};
+
+type DiamondsState = {
+  diamonds: Diamond[];
+  loading: boolean;
+  dataNotFound: boolean;
+  isMoreData: boolean;
+  pageInfo: DiamondPageInfo;
 };
 
 type EngagementRing = {

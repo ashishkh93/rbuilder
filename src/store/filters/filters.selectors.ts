@@ -120,6 +120,8 @@ export const selectDiamondFilter = (s: RootState) => s.filters.diamondFilter;
 
 export const selectPrice = (s: RootState) => s.filters.diamondFilter.price;
 
+export const selectType = (s: RootState) => s.filters.diamondFilter.type;
+
 export const selectShape = (s: RootState) => s.filters.diamondFilter.shape;
 
 export const selectCarat = (s: RootState) => s.filters.diamondFilter.carat;

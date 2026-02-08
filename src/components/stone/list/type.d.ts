@@ -1,4 +1,4 @@
-type  = "lab" | "natural";
+type StoneType = "lab" | "natural";
 
 interface StoneTypeTabsProps {
   value: StoneType;
@@ -13,16 +13,5 @@ type ResetDividerProps = {
 };
 
 type StoneCardProps = {
-  stone: {
-    id: string;
-    primaryImage: string;
-    hoverImage: string;
-    shape: string;
-    price: number;
-    priceWithSetting: number;
-    carat: number;
-    color: string;
-    clarity: string;
-    ratio: number;
-  };
+  stone: Partial<Diamond>;
 };
