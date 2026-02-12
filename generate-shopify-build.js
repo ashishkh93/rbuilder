@@ -30,130 +30,130 @@ const assetsDir = path.join(shopifyRoot, "assets");
 
 // 1️⃣ ring-builder.liquid snippet
 const ringBuilderSnippet = `
-<div id="site-wrapper" class="min-h-screen bg-white">
+<div id="site-wrapper" class="rb:min-h-screen rb:bg-white">
   <!-- Initial Page Loader -->
-  <div id="initial-page-loader" class="fixed inset-0 z-50 bg-white">
-    <div class="w-full h-full animate-pulse">
-      <div class="flex gap-6 p-6 max-w-7xl mx-auto">
+  <div id="initial-page-loader" class="rb:fixed rb:inset-0 rb:z-50 rb:bg-white">
+    <div class="rb:w-full rb:h-full rb:animate-pulse">
+      <div class="rb:flex rb:gap-6 rb:p-6 rb:max-w-7xl rb:mx-auto">
         <!-- LEFT: Filters Column -->
-        <aside class="w-72 space-y-6">
+        <aside class="rb:w-72 rb:space-y-6">
           <!-- Filter Tabs -->
-          <div class="space-y-4">
-            <div class="h-6 w-40 bg-slate-200 rounded"></div>
-            <div class="space-y-2">
-              <div class="h-4 bg-slate-200 rounded"></div>
-              <div class="h-4 bg-slate-200 rounded"></div>
-              <div class="h-4 bg-slate-200 rounded"></div>
-              <div class="h-4 bg-slate-200 rounded"></div>
+          <div class="rb:space-y-4">
+            <div class="rb:h-6 rb:w-40 rb:bg-slate-200 rb:rounded"></div>
+            <div class="rb:space-y-2">
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded"></div>
             </div>
           </div>
 
           <!-- Repeated Filter Blocks -->
-          <div class="space-y-6">
+          <div class="rb:space-y-6">
             <!-- Filter Block -->
-            <div class="space-y-3">
-              <div class="h-5 w-32 bg-slate-200 rounded"></div>
-              <div class="grid grid-cols-1 gap-2">
-                <div class="h-4 bg-slate-200 rounded"></div>
-                <div class="h-4 bg-slate-200 rounded"></div>
-                <div class="h-4 bg-slate-200 rounded"></div>
-                <div class="h-4 bg-slate-200 rounded"></div>
-                <div class="h-4 bg-slate-200 rounded"></div>
+            <div class="rb:space-y-3">
+              <div class="rb:h-5 rb:w-32 rb:bg-slate-200 rb:rounded"></div>
+              <div class="rb:grid rb:grid-cols-1 rb:gap-2">
+                <div class="rb:h-4 rb:bg-slate-200 rb:rounded"></div>
+                <div class="rb:h-4 rb:bg-slate-200 rb:rounded"></div>
+                <div class="rb:h-4 rb:bg-slate-200 rb:rounded"></div>
+                <div class="rb:h-4 rb:bg-slate-200 rb:rounded"></div>
+                <div class="rb:h-4 rb:bg-slate-200 rb:rounded"></div>
               </div>
             </div>
 
             <!-- 4-column filter -->
-            <div class="space-y-3">
-              <div class="h-5 w-32 bg-slate-200 rounded"></div>
-              <div class="grid grid-cols-4 gap-2">
-                <div class="h-6 bg-slate-200 rounded"></div>
-                <div class="h-6 bg-slate-200 rounded"></div>
-                <div class="h-6 bg-slate-200 rounded"></div>
-                <div class="h-6 bg-slate-200 rounded"></div>
+            <div class="rb:space-y-3">
+              <div class="rb:h-5 rb:w-32 rb:bg-slate-200 rb:rounded"></div>
+              <div class="rb:grid rb:grid-cols-4 rb:gap-2">
+                <div class="rb:h-6 rb:bg-slate-200 rb:rounded"></div>
+                <div class="rb:h-6 rb:bg-slate-200 rb:rounded"></div>
+                <div class="rb:h-6 rb:bg-slate-200 rb:rounded"></div>
+                <div class="rb:h-6 rb:bg-slate-200 rb:rounded"></div>
               </div>
             </div>
 
             <!-- 3-column filter -->
-            <div class="space-y-3">
-              <div class="h-5 w-32 bg-slate-200 rounded"></div>
-              <div class="grid grid-cols-3 gap-2">
-                <div class="h-6 bg-slate-200 rounded"></div>
-                <div class="h-6 bg-slate-200 rounded"></div>
-                <div class="h-6 bg-slate-200 rounded"></div>
+            <div class="rb:space-y-3">
+              <div class="rb:h-5 rb:w-32 rb:bg-slate-200 rb:rounded"></div>
+              <div class="rb:grid rb:grid-cols-3 rb:gap-2">
+                <div class="rb:h-6 rb:bg-slate-200 rb:rounded"></div>
+                <div class="rb:h-6 rb:bg-slate-200 rb:rounded"></div>
+                <div class="rb:h-6 rb:bg-slate-200 rb:rounded"></div>
               </div>
             </div>
 
             <!-- 2-column filter -->
-            <div class="space-y-3">
-              <div class="h-5 w-32 bg-slate-200 rounded"></div>
-              <div class="grid grid-cols-2 gap-2">
-                <div class="h-6 bg-slate-200 rounded"></div>
-                <div class="h-6 bg-slate-200 rounded"></div>
+            <div class="rb:space-y-3">
+              <div class="rb:h-5 rb:w-32 rb:bg-slate-200 rb:rounded"></div>
+              <div class="rb:grid rb:grid-cols-2 rb:gap-2">
+                <div class="rb:h-6 rb:bg-slate-200 rb:rounded"></div>
+                <div class="rb:h-6 rb:bg-slate-200 rb:rounded"></div>
               </div>
             </div>
           </div>
         </aside>
 
         <!-- RIGHT: Product Grid -->
-        <section class="flex-1 space-y-6">
+        <section class="rb:flex-1 rb:space-y-6">
           <!-- Header -->
-          <div class="flex items-center gap-4">
-            <div class="h-6 w-40 bg-slate-200 rounded"></div>
-            <div class="h-6 w-24 bg-slate-200 rounded"></div>
-            <div class="h-6 w-24 bg-slate-200 rounded"></div>
+          <div class="rb:flex rb:items-center rb:gap-4">
+            <div class="rb:h-6 rb:w-40 rb:bg-slate-200 rb:rounded"></div>
+            <div class="rb:h-6 rb:w-24 rb:bg-slate-200 rb:rounded"></div>
+            <div class="rb:h-6 rb:w-24 rb:bg-slate-200 rb:rounded"></div>
           </div>
 
           <!-- Products Grid -->
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+          <div class="rb:grid rb:grid-cols-2 rb:md:grid-cols-3 rb:gap-6">
             <!-- Product Card Skeleton -->
             <template id="product-skeleton">
-              <div class="space-y-3">
-                <div class="aspect-4/5 bg-slate-200 rounded-xl"></div>
-                <div class="h-4 bg-slate-200 rounded w-3/4"></div>
-                <div class="h-4 bg-slate-200 rounded w-1/2"></div>
+              <div class="rb:space-y-3">
+                <div class="rb:aspect-4/5 rb:bg-slate-200 rb:rounded-xl"></div>
+                <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-3/4"></div>
+                <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-1/2"></div>
               </div>
             </template>
 
             <!-- 9 items -->
-            <div class="space-y-3">
-              <div class="aspect-4/5 bg-slate-200 rounded-xl"></div>
-              <div class="h-4 bg-slate-200 rounded w-3/4"></div>
-              <div class="h-4 bg-slate-200 rounded w-1/2"></div>
+            <div class="rb:space-y-3">
+              <div class="rb:aspect-4/5 rb:bg-slate-200 rb:rounded-xl"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-3/4"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-1/2"></div>
             </div>
-            <div class="space-y-3">
-              <div class="aspect-4/5 bg-slate-200 rounded-xl"></div>
-              <div class="h-4 bg-slate-200 rounded w-3/4"></div>
-              <div class="h-4 bg-slate-200 rounded w-1/2"></div>
+            <div class="rb:space-y-3">
+              <div class="rb:aspect-4/5 rb:bg-slate-200 rb:rounded-xl"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-3/4"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-1/2"></div>
             </div>
-            <div class="space-y-3">
-              <div class="aspect-4/5 bg-slate-200 rounded-xl"></div>
-              <div class="h-4 bg-slate-200 rounded w-3/4"></div>
-              <div class="h-4 bg-slate-200 rounded w-1/2"></div>
+            <div class="rb:space-y-3">
+              <div class="rb:aspect-4/5 rb:bg-slate-200 rb:rounded-xl"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-3/4"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-1/2"></div>
             </div>
-            <div class="space-y-3">
-              <div class="aspect-4/5 bg-slate-200 rounded-xl"></div>
-              <div class="h-4 bg-slate-200 rounded w-3/4"></div>
-              <div class="h-4 bg-slate-200 rounded w-1/2"></div>
+            <div class="rb:space-y-3">
+              <div class="rb:aspect-4/5 rb:bg-slate-200 rb:rounded-xl"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-3/4"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-1/2"></div>
             </div>
-            <div class="space-y-3">
-              <div class="aspect-4/5 bg-slate-200 rounded-xl"></div>
-              <div class="h-4 bg-slate-200 rounded w-3/4"></div>
-              <div class="h-4 bg-slate-200 rounded w-1/2"></div>
+            <div class="rb:space-y-3">
+              <div class="rb:aspect-4/5 rb:bg-slate-200 rb:rounded-xl"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-3/4"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-1/2"></div>
             </div>
-            <div class="space-y-3">
-              <div class="aspect-4/5 bg-slate-200 rounded-xl"></div>
-              <div class="h-4 bg-slate-200 rounded w-3/4"></div>
-              <div class="h-4 bg-slate-200 rounded w-1/2"></div>
+            <div class="rb:space-y-3">
+              <div class="rb:aspect-4/5 rb:bg-slate-200 rb:rounded-xl"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-3/4"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-1/2"></div>
             </div>
-            <div class="space-y-3">
-              <div class="aspect-4/5 bg-slate-200 rounded-xl"></div>
-              <div class="h-4 bg-slate-200 rounded w-3/4"></div>
-              <div class="h-4 bg-slate-200 rounded w-1/2"></div>
+            <div class="rb:space-y-3">
+              <div class="rb:aspect-4/5 rb:bg-slate-200 rb:rounded-xl"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-3/4"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-1/2"></div>
             </div>
-            <div class="space-y-3">
-              <div class="aspect-4/5 bg-slate-200 rounded-xl"></div>
-              <div class="h-4 bg-slate-200 rounded w-3/4"></div>
-              <div class="h-4 bg-slate-200 rounded w-1/2"></div>
+            <div class="rb:space-y-3">
+              <div class="rb:aspect-4/5 rb:bg-slate-200 rb:rounded-xl"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-3/4"></div>
+              <div class="rb:h-4 rb:bg-slate-200 rb:rounded rb:w-1/2"></div>
             </div>
           </div>
         </section>
@@ -162,7 +162,7 @@ const ringBuilderSnippet = `
   </div>
 
   <!-- App Mount -->
-  <main class="relative z-10">
+  <main class="rb:relative rb:z-10">
     <div id="r-builder-app"></div>
   </main>
 </div>

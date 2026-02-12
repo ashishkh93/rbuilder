@@ -14,8 +14,14 @@ const initialState: FiltersState = {
     cut: [1, 3], // GD → EX
     color: [0, 9], // M → D
     clarity: [3, 8], // VS2 → FL,
+    fluorescence: [0, 2],
+    table: [45, 100],
+    depth: [45, 100],
+    polish: [0, 3],
+    symmetry: [0, 3],
     shape: null,
     priceSort: "price-asc",
+    lab: [],
   },
 };
 
@@ -57,15 +63,16 @@ const filtersSlice = createSlice({
       s,
       a: PayloadAction<{
         key: SingleKeys;
-        value: SliderValue | SortOrder | null;
+        value: SliderValue | SortOrder | string[] | null;
       }>
     ) => {
       const { key, value } = a.payload;
       if (key === "priceSort") {
         s.diamondFilter.priceSort = value as SortOrder;
       } else {
-        s.diamondFilter[key as Exclude<SingleKeys, "priceSort" | "type">] =
-          value as SliderValue | null;
+        s.diamondFilter[
+          key as Exclude<SingleKeys, "priceSort" | "type" | "lab">
+        ] = value as SliderValue | null;
       }
     },
     resetAllFilters: () => initialState,

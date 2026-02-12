@@ -24,7 +24,7 @@ const StoneCategoryGrid = () => {
       items={items}
       activeId={activeShape as string}
       onSelect={(id) => dispatch(setDiamondSingle({ key: "shape", value: id }))}
-      iconClass="w-13.5! h-13.5! md:w-9! md:h-9!"
+      iconClass="rb:w-13.5! rb:h-13.5! rb:md:w-9! rb:md:h-9!"
     />
   );
 };

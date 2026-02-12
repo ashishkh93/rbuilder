@@ -9,11 +9,11 @@ const StoneTypeTabs = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="stone-type-outer-wrapper max-w-70 md:max-w-124 mx-auto flex justify-center items-center w-400">
+    <div className="rb:stone-type-outer-wrapper rb:max-w-70 rb:md:max-w-124 rb:mx-auto rb:flex rb:justify-center rb:items-center rb:w-400">
       <CustomTabs<StoneType>
         value={diamondType}
         onChange={(value) => dispatch(setDiamondSingle({ key: "type", value }))}
-        heightClass="h-12 md:h-14! w-90 md:w-120 cursor-pointer!"
+        heightClass="rb:h-12 rb:md:h-14! rb:w-90 rb:md:w-120 rb:cursor-pointer!"
         items={[
           {
             value: "lab",

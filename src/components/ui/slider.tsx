@@ -1,7 +1,7 @@
-import * as React from "react"
-import * as SliderPrimitive from "@radix-ui/react-slider"
+import * as React from "react";
+import * as SliderPrimitive from "@radix-ui/react-slider";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 function Slider({
   className,
@@ -19,7 +19,7 @@ function Slider({
           ? defaultValue
           : [min, max],
     [value, defaultValue, min, max]
-  )
+  );
 
   return (
     <SliderPrimitive.Root
@@ -29,7 +29,7 @@ function Slider({
       min={min}
       max={max}
       className={cn(
-        "relative flex w-full touch-none items-center select-none data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
+        "rb:relative rb:flex rb:w-full rb:touch-none rb:items-center rb:select-none rb:data-disabled:opacity-50 rb:data-[orientation=vertical]:h-full rb:data-[orientation=vertical]:min-h-44 rb:data-[orientation=vertical]:w-auto rb:data-[orientation=vertical]:flex-col",
         className
       )}
       {...props}
@@ -37,13 +37,13 @@ function Slider({
       <SliderPrimitive.Track
         data-slot="slider-track"
         className={cn(
-          "bg-gray-300 relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"
+          "rb:bg-gray-300 rb:relative rb:grow rb:overflow-hidden rb:rounded-full rb:data-[orientation=horizontal]:h-1.5 rb:data-[orientation=horizontal]:w-full rb:data-[orientation=vertical]:h-full rb:data-[orientation=vertical]:w-1.5"
         )}
       >
         <SliderPrimitive.Range
           data-slot="slider-range"
           className={cn(
-            "bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
+            "rb:bg-primary rb:absolute rb:data-[orientation=horizontal]:h-full rb:data-[orientation=vertical]:w-full"
           )}
         />
       </SliderPrimitive.Track>
@@ -51,11 +51,11 @@ function Slider({
         <SliderPrimitive.Thumb
           data-slot="slider-thumb"
           key={index}
-          className="border-primary ring-ring/50 block size-4 shrink-0 rounded-full border bg-white shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+          className="rb:border-primary rb:ring-ring/50 rb:block rb:size-4 rb:shrink-0 rb:rounded-full rb:border rb:bg-white rb:shadow-sm rb:transition-[color,box-shadow] rb:hover:ring-4 rb:focus-visible:ring-4 rb:focus-visible:outline-hidden rb:disabled:pointer-events-none rb:disabled:opacity-50"
         />
       ))}
     </SliderPrimitive.Root>
-  )
+  );
 }
 
-export { Slider }
+export { Slider };

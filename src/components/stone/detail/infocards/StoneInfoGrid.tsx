@@ -6,7 +6,7 @@ import CertificationCard from "./CertificationCard";
 
 const StoneInfoGrid = () => {
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div className="rb:grid rb:grid-cols-2 rb:gap-2">
       <CaratCard />
       <ColorCard />
       <ClarityCard />

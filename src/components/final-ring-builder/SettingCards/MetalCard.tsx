@@ -8,7 +8,7 @@ export const MetalCard = () => (
     desc="The secret sauce that makes this piece."
     iconSrc={COMMON_ICONS.metal}
   >
-    <p className="text-xl font-semibold text-black">14k Yellow Gold</p>
+    <p className="rb:text-xl rb:font-semibold rb:text-black">14k Yellow Gold</p>
 
     {/* graph + legend can live here */}
   </BaseSettingCard>

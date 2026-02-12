@@ -14,7 +14,7 @@ const CustomTabs = <T extends string>({
     <Tabs value={value} onValueChange={(v) => onChange(v as T)}>
       <TabsList
         className={cn(
-          `flex relative isolate rounded-md bg-customGray-50 border border-borders p-0 items-stretch`,
+          `rb:flex rb:relative rb:isolate rb:rounded-sm rb:bg-customGray-50 rb:border rb:border-borders rb:p-0 rb:items-stretch`,
           heightClass,
           className
         )}
@@ -22,8 +22,8 @@ const CustomTabs = <T extends string>({
         {/* Active background slider */}
         <div
           className={cn(
-            `absolute w-1/2 top-0 bottom-0 pointer-events-none bg-white ring-1 md:ring-2 ring-black transition-all duration-300 rounded-md`,
-            isFirstActive ? "left-0" : "left-1/2"
+            `rb:absolute rb:w-1/2 rb:top-0 rb:bottom-0 rb:pointer-events-none rb:bg-white rb:ring-1 md:rb:ring-2 rb:ring-black rb:transition-all rb:duration-300 rb:rounded-sm`,
+            isFirstActive ? "rb:left-0" : "rb:left-1/2"
           )}
         />
 
@@ -35,17 +35,17 @@ const CustomTabs = <T extends string>({
               key={item.value}
               value={item.value}
               className={cn(
-                `relative z-10 flex items-center justify-center gap-2 w-1/2 h-full px-4 rounded-md text-sm leading-none text-black bg-transparent before:absolute before:inset-0 transition duration-300 data-[state=active]:bg-transparent data-[state=active]:shadow-none cursor-pointer`,
-                isActive ? "before:invisible" : "before:visible"
+                `rb:relative rb:z-10 rb:flex rb:items-center rb:justify-center rb:gap-2 rb:w-1/2 rb:h-full rb:px-4 rb:rounded-sm rb:text-sm rb:leading-none rb:text-black rb:bg-transparent rb:before:absolute rb:before:inset-0 rb:transition rb:duration-300 rb:data-[state=active]:rb:bg-transparent rb:data-[state=active]:rb:shadow-none rb:cursor-pointer`,
+                isActive ? "rb:before:invisible" : "rb:before:visible"
               )}
             >
               {item.icon && (
-                <span className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6 shrink-0">
+                <span className="rb:flex rb:items-center rb:justify-center rb:w-5 rb:h-5 md:rb:w-6 md:rb:h-6 rb:shrink-0">
                   {item.icon}
                 </span>
               )}
 
-              <span className="whitespace-nowrap">{item.label}</span>
+              <span className="rb:whitespace-nowrap">{item.label}</span>
             </TabsTrigger>
           );
         })}

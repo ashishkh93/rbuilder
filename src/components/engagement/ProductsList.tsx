@@ -17,7 +17,7 @@ import { setStepData } from "@/store/builder/builder.slice";
 
 const ProductsList = () => {
   const isMobile = useMediaQuery(MEDIA_QUERIES.xSmall);
-  const products = useAppSelector(selectProductCards);
+  const products = useAppSelector(selectProductCards, shallowEqual);
   const isLoading = useAppSelector(selectProductsLoading);
   const hasMore = useAppSelector(selectHasMoreProducts);
   const pageInfo = useAppSelector(selectPageInfo, shallowEqual);
@@ -36,7 +36,7 @@ const ProductsList = () => {
   }, [loadEngagementSettings, pageInfo?.endCursor]);
 
   return (
-    <section className="w-full">
+    <section className="rb:w-full">
       <VirtualizedInfiniteList
         data={products}
         isLoading={isLoading}
@@ -44,8 +44,8 @@ const ProductsList = () => {
         loadMore={loadMore}
         initialLoader={<ProductCardSkeleton count={8} />}
         footerLoader={<ProductCardSkeleton count={1} />}
-        listClassName={`grid gap-x-4! gap-y-4! ${
-          isMobile ? "grid-cols-1" : "grid-cols-2 sm:grid-cols-3 xl:grid-cols-4"
+        listClassName={`rb:grid rb:gap-x-4! rb:gap-y-4! ${
+          isMobile ? "rb:grid-cols-1" : "rb:grid-cols-2 rb:sm:grid-cols-3 rb:xl:grid-cols-4"
         }`}
         itemContent={(index) => (
           // @ts-ignore
@@ -56,12 +56,12 @@ const ProductsList = () => {
               const product = products.find((p) => p.id === id);
               if (!product) return;
               // @ts-ignore
-              dispatch(
-                setStepData({
-                  step: 1,
-                  data: { meta: product.title, price: Number(product.price) },
-                })
-              );
+              // dispatch(
+              //   setStepData({
+              //     step: 1,
+              //     data: { meta: product.title, price: Number(product.price) },
+              //   })
+              // );
             }}
           />
         )}

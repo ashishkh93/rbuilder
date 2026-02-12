@@ -14,7 +14,7 @@ const ResponsiveHorizontalGrid = ({
 
   return (
     <div
-      className={`flex justify-center flex-nowrap gap-6 px-12 overflow-x-scroll md:overflow-x-hidden scroll-smooth snap-x snap-mandatory ${className ?? ""}`}
+      className={`rb:flex rb:justify-center rb:flex-nowrap rb:gap-6 rb:px-12 rb:overflow-x-scroll rb:md:overflow-x-hidden rb:scroll-smooth rb:snap-x rb:snap-mandatory ${className ?? ""}`}
       style={{
         scrollbarWidth: "none",
         msOverflowStyle: "none",

@@ -10,16 +10,16 @@ const SelectableCard = ({
   return (
     <div
       onClick={onClick}
-      className={`snap-start flex flex-col items-center gap-3 px-3 py-3 min-w-[110px] rounded-xl cursor-pointer transition-all ${
+      className={`rb:snap-start rb:flex rb:flex-col rb:items-center rb:gap-3 rb:px-3 rb:py-3 rb:min-w-[110px] rb:rounded-xl rb:cursor-pointer rb:transition-all ${
         active
-          ? "border-2 border-black"
-          : "border-2 border-transparent hover:bg-gray-100"
+          ? "rb:border-2 rb:border-black"
+          : "rb:border-2 rb:border-transparent rb:hover:bg-gray-100"
       } ${className}`}
     >
       <img src={iconSrc} alt={label} className={`ring-icon ${iconClass}`} />
 
       <span
-        className={`text-xs md:text-sm font-medium text-black text-center ${labelClass}`}
+        className={`rb:text-xs rb:md:text-sm rb:font-medium rb:text-black rb:text-center ${labelClass}`}
       >
         {label}
       </span>

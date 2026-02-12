@@ -15,3 +15,15 @@ type ResetDividerProps = {
 type StoneCardProps = {
   stone: Partial<Diamond>;
 };
+
+type SectionSeparatorProps = {
+  label: string;
+  className?: string;
+  open: boolean;
+  onToggle: () => void;
+};
+
+type CertificateFilterProps = {
+  value: string[];
+  onChange: (val: string[]) => void;
+};

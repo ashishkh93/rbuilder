@@ -7,12 +7,12 @@ const PriceFilter = ({ onChange, value }: PriceFilterProps) => {
 
   return (
     <div
-      className={`absolute top-full left-0 pt-3 z-60 transition-all duration-800 origin-top visible opacity-100 translate-y-0 w-full!`}
+      className={`rb:absolute rb:top-full rb:left-0 rb:pt-3 rb:z-60 rb:transition-all rb:duration-800 rb:origin-top rb:visible rb:opacity-100 rb:translate-y-0 rb:w-full!`}
     >
-      <div className="p-2 bg-white! rounded-md shadow-[0_24px_60px_rgba(0,0,0,0.16)]">
-        <div className="relative w-full!">
+      <div className="rb:p-2 rb:bg-white! rb:rounded-md rb:shadow-[0_24px_60px_rgba(0,0,0,0.16)]">
+        <div className="rb:relative rb:w-full!">
           <div
-            className={`md:w-full gap-2 whitespace-nowrap snap-start hiddenScroll overflow-x-auto overflow-y-hidden scroll-smooth p-px md:p-0.5 flex flex-col md:justify-start! md:snap-center`}
+            className={`rb:md:w-full rb:gap-2 rb:whitespace-nowrap rb:snap-start rb:hiddenScroll rb:overflow-x-auto rb:overflow-y-hidden rb:scroll-smooth rb:p-px rb:md:p-0.5 rb:flex rb:flex-col rb:justify-start! rb:snap-center`}
           >
             {PRICE_FILTER_OPTIONS.map((opt) => {
               const isActive = opt.id === value;
@@ -24,9 +24,9 @@ const PriceFilter = ({ onChange, value }: PriceFilterProps) => {
                     onChange(opt.id as SortOrder);
                     dispatch(setCurrentActiveFilterDropdown(""));
                   }}
-                  className={`min-w-max! shrink-0 p-2 pb-1.75 cursor-pointer md:px-1 md:min-w-full! select-none rounded-[4px] transition-colors bg-customGray-150! border-borders hover:bg-customGray-75! ${isActive ? "bg-gray-100!" : "bg-white!"}`}
+                  className={`rb:min-w-max! rb:shrink-0 rb:p-2 rb:pb-1.75 rb:cursor-pointer rb:md:px-1 rb:md:min-w-full! rb:select-none rb:rounded-[4px] rb:transition-colors rb:bg-customGray-150! rb:border-borders rb:hover:bg-customGray-75! ${isActive ? "rb:bg-gray-100!" : "rb:bg-white!"}`}
                 >
-                  <div className="-mt-0.5 md:mt-0 text-sm leading-4 tracking-tight! overflow-hidden text-ellipsis text-[12px] md:leading-tight text-condensed!">
+                  <div className="rb:-mt-0.5 md:rb:mt-0 rb:text-sm rb:leading-4 rb:tracking-tight! rb:overflow-hidden rb:text-ellipsis rb:text-[12px] md:rb:leading-tight rb:text-condensed!">
                     {opt.label}
                   </div>
                 </button>

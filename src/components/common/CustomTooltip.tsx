@@ -26,12 +26,12 @@ export default function CustomTooltip({
   const tooltipId = rawId.replace(/[:]/g, "");
 
   const anchor = children ?? (
-    <span className="inline-flex items-center cursor-help">{DEFAULT_ICON}</span>
+    <span className="rb:inline-flex rb:items-center rb:cursor-help">{DEFAULT_ICON}</span>
   );
 
   return (
     <>
-      <div data-tooltip-id={tooltipId} className="w-full!">{anchor}</div>
+      <div data-tooltip-id={tooltipId} className="rb:w-full!">{anchor}</div>
 
       <Tooltip id={tooltipId} place={position}>
         {tooltipContent}

@@ -3,7 +3,7 @@ import StoneInfoGrid from "./StoneInfoGrid";
 
 const StoneInfo = () => {
   return (
-    <section className="mt-8 rounded-3xl bg-secondary p-3">
+    <section className="rb:rounded-3xl rb:bg-secondary rb:p-3">
       <StoneInfoHeader />
       <StoneInfoGrid />
     </section>

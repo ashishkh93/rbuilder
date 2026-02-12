@@ -13,13 +13,10 @@ import {
   selectMetalFilter,
   selectShapeFilter,
 } from "@/store/filters/filters.selectors";
-import { RING_TYPE_ICONS } from "@/components/shared/icons/ringTypeIcon";
-import { getStyleLabel } from "@/utils/constants";
 import {
   setCurrentActiveFilterDropdown,
   setMetal,
   setShape,
-  setStyle,
 } from "@/store/filters/filters.slice";
 
 type FilterKey = "metal" | "shape";
@@ -42,7 +39,7 @@ const FILTER_CONFIG: Record<
         radius={15}
       />
     ),
-    gapClass: "gap-1!",
+    gapClass: "rb:gap-1!",
   },
 
   shape: {
@@ -51,10 +48,10 @@ const FILTER_CONFIG: Record<
       <img
         src={SHAPE_ICONS[value as keyof typeof SHAPE_ICONS]}
         alt={value}
-        className="w-4 h-4 ml-1"
+        className="rb:w-4 rb:h-4 rb:ml-1"
       />
     ),
-    gapClass: "gap-2!",
+    gapClass: "rb:gap-2!",
   },
 
   // style: {
@@ -63,10 +60,10 @@ const FILTER_CONFIG: Record<
   //     <img
   //       src={RING_TYPE_ICONS[value as keyof typeof RING_TYPE_ICONS]}
   //       alt={value}
-  //       className="w-6 h-4 ml-1"
+  //       className="rb:w-6 rb:h-4 rb:ml-1"
   //     />
   //   ),
-  //   gapClass: "gap-2!",
+  //   gapClass: "rb:gap-2!",
   // },
 };
 
@@ -98,7 +95,7 @@ const MobileSelectedFilters = () => {
 
   return (
     <div
-      className={`flex gap-2 ${hasAtleastOneFilter ? "min-h-[35px]!" : ""}`}
+      className={`rb:flex rb:gap-2 ${hasAtleastOneFilter ? "rb:min-h-[35px]!" : ""}`}
     >
       {(Object.entries(selectedFilters) as [FilterKey, string | null][])
         .filter(([, value]) => Boolean(value))
@@ -109,14 +106,14 @@ const MobileSelectedFilters = () => {
             <Button
               key={key}
               onClick={onClick}
-              className={`py-1! px-2! ${config.gapClass} bg-customGray-75!`}
+              className={`rb:py-1! rb:px-2! ${config.gapClass} rb:bg-customGray-75!`}
             >
               {config.renderIcon(value!)}
-              <span className="text-11! md:text-sm">
+              <span className="rb:text-11! md:rb:text-sm">
                 {config.getLabel(value!)}
               </span>
               <X
-                className="w-4 h-4 text-gray-400"
+                className="rb:w-4 rb:h-4 rb:text-gray-400"
                 onClick={(e) => {
                   e.stopPropagation();
                   onRemoveClick(key);

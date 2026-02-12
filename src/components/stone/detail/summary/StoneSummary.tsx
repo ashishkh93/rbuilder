@@ -8,16 +8,16 @@ import StoneTrustBadges from "./StoneTrustBadges";
 
 const StoneSummary = () => {
   return (
-    <div className="space-y-3">
+    <div className="rb:flex rb:flex-col rb:gap-2">
       <StoneHeader />
       <StonePrice />
       <StoneQuickSpecs />
       <StoneCTAs />
       <StoneTrustBadges />
-      <div className="mt-4">
+      <div className="rb:mt-4">
         <StoneInfo />
       </div>
-      <div className="mt-2">
+      <div className="rb:mt-1">
         <StoneAccordions />
       </div>
     </div>

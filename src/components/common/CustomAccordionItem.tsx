@@ -17,22 +17,23 @@ const CustomAccordionItem = ({
       type="single"
       collapsible
       defaultValue={defaultOpen ? value : undefined}
-      className="w-full"
+      className="rb:w-full rb:m-0!"
+      style={{ margin: 0 }}
     >
       <AccordionItem
         value={value}
-        className="rounded-xl"
+        className="rb:rounded-xl"
       >
         {/* HEADER */}
-        <AccordionTrigger className="flex items-center justify-between rounded-t-2xl bg-secondary px-5 py-4 text-left hover:no-underline cursor-pointer">
-          <div className="flex items-center gap-3 text-sm font-medium text-black">
+        <AccordionTrigger className="rb:flex rb:items-center rb:justify-between rb:rounded-t-2xl rb:bg-secondary rb:px-5 rb:py-4 rb:text-left hover:rb:no-underline rb:cursor-pointer">
+          <div className="rb:flex rb:items-center rb:gap-3 rb:text-sm rb:font-medium rb:text-black">
             {icon}
             {title}
           </div>
         </AccordionTrigger>
 
         {/* BODY */}
-        <AccordionContent className="bg-white px-5 py-6 rounded-b-xl!">
+        <AccordionContent className="rb:bg-white rb:px-5 rb:py-3 rb:rounded-b-xl!">
           {children}
         </AccordionContent>
       </AccordionItem>

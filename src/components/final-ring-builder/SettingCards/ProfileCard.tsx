@@ -7,6 +7,6 @@ export const ProfileCard = () => (
     desc="Sits flush with a straight wedding band"
     iconSrc={COMMON_ICONS.profile}
   >
-    <p className="text-xl font-bold text-black">High</p>
+    <p className="rb:text-xl rb:font-bold rb:text-black">High</p>
   </BaseSettingCard>
 );

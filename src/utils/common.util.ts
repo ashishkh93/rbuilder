@@ -34,3 +34,26 @@ export const graphQLCurrencyFields = () => {
   });
   return graphQLCurrencyFields.join(" ");
 };
+
+export const getDiamondType = (lab: string) => {
+  switch (lab) {
+    case "lab":
+      return "Lab Grown";
+    case "white":
+      return "Natural";
+    case "lab_color":
+      return "Coloured Lab Grown";
+    default:
+      return "";
+  }
+};
+
+export const getDiamondTitle = (diamond: Diamond, isTitle = false) => {
+  if (isTitle) {
+    return `${diamond?.caratWeight}CT ${diamond?.shape} Cut ${getDiamondType(
+      diamond?.diamondType
+    )} Diamond`;
+  } else {
+    return `${diamond?.caratWeight}CT ${diamond?.shape} Cut ${getDiamondType(diamond?.diamondType)} Diamond`;
+  }
+};

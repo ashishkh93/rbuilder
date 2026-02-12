@@ -7,6 +7,6 @@ export const ApproxTCWCard = () => (
     desc="The setting’s average total carat weight"
     iconSrc={COMMON_ICONS.carat}
   >
-    <p className="text-xl font-semibold text-black">0.1 ct</p>
+    <p className="rb:text-xl rb:font-semibold rb:text-black">0.1 ct</p>
   </BaseSettingCard>
 );

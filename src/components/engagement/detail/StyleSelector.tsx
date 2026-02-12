@@ -16,9 +16,9 @@ const StyleSelector = () => {
           label={item.label}
           iconSrc={RING_TYPE_ICONS[item.icon as keyof typeof RING_TYPE_ICONS]}
           active={item.active}
-          className={`w-8 h-20 border! ${item.active ? "border-black/60" : "border-gray-100!"} min-w-16.5! rounded-md!`}
-          iconClass="w-10! h-10! md:w-8 md:h-8 mx-0!"
-          labelClass="text-xs md:text-xs"
+          className={`rb:w-8 rb:h-20 rb:border! ${item.active ? "rb:border-black/60" : "rb:border-gray-100!"} rb:min-w-16.5! rb:rounded-md!`}
+          iconClass="rb:w-10! rb:h-10! rb:md:w-8 rb:md:h-8 rb:mx-0!"
+          labelClass="rb:text-xs rb:md:text-xs"
         />
       ))}
     </OptionGroup>

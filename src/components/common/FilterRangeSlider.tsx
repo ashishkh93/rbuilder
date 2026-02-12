@@ -1,7 +1,8 @@
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { cn, MEDIA_QUERIES } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { Input } from "../ui/input";
 
 const FilterRangeSlider = ({
   label,
@@ -22,6 +23,8 @@ const FilterRangeSlider = ({
     isRange ? [...(value as number[])] : [value as number]
   );
 
+  const committedRef = useRef<[number, number]>(draft as [number, number]);
+
   useEffect(() => {
     setDraft(isRange ? [...(value as number[])] : [value as number]);
   }, [value, isRange]);
@@ -33,13 +36,25 @@ const FilterRangeSlider = ({
     [isRange, onChange]
   );
 
+  const handleInputBlur = useCallback(() => {
+    if (
+      committedRef.current[0] === draft[0] &&
+      committedRef.current[1] === draft[1]
+    ) {
+      return; // nothing changed
+    }
+
+    commit(draft);
+    committedRef.current = draft as [number, number];
+  }, [commit, draft]);
+
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn("rb:space-y-4", className)}>
       {/* Header */}
-      <h4 className="text-sm font-medium text-black">{label}</h4>
+      <div className="rb:text-sm rb:font-medium rb:text-black">{label}</div>
 
       {/* Slider */}
-      <div className="relative">
+      <div className="rb:relative">
         <Slider
           value={draft}
           min={min}
@@ -47,21 +62,22 @@ const FilterRangeSlider = ({
           step={step}
           onValueChange={setDraft}
           onValueCommit={commit}
-          className={`w-full sm:w-[calc(100%+15px)] cursor-pointer!`}
+          className={`rb:w-full rb:sm:w-full! rb:cursor-pointer!`}
+          // className={`rb:w-full rb:sm:w-[calc(100%+15px)] rb:cursor-pointer!`}
         />
 
         {marks && isRange && (
-          <div className="pointer-events-none absolute inset-x-0 top-0!">
+          <div className="rb:pointer-events-none rb:absolute rb:inset-x-0 rb:top-0!">
             {/* This height & offset matches shadcn track */}
-            <div className="relative h-1.5">
+            <div className="rb:relative rb:h-1.5">
               {Array.from({ length: marks.length }).map((_, i) => {
                 const left =
-                  ((i + (isSmallScreen ? 0 : 0.15)) / marks.length) * 100;
+                  ((i + (isSmallScreen ? 0 : 0)) / marks.length) * 100;
                 if (i !== 0)
                   return (
                     <span
                       key={i}
-                      className="absolute top-0 h-full w-px bg-white!"
+                      className="rb:absolute rb:top-0 rb:h-full rb:w-px rb:bg-white!"
                       style={{ left: `${left}%` }}
                     />
                   );
@@ -72,14 +88,14 @@ const FilterRangeSlider = ({
 
         {/* Marks / splitters */}
         {marks && isRange && (
-          <div className="relative mt-3 h-4">
+          <div className="rb:relative rb:mt-3 rb:h-4">
             {marks.map((m, index) => {
-              const left = ((index + 0.5) / marks.length) * 100;
+              const left = ((index + 0.45) / marks.length) * 100;
 
               return (
                 <span
                   key={m.value}
-                  className="absolute text-xs text-gray-600 whitespace-nowrap"
+                  className="rb:absolute rb:text-xs rb:text-gray-600 rb:whitespace-nowrap"
                   style={{ left: `${left}%` }}
                 >
                   {m.label}
@@ -92,21 +108,33 @@ const FilterRangeSlider = ({
 
       {/* Inputs */}
       {showInputs && isRange && (
-        <div className="flex justify-between gap-4">
-          <input
+        <div className="rb:flex rb:justify-between rb:gap-4">
+          <Input
             type="number"
+            min={0}
             value={draft[0]}
             onChange={(e) => setDraft([+e.target.value, draft[1]])}
-            onBlur={() => commit(draft)}
-            className="w-32 rounded-md border px-3 py-2 text-sm"
+            onBlur={handleInputBlur}
+            className="rb:h-8! rb:w-32!"
+            onKeyDown={(e) => {
+              if (e.key === "-" || e.key === "e") {
+                e.preventDefault();
+              }
+            }}
           />
 
-          <input
+          <Input
             type="number"
+            min={0}
             value={draft[1]}
             onChange={(e) => setDraft([draft[0], +e.target.value])}
-            onBlur={() => commit(draft)}
-            className="w-32 rounded-md border px-3 py-2 text-sm"
+            onBlur={handleInputBlur}
+            className="rb:h-8! rb:w-32!"
+            onKeyDown={(e) => {
+              if (e.key === "-" || e.key === "e") {
+                e.preventDefault();
+              }
+            }}
           />
         </div>
       )}

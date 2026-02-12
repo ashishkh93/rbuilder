@@ -4,10 +4,10 @@ const DetailSection = ({ title, rows }: DetailSectionProps) => {
   return (
     <div>
       {/* Section Title */}
-      <h3 className="mb-4 text-13 font-semibold text-black">{title}</h3>
+      <h3 className="rb:mb-4 rb:text-13 rb:font-semibold rb:text-black">{title}</h3>
 
       {/* Rows */}
-      <div className="space-y-2">
+      <div className="rb:space-y-2">
         {rows.map((row) => (
           <DetailRow key={row.label} label={row.label} value={row.value} />
         ))}

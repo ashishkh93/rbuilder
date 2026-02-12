@@ -5,6 +5,9 @@ import { COMMON_ICONS } from "@/components/shared/icons/common";
 const formatPrice = (price?: number) =>
   typeof price === "number" ? `$${price.toLocaleString()}` : undefined;
 
+export const selectBuilderCompletedSteps = (state: RootState) =>
+  state.builder.completedSteps;
+
 export const selectBuilderSteps = createSelector(
   (state: RootState) => state.builder,
   (builder) => {

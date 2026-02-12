@@ -9,10 +9,10 @@ import SettingSectionHeader from "./SettingSectionHeader";
 
 const KnowYourSetting = () => {
   return (
-    <section className="mt-4 rounded-2xl bg-secondary p-3">
+    <section className="rb:mt-4 rb:rounded-2xl rb:bg-secondary rb:p-3">
       <SettingSectionHeader />
 
-      <div className="mt-3 grid grid-cols-2 gap-3">
+      <div className="rb:mt-3 rb:grid rb:grid-cols-2 rb:gap-3">
         <WidthCard />
         <ApproxTCWCard />
         <MetalCard />

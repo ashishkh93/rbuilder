@@ -5,25 +5,26 @@ import MaterialSelector from "./MaterialSelector";
 import StyleSelector from "./StyleSelector";
 import StickyCTA from "./StickyCTA";
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/config/global-config";
 
 const RingConfigurator = () => {
   const navigate = useNavigate();
   return (
-    <div className="space-y-6">
+    <div className="rb:space-y-6">
       <ProductHeader />
       <ShapeSelector />
       <MaterialSelector />
       <StyleSelector />
-      <div className="flex flex-col gap-2">
+      <div className="rb:flex rb:flex-col rb:gap-2">
         <StickyCTA
-          className="bg-black! text-white!"
+          className="rb:bg-black! rb:text-white!"
           label="Add Center Stone"
           onClick={() => {
-            navigate("lab-diamond", { viewTransition: true });
+            navigate(`/${ROUTES.defauktDiamondType}`, { viewTransition: true });
           }}
         />
         <StickyCTA
-          className="bg-white! text-black! border border-black!"
+          className="rb:bg-white! rb:text-black! rb:border rb:border-black!"
           label="Buy Settings Only*"
         />
       </div>

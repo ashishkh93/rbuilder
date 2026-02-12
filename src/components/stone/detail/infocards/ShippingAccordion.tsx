@@ -6,10 +6,10 @@ const ShippingAccordion = () => {
     <CustomAccordionItem
       value="shipping"
       title="Shipping"
-      icon={<Truck className="h-5 w-5" />}
+      icon={<Truck className="rb:h-5 rb:w-5" />}
     >
-      <p className="text-xs">
-        <strong className="text-gray-700">
+      <p className="rb:text-xs">
+        <strong className="rb:text-gray-700">
           This item is made to order and takes 2–3 weeks to craft.
         </strong>{" "}
         We ship FedEx Priority Overnight, signature required and fully insured.

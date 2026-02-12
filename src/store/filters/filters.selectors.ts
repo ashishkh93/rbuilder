@@ -134,3 +134,15 @@ export const selectPriceSort = (s: RootState) =>
   s.filters.diamondFilter.priceSort;
 
 export const selectClarity = (s: RootState) => s.filters.diamondFilter.clarity;
+
+export const selectFluorescence = (s: RootState) =>
+  s.filters.diamondFilter.fluorescence;
+
+export const selectTable = (s: RootState) => s.filters.diamondFilter.table;
+
+export const selectDepth = (s: RootState) => s.filters.diamondFilter.depth;
+
+export const selectPolish = (s: RootState) => s.filters.diamondFilter.polish;
+
+export const selectSymmetry = (s: RootState) =>
+  s.filters.diamondFilter.symmetry;

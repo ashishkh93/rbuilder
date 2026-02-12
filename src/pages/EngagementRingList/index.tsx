@@ -15,10 +15,10 @@ const EngagementRingList = () => {
   }, [loadEngagementSettings]);
 
   return (
-    <section className="py-2">
+    <section className="rb:py-2">
       <EngagementHeader />
       <RingCategoryGrid />
-      <hr className="mt-8 mb-4 border-gray-300" />
+      <hr className="rb:mt-8 rb:mb-4 rb:border-gray-300" />
       <FilterSection />
       <ProductsList />
     </section>

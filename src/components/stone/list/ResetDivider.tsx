@@ -11,28 +11,28 @@ const ResetDivider = ({ disabled = false }: ResetDividerProps) => {
   }, []);
 
   return (
-    <div className="relative my-1 flex items-center">
+    <div className="rb:relative rb:my-1 rb:flex rb:items-center">
       {/* Left line */}
-      <div className="flex-1 border-t border-gray-200" />
+      <div className="rb:flex-1 rb:border-t rb:border-gray-200" />
 
       {/* Reset button */}
       <button
         type="button"
         disabled={disabled}
         onClick={onReset}
-        className={`mx-2 cursor-pointer inline-flex items-center gap-1 text-xs font-medium transition ${
+        className={`rb:mx-2 rb:cursor-pointer rb:inline-flex rb:items-center rb:gap-1 rb:text-xs rb:font-medium rb:transition ${
           disabled
-            ? "cursor-not-allowed text-gray-300"
-            : "text-gray-400! hover:text-gray-900"
+            ? "rb:cursor-not-allowed rb:text-gray-300"
+            : "rb:text-gray-400! rb:hover:text-gray-900"
         }
         `}
       >
         Reset
-        <RotateCcw className="h-3.5 w-3.5" />
+        <RotateCcw className="rb:h-3.5 rb:w-3.5" />
       </button>
 
       {/* Right line */}
-      <div className="flex-1 border-t border-gray-200" />
+      <div className="rb:flex-1 rb:border-t rb:border-gray-200" />
     </div>
   );
 };

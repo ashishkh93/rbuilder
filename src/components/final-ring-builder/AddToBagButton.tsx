@@ -6,10 +6,10 @@ const AddToBagButton = ({ onClick }: { onClick?: () => void }) => {
     <CommonCTA
       label="Add to Shopping Bag"
       onClick={onClick}
-      className="relative flex w-full lg:max-w-xl items-center justify-center gap-3 rounded-full bg-black text-md font-medium text-white transition hover:bg-black/90"
+      className="rb:relative rb:flex rb:w-full lg:rb:max-w-xl rb:items-center rb:justify-center rb:gap-3 rb:rounded-full rb:bg-black rb:text-md rb:font-medium rb:text-white rb:transition hover:rb:bg-black/90"
     >
-      <Lock className="absolute left-6 h-5 w-5 text-white!" />
-      <Plus className="absolute right-6 h-6 w-6 text-white!" color="white" />
+      <Lock className="rb:absolute rb:left-6 rb:h-5 rb:w-5 rb:text-white!" />
+      <Plus className="rb:absolute rb:right-6 rb:h-6 rb:w-6 rb:text-white!" color="white" />
     </CommonCTA>
   );
 };

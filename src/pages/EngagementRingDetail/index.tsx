@@ -3,17 +3,17 @@ import RingGallery from "@/components/engagement/detail/RingGallery";
 
 const EngagementRingDetail = () => {
   return (
-    <div className="max-w-[1400px] mx-auto px-3 py-4">
-      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-10 items-start">
+    <div className="rb:max-w-[1400px] rb:mx-auto rb:px-3 rb:py-4">
+      <div className="rb:grid rb:grid-cols-1 rb:lg:grid-cols-[2fr_1fr] rb:gap-10 rb:items-start">
         {/* LEFT — sticky only on desktop */}
-        <div className="relative lg:sticky xl:sticky top-6 self-start">
+        <div className="rb:relative rb:lg:sticky rb:xl:sticky rb:top-6 rb:self-start">
           <RingGallery />
         </div>
 
         {/* RIGHT */}
-        <div className="relative max-w-xl">
+        <div className="rb:relative rb:max-w-xl">
           <RingConfigurator />
-          <div className="hidden lg:block h-[600px]" />
+          <div className="rb:hidden rb:lg:block rb:h-[600px]" />
         </div>
       </div>
     </div>

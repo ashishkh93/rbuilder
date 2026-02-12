@@ -1,14 +1,14 @@
 const PriceBlock = ({ totalPrice, originalPrice }: PriceBlockProps) => {
   return (
-    <div className="text-center">
-      <p className="text-md text-gray-400">Total Price</p>
+    <div className="rb:text-center">
+      <p className="rb:text-md rb:text-gray-400">Total Price</p>
 
-      <p className="mt-1 text-3xl font-semibold text-black">
+      <p className="rb:mt-1 rb:text-3xl rb:font-semibold rb:text-black">
         ${totalPrice.toLocaleString()}
       </p>
 
       {originalPrice && (
-        <p className="mt-1 text-xl text-gray-400 line-through">
+        <p className="rb:mt-1 rb:text-xl rb:text-gray-400 rb:line-through">
           ${originalPrice.toLocaleString()}
         </p>
       )}

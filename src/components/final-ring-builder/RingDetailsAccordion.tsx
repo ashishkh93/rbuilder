@@ -7,9 +7,9 @@ const RingDetailsAccordion = () => {
     <CustomAccordionItem
       value="ring-details"
       title="Ring Details"
-      icon={<img src={COMMON_ICONS.ring} className="h-6 w-6 mt-0.5" />}
+      icon={<img src={COMMON_ICONS.ring} className="rb:h-6 rb:w-6 rb:mt-0.5" />}
     >
-      <div className="space-y-6">
+      <div className="rb:space-y-6">
         <DetailSection
           title="Center Stone Details"
           rows={[

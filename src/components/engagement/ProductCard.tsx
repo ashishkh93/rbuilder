@@ -20,62 +20,62 @@ const ProductCard = ({
         onClick?.(id);
       }}
       viewTransition={true}
-      className="group rounded-2xl bg-white overflow-hidden hover:shadow-gray-200 transition-all duration-500 shadow-xl p-2 cursor-pointer"
+      className="rb:group rb:rounded-2xl rb:bg-white rb:overflow-hidden rb:hover:shadow-gray-200 rb:transition-all rb:duration-500 rb:shadow-xl rb:p-2 rb:cursor-pointer"
     >
       {/* Image area */}
-      <div className="relative aspect-4/5 rounded-2xl overflow-hidden">
+      <div className="rb:relative rb:aspect-4/5 rb:rounded-2xl rb:overflow-hidden">
         {/* Wishlist */}
-        {/* <button className="absolute top-3 right-3 z-20 bg-white rounded-full p-1 shadow">
-          <Heart className="w-6 h-6 stroke-[1.5]" />
+        {/* <button className="rb:absolute rb:top-3 rb:right-3 rb:z-20 rb:bg-white rb:rounded-full rb:p-1 rb:shadow">
+          <Heart className="rb:w-6 rb:h-6 rb:stroke-[1.5]" />
         </button> */}
 
         {/* Badge */}
         {/* {badge && (
-          <div className="absolute top-3 left-1/2 -translate-x-1/2 z-9 w-full! text-center">
-            <span className="px-2 py-1 rounded-full text-xs bg-[rgba(242,242,242,0.85)] text-[#404040]">
+          <div className="rb:absolute rb:top-3 rb:left-1/2 rb:-translate-x-1/2 rb:z-9 rb:w-full! rb:text-center">
+            <span className="rb:px-2 rb:py-1 rb:rounded-full rb:text-xs rb:bg-[rgba(242,242,242,0.85)] rb:text-[#404040]">
               {badge}
             </span>
           </div>
         )} */}
 
         {/* Images */}
-        <div className="absolute inset-0 rounded-sm! overflow-hidden">
+        <div className="rb:absolute rb:inset-0 rb:rounded-sm! rb:overflow-hidden">
           {/* Light background */}
-          <div className="absolute inset-0 bg-[radial-gradient(85%_95%_at_50%_55%,#ffffff_0%,#ffffff_45%,#f5f5f5_95%,#eeeeee_100%)] hover:scale-100!" />
+          <div className="rb:absolute rb:inset-0 rb:bg-[radial-gradient(85%_95%_at_50%_55%,#ffffff_0%,#ffffff_45%,#f5f5f5_95%,#eeeeee_100%)] rb:hover:scale-100!" />
 
           {/* Subtle floor depth */}
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0)_55%,rgba(0,0,0,0.035)_100%)] hover:scale-100!" />
+          <div className="rb:absolute rb:inset-0 rb:bg-[linear-gradient(180deg,rgba(255,255,255,0)_55%,rgba(0,0,0,0.035)_100%)] rb:hover:scale-100!" />
 
           {/* Image */}
           <img
             src={primaryImage}
             alt={title}
-            className="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-100 group-hover:opacity-0 mix-blend-multiply"
+            className="rb:absolute rb:inset-0 rb:w-full rb:h-full rb:object-contain rb:transition-opacity rb:duration-700 rb:opacity-100 rb:group-hover:opacity-0 rb:mix-blend-multiply"
           />
 
           <img
             src={hoverImage}
             alt={title}
-            className="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 opacity-0 group-hover:opacity-100 mix-blend-multiply"
+            className="rb:absolute rb:inset-0 rb:w-full rb:h-full rb:object-contain rb:transition-opacity rb:duration-700 rb:opacity-0 rb:group-hover:opacity-100 rb:mix-blend-multiply"
           />
         </div>
       </div>
 
       {/* Content */}
-      <div className="pt-3 px-1">
-        <h3 className="text-sm text-black leading-tight line-clamp-2">
+      <div className="rb:pt-3 rb:px-1">
+        <div className="rb:text-sm rb:text-black rb:leading-tight rb:line-clamp-2">
           {title}
-        </h3>
+        </div>
 
-        <div className="mt-1 text-xs font-medium text-black">
+        <div className="rb:mt-1 rb:text-xs rb:font-medium rb:text-black">
           {currency} {price}
         </div>
 
         {/* Metal dots */}
-        <div className="flex gap-2 mt-2">
-          <span className="w-4 h-4 rounded-full bg-gray-300" />
-          <span className="w-4 h-4 rounded-full bg-yellow-400 ring-2 ring-white" />
-          <span className="w-4 h-4 rounded-full bg-rose-300" />
+        <div className="rb:flex rb:gap-2 rb:mt-2">
+          <span className="rb:w-4 rb:h-4 rb:rounded-full rb:bg-gray-300" />
+          <span className="rb:w-4 rb:h-4 rb:rounded-full rb:bg-yellow-400 rb:ring-2 rb:ring-white" />
+          <span className="rb:w-4 rb:h-4 rb:rounded-full rb:bg-rose-300" />
         </div>
       </div>
     </Link>

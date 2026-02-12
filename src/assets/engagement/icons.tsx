@@ -1,6 +1,6 @@
 export const SOLITAIR_ICON = (
   <svg
-    className="w-13.5 h-13.5 md:w-16 md:h-16 block mx-auto"
+    className="rb:w-13.5 rb:h-13.5 md:rb:w-16 md:rb:h-16 rb:block rb:mx-auto"
     viewBox="0 0 48 48"
   >
     <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -23,11 +23,11 @@ const MobileFilterButton = ({
   );
 
   return (
-    <Button onClick={onClick} className="py-[6px]! min-h-[38px]! px-3!">
-      <SlidersHorizontal className="w-4 h-4 text-black" strokeWidth={1.75} />
-      <span className="text-xs md:text-sm">{label}</span>
+    <Button onClick={onClick} className="rb:py-[6px]! rb:min-h-[38px]! rb:px-3!">
+      <SlidersHorizontal className="rb:w-4 rb:h-4 rb:text-black" strokeWidth={1.75} />
+      <span className="rb:text-xs md:rb:text-sm">{label}</span>
       {selectedCount > 0 && (
-        <span className="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">
+        <span className="rb:text-xs rb:px-3 rb:py-1 rb:rounded-full rb:bg-gray-100 rb:text-gray-600">
           {selectedCount}
         </span>
       )}

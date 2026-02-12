@@ -47,26 +47,26 @@ const HorizontalScroller = ({
   }, [updateScrollButtons]);
 
   return (
-    <div className="relative w-full">
+    <div className="rb:relative rb:w-full">
       {/* LEFT */}
       {showArrows && canScrollLeft && (
         <button
           onClick={() => scroll("left")}
-          className={`${hideArrowsOn}:hidden absolute left-2 top-0 h-full w-12 z-10
-          flex items-center justify-start
-          bg-linear-to-r from-white via-white/90 to-transparent`}
+          className={`rb:${hideArrowsOn}:hidden rb:absolute rb:left-2 rb:top-0 rb:h-full rb:w-12 rb:z-10
+          rb:flex rb:items-center rb:justify-start
+          rb:bg-linear-to-r rb:from-white rb:via-white/90 rb:to-transparent`}
         >
-          <ChevronLeft className="ml-1" size={20} />
+          <ChevronLeft className="rb:ml-1" size={20} />
         </button>
       )}
 
       {/* SCROLL AREA */}
       <div
         ref={scrollRef}
-        className={`flex flex-nowrap gap-2 md:gap-6 overflow-x-scroll scroll-smooth snap-x snap-mandatory
-        ${hideArrowsOn}:flex-wrap
-        ${hideArrowsOn}:justify-center
-        ${hideArrowsOn}:overflow-visible
+        className={`rb:flex rb:flex-nowrap rb:gap-2 rb:md:gap-6 rb:overflow-x-scroll rb:scroll-smooth rb:snap-x rb:snap-mandatory
+        rb:${hideArrowsOn}:flex-wrap
+        rb:${hideArrowsOn}:justify-center
+        rb:${hideArrowsOn}:overflow-visible
         ${className}`}
         style={{
           scrollbarWidth: "none",
@@ -80,11 +80,11 @@ const HorizontalScroller = ({
       {showArrows && canScrollRight && (
         <button
           onClick={() => scroll("right")}
-          className={`${hideArrowsOn}:hidden absolute right-2 top-0 h-full w-12 z-10
-          flex items-center justify-end
-          bg-linear-to-l from-white via-white/90 to-transparent`}
+          className={`rb:${hideArrowsOn}:hidden rb:absolute rb:right-2 rb:top-0 rb:h-full rb:w-12 rb:z-10
+          rb:flex rb:items-center rb:justify-end
+          rb:bg-linear-to-l rb:from-white rb:via-white/90 rb:to-transparent`}
         >
-          <ChevronRight className="mr-1" size={20} />
+          <ChevronRight className="rb:mr-1" size={20} />
         </button>
       )}
     </div>

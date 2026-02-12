@@ -1,22 +1,22 @@
 const ProductHeader = () => {
   return (
-    <div className="space-y-2">
-      <div className="flex justify-between items-start">
-        <h1 className="text-2xl font-semibold">The Kamellie</h1>
+    <div className="rb:space-y-2">
+      <div className="rb:flex rb:justify-between rb:items-start">
+        <div className="rb:text-2xl rb:font-semibold">The Kamellie</div>
 
-        {/* <div className="flex gap-4 text-sm text-gray-600">
-          <button className="flex items-center gap-1">
+        {/* <div className="rb:flex rb:gap-4 rb:text-sm rb:text-gray-600">
+          <button className="rb:flex rb:items-center rb:gap-1">
             <Hand size={16} /> Try-On
           </button>
-          <button className="flex items-center gap-1">
+          <button className="rb:flex rb:items-center rb:gap-1">
             <Mail size={16} /> Drop a Hint
           </button>
         </div> */}
       </div>
 
-      <p className="text-xl font-medium">$1,700</p>
+      <p className="rb:text-xl rb:font-medium">$1,700</p>
 
-      <p className="text-xs text-gray-600 leading-relaxed py-2!">
+      <p className="rb:text-xs rb:text-gray-600 rb:leading-relaxed rb:py-2!">
         Discover The Kamellie, a RBuilder bestseller that epitomizes timeless
         elegance. This exquisite solitaire engagement ring features a sleek and
         slender band that offers a modern touch while ensuring the center stone

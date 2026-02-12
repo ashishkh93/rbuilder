@@ -28,22 +28,22 @@ const FiltersSheet = () => {
   const selectedCount = [metal, shape].filter(Boolean).length;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-100! bg-white rounded-t-2xl shadow-xl max-h-[90vh] flex flex-col">
+    <div className="rb:fixed rb:inset-x-0 rb:bottom-0 rb:z-100! rb:bg-white rb:rounded-t-2xl rb:shadow-xl rb:max-h-[90vh] rb:flex rb:flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b">
+      <div className="rb:flex rb:items-center rb:justify-between rb:px-4 rb:py-3 rb:border-b">
         <button
-          className="p-2 cursor-pointer"
+          className="rb:p-2 rb:cursor-pointer"
           onClick={() => dispatch(resetRingFilters())}
         >
           <RotateCcw size={18} />
         </button>
 
-        <div className="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">
+        <div className="rb:text-xs rb:px-3 rb:py-1 rb:rounded-full rb:bg-gray-100 rb:text-gray-600">
           Filters Selected {selectedCount}
         </div>
 
         <button
-          className="p-2 cursor-pointer"
+          className="rb:p-2 rb:cursor-pointer"
           onClick={() => dispatch(setCurrentActiveFilterDropdown(""))}
         >
           <X size={18} />
@@ -51,7 +51,7 @@ const FiltersSheet = () => {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto pb-28">
+      <div className="rb:flex-1 rb:overflow-y-auto rb:pb-28">
         <MobileFilterSection
           title="Metal"
           value={getMetalLabel(metal || "")}
@@ -70,8 +70,8 @@ const FiltersSheet = () => {
       </div>
 
       {/* CTA */}
-      <div className="fixed inset-x-0 bottom-0 bg-white p-4">
-        <button className="w-full h-12 rounded-full bg-black text-white text-sm font-medium">
+      <div className="rb:fixed rb:inset-x-0 rb:bottom-0 rb:bg-white rb:p-4">
+        <button className="rb:w-full rb:h-12 rb:rounded-full rb:bg-black rb:text-white rb:text-sm rb:font-medium">
           View Results
         </button>
       </div>

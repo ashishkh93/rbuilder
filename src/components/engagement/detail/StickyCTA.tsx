@@ -1,9 +1,9 @@
 // components/ring/StickyCTA.tsx
 const StickyCTA = ({ className, label, ...buttonProps }: StickyCTAProps) => {
   return (
-    <div className={`rounded-full ${className}`}>
+    <div className={`rb:rounded-full ${className}`}>
       <button
-        className="w-full py-4 font-medium text-sm cursor-pointer!"
+        className="rb:w-full rb:py-4 rb:font-medium rb:text-sm rb:cursor-pointer!"
         {...buttonProps}
       >
         {label}

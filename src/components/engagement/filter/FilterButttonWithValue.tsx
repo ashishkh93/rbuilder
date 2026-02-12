@@ -11,23 +11,23 @@ const FilterButttonWithValue = ({
 }: FilterButttonWithValueProps) => {
   return (
     <Button
-      className={`flex justify-center h-9 gap-2 pl-2! py-[2px]! relative ${className}`}
+      className={`rb:flex rb:justify-center rb:h-9 rb:gap-2 rb:pl-2! rb:py-[2px]! rb:relative ${className}`}
     >
-      <div className="flex items-center gap-1 mr-1 shrink-0" onClick={onClick}>
-        {icon && <div className="mx-auto flex justify-center my-1">{icon}</div>}
-        <div className="-mt-0.5 md:mt-0 text-13! leading-4 tracking-tight! overflow-hidden text-ellipsis md:text-10 md:leading-tight text-condensed! px-1">
+      <div className="rb:flex rb:items-center rb:gap-1 rb:mr-1 rb:shrink-0" onClick={onClick}>
+        {icon && <div className="rb:mx-auto rb:flex rb:justify-center rb:my-1">{icon}</div>}
+        <div className="rb:-mt-0.5 rb:md:mt-0 rb:text-13! rb:leading-4 rb:tracking-tight! rb:overflow-hidden rb:text-ellipsis rb:md:text-10 rb:md:leading-tight rb:text-condensed! rb:px-1">
           {valueLabel}
         </div>
       </div>
-      <div className="h-full w-px bg-gray-300! absolute right-7" />
+      <div className="rb:h-full rb:w-px rb:bg-gray-300! rb:absolute rb:right-7" />
       <div
-        className="w-full h-full flex items-center justify-end"
+        className="rb:w-full rb:h-full rb:flex rb:items-center rb:justify-end"
         onClick={(e) => {
           e.stopPropagation();
           onClickRemove();
         }}
       >
-        <X className="w-3.5 h-3.5 text-gray-400" />
+        <X className="rb:w-3.5 rb:h-3.5 rb:text-gray-400" />
       </div>
     </Button>
   );

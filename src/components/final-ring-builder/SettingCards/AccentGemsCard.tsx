@@ -8,17 +8,17 @@ export const AccentGemsCard = () => (
     desc="Side stones average color & clarity"
     iconSrc={COMMON_ICONS.accentGems}
   >
-    <div className="flex gap-3">
+    <div className="rb:flex rb:gap-3">
       <div>
-        <p className="text-xl font-semibold">D-F</p>
-        <p className="text-xs text-gray-500">Color</p>
+        <p className="rb:text-xl rb:font-semibold">D-F</p>
+        <p className="rb:text-xs rb:text-gray-500">Color</p>
       </div>
 
       <Separator orientation="vertical" />
 
       <div>
-        <p className="text-xl font-semibold">VVS</p>
-        <p className="text-xs text-gray-500">Clarity</p>
+        <p className="rb:text-xl rb:font-semibold">VVS</p>
+        <p className="rb:text-xs rb:text-gray-500">Clarity</p>
       </div>
     </div>
   </BaseSettingCard>

@@ -1,20 +1,31 @@
 import MediaTile from "@/components/common/MediaTile";
-import StoneMediaTabs from "./StoneMediaTabs";
-import StoneSizeGuide from "./StoneSizeGuide";
+import { shallowEqual, useSelector } from "react-redux";
+import { selectDiamondDetail } from "@/store/diamonds/diamonds.selectors";
+import { useMemo } from "react";
 
 const StoneGallery = () => {
+  const diamondDetail = useSelector(selectDiamondDetail, shallowEqual);
+
+  const gallerySrc = useMemo(() => {
+    return [diamondDetail?.diamondImage, diamondDetail?.diamondVideo].filter(
+      Boolean
+    );
+  }, [diamondDetail]);
+
   return (
-    <div className="space-y-6">
+    <div className="rb:space-y-6">
       {/* <StoneMediaTabs /> */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <MediaTile
-            key={i}
-            index={i}
-            src="https://cdn.shopify.com/s/files/1/0039/6994/1568/files/lab_loosediamond_radiant_02-09_vvs2_f_d2ac6275fec5_20260113045045719.webp"
-            imageContainerClass="bg-[#dfe6ec]"
-          />
-        ))}
+      <div className="rb:grid rb:grid-cols-1 rb:sm:grid-cols-2 rb:gap-2">
+        {gallerySrc.length > 0 &&
+          gallerySrc.map((media, i) => (
+            <MediaTile
+              key={i}
+              index={i}
+              src={media || ""}
+              imageContainerClass="rb:bg-[#dfe6ec]"
+              isVideo={i === 1}
+            />
+          ))}
       </div>
       {/* <StoneSizeGuide /> */}
     </div>

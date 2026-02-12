@@ -5,6 +5,7 @@ import { firstLetterCapitalize } from "@/utils/common.util";
 import { useCallback } from "react";
 import { Fragment } from "react/jsx-runtime";
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/config/global-config";
 
 const RBuilderStepper = () => {
   const steps = useAppSelector(selectBuilderSteps);
@@ -14,19 +15,19 @@ const RBuilderStepper = () => {
     if (Number(stepId) === 1) {
       navigate("/engagement-rings");
     } else if (Number(stepId) === 2) {
-      navigate("/stones");
+      navigate(`/${ROUTES.defauktDiamondType}`);
     } else if (Number(stepId) === 3) {
     navigate("/complete-ring-builder");
     }
   }, []);
 
   return (
-    <div className="flex w-full m-auto overflow-visible!">
+    <div className="rb:flex rb:w-full rb:m-auto rb:overflow-visible! rb:cursor-pointer">
       {steps.map((step, index) => {
         return (
           <Fragment key={step.id}>
             <div
-              className={`relative flex items-center w-full lg:px-8 md:px-4 px-2 py-2 border border-gray-300 transition-colors ${index !== 0 ? "-ml-px" : ""} ${step.status === "active" ? "z-10 border-black!" : "z-0"} ${step.status === "active" ? "bg-white" : "bg-[#f7f7f7]"}`}
+              className={`rb:relative rb:flex rb:items-center rb:w-full rb:lg:px-8 rb:md:px-4 rb:px-2 rb:py-2 rb:border rb:border-gray-300 rb:transition-colors ${index !== 0 ? "-ml-px" : ""} ${step.status === "active" ? "rb:z-10 rb:border-black!" : "rb:z-0"} ${step.status === "active" ? "rb:bg-white" : "rb:bg-[#f7f7f7]"}`}
               onClick={() => onClickChange(step.id)}
               //   style={{
               //     clipPath: isLast
@@ -39,17 +40,17 @@ const RBuilderStepper = () => {
               //   }}
             >
               {/* Step Number */}
-              <div className="text-2xl md:text-4xl font-light text-black mr-2 sm:mr-3 lg:mr-6">
+              <div className="rb:text-2xl rb:md:text-4xl rb:font-light rb:text-black rb:mr-2 rb:sm:mr-3 rb:lg:mr-6">
                 {step.id}
               </div>
 
               {/* Text */}
-              <div className="flex flex-1 gap-3 items-center">
-                <div className="flex-1 min-w-[55px]">
-                  <p className="md:text-xs text-10 text-gray-500 truncate max-w-14! sm:max-w-full!">
+              <div className="rb:flex rb:flex-1 rb:gap-3 rb:items-center">
+                <div className="rb:flex-1 rb:min-w-[55px]">
+                  <p className="rb:md:text-xs rb:text-10 rb:text-gray-500 rb:truncate rb:max-w-14! rb:sm:max-w-full!">
                     {step.helper}
                   </p>
-                  <p className="md:text-lg text-sm font-semibold uppercase leading-none">
+                  <p className="rb:md:text-lg rb:text-sm rb:font-semibold rb:uppercase rb:leading-none">
                     {step.title}
                   </p>
                 </div>
@@ -57,18 +58,18 @@ const RBuilderStepper = () => {
 
               {index !== steps.length - 1 &&
                 (step.meta ? (
-                  <div className="flex-1 leading-tight text-xs lg:block hidden">
-                    <div className="flex flex-col text-xs text-gray-600">
-                      <div className="text-end! truncate md:max-w-32! max-w-20!">
+                  <div className="rb:flex-1 rb:leading-tight rb:text-xs rb:lg:block rb:hidden">
+                    <div className="rb:flex rb:flex-col rb:text-xs rb:text-gray-600">
+                      <div className="rb:text-end! rb:truncate rb:md:max-w-32! rb:max-w-20!">
                         {step.meta}
                       </div>
                       <div
-                        className="flex items-center gap-3 mt-1 text-gray-600 place-content-end"
+                        className="rb:flex rb:items-center rb:gap-3 rb:mt-1 rb:text-gray-600 rb:place-content-end"
                         onClick={() => {
                           onClickChange(step.id);
                         }}
                       >
-                        <span className="underline underline-offset-2 cursor-pointer opacity-50">
+                        <span className="rb:underline rb:underline-offset-2 rb:cursor-pointer rb:opacity-50">
                           Change
                         </span>
                         <span>{step.price}</span>
@@ -76,17 +77,17 @@ const RBuilderStepper = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="hidden text-end sm:block underline text-10 md:text-xs! text-gray-400">
+                  <div className="rb:hidden rb:text-end rb:sm:block rb:underline rb:text-10 rb:md:text-xs! rb:text-gray-400">
                     Browse {firstLetterCapitalize(step.title)}
                   </div>
                 ))}
 
               {/* Right Icon Area */}
-              <div className="lg:ml-6 ml-2 flex items-center">
+              <div className="rb:lg:ml-6 rb:ml-2 rb:flex rb:items-center">
                 {step.status === "completed" ? (
                   <img src={COMMON_ICONS.completed} alt="completed" />
                 ) : (
-                  <div className="text-2xl text-black">
+                  <div className="rb:text-2xl rb:text-black">
                     <img src={step?.icon ?? ""} alt="" />
                     {/* {step?.icon || "◇"} */}
                   </div>

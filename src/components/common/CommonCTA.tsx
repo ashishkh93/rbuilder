@@ -1,11 +1,11 @@
 const CommonCTA = ({
   label,
-  className = "bg-black text-white",
+  className = "rb:bg-black rb:text-white",
   ...props
 }: CommonCTAProps) => {
   return (
     <button
-      className={`w-full rounded-full py-3 cursor-pointer ${className}`}
+      className={`rb:w-full rb:rounded-full rb:py-3 rb:cursor-pointer ${className}`}
       {...props}
     >
       {label}

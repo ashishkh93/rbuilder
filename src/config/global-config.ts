@@ -32,6 +32,7 @@ export const ROUTES = {
   engagementRings: "/engagement-rings",
   engagementRingDetail: "/engagement-rings/products/:id",
   diamondType: "/:diamondType",
+  defauktDiamondType: "lab-diamond",
   shape: "/:shape",
   completeRingBuilder: "/complete-ring-builder",
 };

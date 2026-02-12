@@ -6,21 +6,21 @@ import StoneInfo from "@/components/stone/detail/infocards/StoneInfo";
 
 const FinalRingBuilder = () => {
   return (
-    <div className="max-w-[1200px] px-1 py-2 md:py-8">
-      <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-10">
-        <div className="relative lg:sticky xl:sticky top-6 self-start">
+    <div className="rb:max-w-[1200px] rb:px-1 rb:py-2 rb:md:py-8">
+      <div className="rb:grid rb:grid-cols-1 rb:lg:grid-cols-[1.5fr_1fr] rb:gap-10">
+        <div className="rb:relative rb:lg:sticky rb:xl:sticky rb:top-6 rb:self-start">
           <FinalRingNStoneGallery />
         </div>
 
-        <div className="relative">
+        <div className="rb:relative">
           <FinalRingSummary />
-          <div className="mt-8">
+          <div className="rb:mt-8">
             <StoneInfo />
           </div>
-          <div className="mt-4">
+          <div className="rb:mt-4">
             <KnowYourSetting />
           </div>
-          <div className="mt-2">
+          <div className="rb:mt-2">
             <FinalRingAccordions />
           </div>
         </div>

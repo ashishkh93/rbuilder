@@ -15,7 +15,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         "ring-builder": "src/main.tsx",
-        "choose-setting": 'src/choose-setting.jsx',
+        // "choose-setting": 'src/choose-setting.jsx',
       },
       output: {
         dir: "../assets",

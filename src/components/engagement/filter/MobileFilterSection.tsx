@@ -14,19 +14,19 @@ const MobileFilterSection = ({
   onSelect: (id: string) => void;
 }) => {
   return (
-    <div className="px-4 py-6">
-      <div className="flex items-end gap-1 mb-3">
-        <span className="font-semibold text-sm">{title}</span>
-        <span className="font-semibold text-sm">:</span>
-        <span className="text-sm text-gray-500">{value}</span>
+    <div className="rb:px-4 rb:py-6">
+      <div className="rb:flex rb:items-end rb:gap-1 rb:mb-3">
+        <span className="rb:font-semibold rb:text-sm">{title}</span>
+        <span className="rb:font-semibold rb:text-sm">:</span>
+        <span className="rb:text-sm rb:text-gray-500">{value}</span>
       </div>
 
-      <div className="relative">
+      <div className="rb:relative">
         <SettingOptionsRenderer
           options={options}
           selectedId={selected}
           handleSelect={onSelect}
-          columnsClass="grid-cols-2"
+          columnsClass="rb:grid-cols-2"
         />
       </div>
     </div>

@@ -2,11 +2,11 @@
 
 const OptionGroup = ({ title, subTitle, children }: OptionGroupProps) => {
   return (
-    <div className="space-y-3">
-      <p className="text-sm font-medium">
-        {title}: <span className="text-sm text-gray-500">{subTitle}</span>
+    <div className="rb:space-y-3">
+      <p className="rb:text-sm rb:font-medium">
+        {title}: <span className="rb:text-sm rb:text-gray-500">{subTitle}</span>
       </p>
-      <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-5 gap-1 md:gap-3">
+      <div className="rb:grid rb:grid-cols-3 rb:sm:grid-cols-5 rb:md:grid-cols-6 rb:lg:grid-cols-5 rb:gap-1 rb:md:gap-3">
         {children}
       </div>
     </div>

@@ -14,7 +14,7 @@ const ButtonWithIcon = ({
 }) => {
   return (
     <Button onClick={onClick} className={className}>
-      <span className="text-xs md:text-sm">{triggerLabel}</span>
+      <span className="rb:text-xs md:rb:text-sm">{triggerLabel}</span>
       {icon}
     </Button>
   );

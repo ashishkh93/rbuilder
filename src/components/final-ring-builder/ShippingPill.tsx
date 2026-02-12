@@ -2,9 +2,9 @@ import { Truck } from "lucide-react";
 
 const ShippingPill = ({ text }: { text: string }) => {
   return (
-    <div className="flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 text-sm text-black">
-      <Truck className="h-4 w-4" />
-      <span className="text-xs">{text}</span>
+    <div className="rb:flex rb:items-center rb:gap-2 rb:rounded-full rb:bg-gray-100 rb:px-4 rb:py-2 rb:text-sm rb:text-black">
+      <Truck className="rb:h-4 rb:w-4" />
+      <span className="rb:text-xs">{text}</span>
     </div>
   );
 };

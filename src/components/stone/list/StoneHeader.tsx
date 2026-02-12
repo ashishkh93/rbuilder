@@ -6,7 +6,7 @@ const StoneHeader = () => {
     <ListPageHeader
       headerText={STONE_HEADER.headerText}
       subHeaderText={STONE_HEADER.subHeaderText}
-      className="mb-4!"
+      className="rb:mb-4!"
     />
   );
 };

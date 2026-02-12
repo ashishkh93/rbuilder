@@ -8,23 +8,23 @@ const BaseSettingCard = ({
 }: BaseCardProps) => {
   return (
     <div
-      className={`flex flex-col justify-start gap-1 rounded-sm bg-white p-3 ${
-        fullWidth ? "col-span-2" : ""
+      className={`rb:flex rb:flex-col rb:justify-start rb:gap-1 rb:rounded-sm rb:bg-white rb:p-3 ${
+        fullWidth ? "rb:col-span-2" : ""
       }`}
     >
-      <div className="flex items-center gap-1 text-sm font-medium text-gray-500">
+      <div className="rb:flex rb:items-center rb:gap-1 rb:text-sm rb:font-medium rb:text-gray-500">
         {Icon ? (
           <>{Icon}</>
         ) : (
-          iconSrc && <img src={iconSrc} alt={title} className="w-5 h-5" />
+          iconSrc && <img src={iconSrc} alt={title} className="rb:w-5 rb:h-5" />
         )}
-        <span className="text-11">{title}</span>
+        <span className="rb:text-11">{title}</span>
       </div>
 
       {children}
 
       {desc && (
-        <p className="mt-10 w-full! text-xs text-gray-500 flex flex-1 items-end!">
+        <p className="rb:mt-10 rb:w-full! rb:text-xs rb:text-gray-500 rb:flex rb:flex-1 rb:items-end!">
           {desc}
         </p>
       )}

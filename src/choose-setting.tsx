@@ -11,12 +11,12 @@ import ChooseSettingFeature from "./features/ChooseSettingFeature.tsx";
 
 createRoot(document.getElementById("r-builder-app-choose-setting")!).render(
   <StrictMode>
-    <ThemeProvider>
-      <BrowserRouter>
-        <Provider store={store}>
-          <ChooseSettingFeature ringSize="" bandWidth="" />
-        </Provider>
-      </BrowserRouter>
-    </ThemeProvider>
+    {/* <ThemeProvider> */}
+    <BrowserRouter>
+      <Provider store={store}>
+        <ChooseSettingFeature ringSize="" bandWidth="" />
+      </Provider>
+    </BrowserRouter>
+    {/* </ThemeProvider> */}
   </StrictMode>
 );

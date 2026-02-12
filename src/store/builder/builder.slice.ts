@@ -35,14 +35,15 @@ const builderSlice = createSlice({
       };
     },
 
-    selectSetting(
-      state,
-      action: PayloadAction<{
-        id: string;
-        name: string;
-        price: number;
-      }>
-    ) {
+    selectSetting(state, action: PayloadAction<SelectSettingPayload>) {
+      if (action.payload.type === "reset") {
+        state.selectedSettingId = null;
+        state.stepData[1] = {};
+        state.completedSteps[1] = false;
+        state.currentStep = 1;
+        return;
+      }
+
       state.selectedSettingId = action.payload.id;
       state.stepData[1] = {
         meta: action.payload.name,
@@ -50,19 +51,18 @@ const builderSlice = createSlice({
       };
 
       state.completedSteps[1] = true;
-      state.completedSteps[2] = false;
-      state.completedSteps[3] = false;
       state.currentStep = 2;
     },
 
-    selectStone(
-      state,
-      action: PayloadAction<{
-        id: string;
-        meta: string;
-        price: number;
-      }>
-    ) {
+    selectStone(state, action: PayloadAction<SelectStonePayload>) {
+      if (action.payload.type === "reset") {
+        state.selectedStoneId = null;
+        state.stepData[2] = {};
+        state.completedSteps[2] = false;
+        state.currentStep = 2;
+        return;
+      }
+
       state.selectedStoneId = action.payload.id;
       state.stepData[2] = {
         meta: action.payload.meta,

@@ -7,10 +7,10 @@ import FinalCheckoutSummary from "./FinalCheckoutSummary";
 
 const FinalRingSummary = () => {
   return (
-    <section className="w-full lg:max-w-3xl">
+    <section className="rb:w-full rb:lg:max-w-3xl">
       <FinalRingHeader />
 
-      <div className="mt-6 space-y-2">
+      <div className="rb:mt-6 rb:space-y-2">
         {/* Setting */}
         <FinalSummaryItem
           icon={COMMON_ICONS.ring}
@@ -38,7 +38,7 @@ const FinalRingSummary = () => {
         <ExtrasRow />
       </div>
 
-      <div className="mt-3">
+      <div className="rb:mt-3">
         <FinalCheckoutSummary
           totalPrice={1705}
           originalPrice={2270}

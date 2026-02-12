@@ -18,6 +18,28 @@ type StepData = {
   [key: string]: any;
 };
 
+type SelectSettingPayload =
+  | {
+      type: "select";
+      id: string;
+      name: string;
+      price: number;
+    }
+  | {
+      type: "reset";
+    };
+
+type SelectStonePayload =
+  | {
+      type: "select";
+      id: string;
+      meta: string;
+      price: number;
+    }
+  | {
+      type: "reset";
+    };
+
 type BuilderState = {
   currentStep: BuilderStep;
   completedSteps: Record<BuilderStep, boolean>;
@@ -33,11 +55,17 @@ type DiamondFilter = {
   cut: SliderValue | null;
   color: SliderValue | null;
   clarity: SliderValue | null;
+  fluorescence: SliderValue | null;
+  table: SliderValue | null;
+  depth: SliderValue | null;
+  polish: SliderValue | null;
+  symmetry: SliderValue | null;
   shape: SliderValue | null;
   carat: DiamondRange;
   type: StoneType;
   price: DiamondRange;
   priceSort: SortOrder;
+  lab: string[];
 };
 
 type DiamondRange = [number, number];
@@ -67,6 +95,7 @@ type Diamond = {
   cut: string;
   symmetry: string;
   polish: string;
+  finalPriceEur: string;
   deptPerc: string;
   tablePerc: string;
   price: string;
@@ -88,6 +117,7 @@ type Diamond = {
   diamondType: string;
   currencyCode: string;
   currencySymbol: string;
+  sellerName?: string;
 };
 
 type MoneyV2 = {
@@ -206,9 +236,12 @@ type ProductsState = {
 type DiamondsState = {
   diamonds: Diamond[];
   loading: boolean;
+  detailLoading: boolean;
+  detailNotFound: boolean;
   dataNotFound: boolean;
   isMoreData: boolean;
   pageInfo: DiamondPageInfo;
+  diamondDetail: Diamond | null;
 };
 
 type EngagementRing = {

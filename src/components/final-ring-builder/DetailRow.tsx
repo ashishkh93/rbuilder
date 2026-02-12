@@ -1,11 +1,11 @@
 const DetailRow = ({ label, value }: DetailRowProps) => {
   return (
-    <div className="flex items-start">
+    <div className="rb:flex rb:items-start">
       {/* Label */}
-      <div className="w-41 text-13 text-gray-500">{label}</div>
+      <div className="rb:w-41 rb:text-13 rb:text-gray-500">{label}</div>
 
       {/* Value */}
-      <div className="text-xs font-semibold text-secondary">{value}</div>
+      <div className="rb:text-xs rb:font-semibold rb:text-secondary">{value}</div>
     </div>
   );
 };

@@ -16,7 +16,7 @@ const ShapeSelector = () => {
             handleSelect={() => {}}
             isActive={isActive}
             labelClass={""}
-            iconClass="w-6 h-6 md:w-7 md:h-7"
+            iconClass="rb:w-6 rb:h-6 rb:md:w-7 rb:md:h-7"
           />
         );
       })}

@@ -24,7 +24,21 @@ export const getPriceLabel = (id: string) => {
 
 export const colorMarks = ["M", "L", "K", "J", "I", "H", "G", "F", "E", "D"];
 export const cutMarks = ["FR", "GD", "VG", "EX", "ID"];
-export const clarityMarks = ["I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1", "IF", "FL"];
+export const clarityMarks = [
+  "I1",
+  "SI2",
+  "SI1",
+  "VS2",
+  "VS1",
+  "VVS2",
+  "VVS1",
+  "IF",
+  "FL",
+];
+
+export const fluorescenceMarks = ["None", "Faint", "Medium", "Strong"];
+
+export const qualityMarks = ["Excellent", "Very Good", "Good"];
 
 export const STONE_FILTERS: DiamondFilterConfig[] = [
   {
@@ -72,7 +86,57 @@ export const STONE_FILTERS: DiamondFilterConfig[] = [
     step: 1,
     marks: clarityMarks,
   },
+  {
+    key: "fluorescence",
+    label: "FLUORESCENCE",
+    type: "range",
+    min: 0,
+    max: 4,
+    step: 1,
+    marks: fluorescenceMarks,
+  },
 ] as const;
+
+export const ADVANCED_FILTERS = [
+  {
+    key: "table",
+    label: "TABLE",
+    type: "range",
+    min: 45,
+    max: 100,
+    step: 1,
+    showInputs: true,
+  },
+  {
+    key: "depth",
+    label: "DEPTH",
+    type: "range",
+    min: 45,
+    max: 100,
+    step: 1,
+    showInputs: true,
+  },
+  {
+    key: "polish",
+    label: "POLISH",
+    type: "range",
+    min: 0,
+    max: 3,
+    step: 1,
+    marks: qualityMarks,
+  },
+  {
+    key: "symmetry",
+    label: "SYMMETRY",
+    type: "range",
+    min: 0,
+    max: 3,
+    step: 1,
+    marks: qualityMarks,
+  },
+];
+
+export const CERTIFICATES = ["igi", "gia"] as const;
 
 export const STONES: StoneCardProps["stone"][] = [
   {

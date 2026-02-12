@@ -6,7 +6,7 @@ import ScrollToTop from "@/components/common/ScrollToTop";
 export default function AppLayout() {
   return (
     <ScrollToTop>
-      <div className="max-w-7xl mx-auto sm:px-6 px-3 sm:py-6 py-3">
+      <div className="rb:max-w-7xl rb:mx-auto rb:sm:px-6 rb:px-3 rb:sm:py-6 rb:py-3">
         <Breadcrumb
           items={[
             { label: "Homepage", path: "/rings" },
@@ -17,7 +17,7 @@ export default function AppLayout() {
 
         <RBuilderStepper />
 
-        <div className="mt-4 md:mt-8">
+        <div className="rb:mt-4 rb:md:mt-8">
           <Outlet />
         </div>
       </div>

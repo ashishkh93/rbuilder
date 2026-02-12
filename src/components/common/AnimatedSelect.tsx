@@ -24,11 +24,11 @@ export default function AnimatedSelect() {
   }, []);
 
   return (
-    <div ref={ref} className="relative w-72">
+    <div ref={ref} className="rb:relative rb:w-72">
       {/* Trigger */}
       <button
         onClick={() => setOpen((p) => !p)}
-        className="w-full flex justify-between items-center rounded-lg border border-gray-300 bg-white! px-4 py-3 text-left transition focus:outline-none focus:ring-2 focus:ring-black"
+        className="rb:w-full rb:flex rb:justify-between rb:items-center rb:rounded-lg rb:border rb:border-gray-300 rb:bg-white! rb:px-4 rb:py-3 rb:text-left rb:transition focus:rb:outline-none focus:rb:ring-2 focus:rb:ring-black"
       >
         <span>{selected.label}</span>
         <svg

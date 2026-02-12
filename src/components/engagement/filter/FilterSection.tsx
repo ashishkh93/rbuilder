@@ -29,8 +29,8 @@ const FilterSection = () => {
 
   return (
     <>
-      <div className="flex justify-between gap-2 my-2">
-        <div className="flex gap-2">
+      <div className="rb:flex rb:justify-between rb:gap-2 rb:my-2">
+        <div className="rb:flex rb:gap-2">
           {isMobile ? (
             <FilterDropdown
               filterKey="filters"
@@ -65,7 +65,7 @@ const FilterSection = () => {
                   <img
                     src={SHAPE_ICONS[shape as keyof typeof SHAPE_ICONS]}
                     alt="Round"
-                    className="w-5 h-5 mx-1"
+                    className="rb:w-5 rb:h-5 rb:mx-1"
                   />
                 }
                 onChange={(id) => dispatch(setShape(id))}

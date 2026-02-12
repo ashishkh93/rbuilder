@@ -18,7 +18,7 @@ const RingGallery = () => {
   //         <img
   //           src={src}
   //           alt=""
-  //           className="h-64 w-full rounded-xl object-cover"
+  //           className="rb:h-64 rb:w-full rb:rounded-xl rb:object-cover"
   //         />
   //       )}
   //     />
@@ -26,7 +26,7 @@ const RingGallery = () => {
   // }
 
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div className="rb:grid rb:grid-cols-2 rb:gap-2">
       {Array.from({ length: 6 }).map((_, i) => (
         <MediaTile
           key={i}
@@ -34,7 +34,7 @@ const RingGallery = () => {
           shouldHaveGradient={true}
           src="https://cdn.shopify.com/s/files/1/0039/6994/1568/files/162Q-ER-MQ-WG-spin_0.jpg"
           additionalInfoComp={
-            <span className="absolute top-3 left-1/2 -translate-x-1/2 text-xs bg-white px-3 py-1 rounded-full shadow-sm">
+            <span className="rb:absolute rb:top-3 rb:left-1/2 rb:-translate-x-1/2 rb:text-xs rb:bg-white rb:px-3 rb:py-1 rb:rounded-full rb:shadow-sm">
               Shown with 3 ct
             </span>
           }

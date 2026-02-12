@@ -10,7 +10,7 @@ const FinalCheckoutSummary = ({
   onAddToBag,
 }: FinalCheckoutSummaryProps) => {
   return (
-    <section className="flex flex-col items-center gap-6">
+    <section className="rb:flex rb:flex-col rb:items-center rb:gap-6">
       <PriceBlock totalPrice={totalPrice} originalPrice={originalPrice} />
 
       <ShippingPill text={shippingText} />

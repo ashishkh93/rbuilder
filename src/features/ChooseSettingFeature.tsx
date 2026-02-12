@@ -33,12 +33,12 @@ const ChooseSettingFeature: React.FC<ChooseSettingUIProps> = ({
   onPrimaryAction,
 }) => {
   return (
-    <div className="space-y-6">
+    <div className="rb:space-y-6">
       {/* Ring Size */}
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-gray-900">Ring Size</label>
+      <div className="rb:space-y-2">
+        <label className="rb:text-sm rb:font-medium rb:text-gray-900">Ring Size</label>
 
-        <div className="flex items-center gap-3">
+        <div className="rb:flex rb:items-center rb:gap-3">
           <FilterDropdown
             filterKey="ringSize"
             triggerLabel="Ring Size"
@@ -69,7 +69,7 @@ const ChooseSettingFeature: React.FC<ChooseSettingUIProps> = ({
             href="/pages/ring-size-guide"
             target="_blank"
             rel="noopener noreferrer"
-            className="whitespace-nowrap text-sm font-medium underline"
+            className="rb:whitespace-nowrap rb:text-sm rb:font-medium rb:underline"
           >
             Size Guide
           </a>
@@ -77,8 +77,8 @@ const ChooseSettingFeature: React.FC<ChooseSettingUIProps> = ({
       </div>
 
       {/* Band Width */}
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-gray-900">Band Width</label>
+      <div className="rb:space-y-2">
+        <label className="rb:text-sm rb:font-medium rb:text-gray-900">Band Width</label>
 
         <select
           value={bandWidth}
@@ -104,8 +104,7 @@ const ChooseSettingFeature: React.FC<ChooseSettingUIProps> = ({
         type="button"
         disabled={isLoading}
         onClick={onPrimaryAction}
-        className="w-full rounded-md bg-black py-3 text-sm font-semibold text-white
-          transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
+        className="rb:w-full rb:rounded-md rb:bg-black rb:py-3 rb:text-sm rb:font-semibold rb:text-white rb:transition-opacity disabled:rb:cursor-not-allowed disabled:rb:opacity-50"
       >
         {isLoading
           ? "Loading..."

@@ -1,19 +1,51 @@
-// src/hooks/useEngagementSetting.ts
+// src/hooks/useDiamonds.ts
 import { useCallback, useMemo, useRef } from "react";
 import axios from "axios";
+import { shallowEqual } from "react-redux";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { selectDiamondFilter } from "@/store/filters/filters.selectors";
-import { GLOBAL_CONFIG } from "@/config/global-config";
-import { shallowEqual } from "react-redux";
 import { selectDiamondPageInfo } from "@/store/diamonds/diamonds.selectors";
 import {
+  receiveDiamondDetail,
   receiveDiamonds,
+  requestDiamondDetail,
   requestDiamonds,
+  resetDiamondDetail,
   setNoDataFound,
 } from "@/store/diamonds/diamonds.slice";
-import { clarityMarks, colorMarks, cutMarks } from "@/utils/constants";
+import { GLOBAL_CONFIG } from "@/config/global-config";
+import {
+  clarityMarks,
+  colorMarks,
+  cutMarks,
+  qualityMarks,
+} from "@/utils/constants";
+import { graphQLCurrencyFields } from "@/utils/common.util";
 
 const DEBOUNCE_DELAY = 300;
+
+/* ------------------------------------------------------------------
+ * Helpers
+ * ------------------------------------------------------------------*/
+
+const rangeToCsv = (
+  range: [number, number] | undefined,
+  marks: string[]
+): string => {
+  if (!range) return "";
+
+  const [min, max] = range;
+  const start = marks.indexOf(String(min));
+  const end = marks.indexOf(String(max));
+
+  if (start === -1 || end === -1 || start > end) return "";
+
+  return marks.slice(start, end + 1).join(",");
+};
+
+/* ------------------------------------------------------------------
+ * Hook
+ * ------------------------------------------------------------------*/
 
 export const useDiamonds = () => {
   const dispatch = useAppDispatch();
@@ -21,34 +53,48 @@ export const useDiamonds = () => {
   const diamondFilter = useAppSelector(selectDiamondFilter, shallowEqual);
   const diamondPageInfo = useAppSelector(selectDiamondPageInfo, shallowEqual);
 
-  /** Refs for debounce & cancel */
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const cancelTokenRef = useRef<ReturnType<
-    typeof axios.CancelToken.source
-  > | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
 
-  const getColorField = useCallback(() => {
-    const currentColorRange = diamondFilter?.color as [number, number];
-    const startIndex = colorMarks.indexOf(currentColorRange[0]?.toString());
-    const endIndex = colorMarks.indexOf(currentColorRange[1]?.toString());
-    return colorMarks.slice(startIndex, endIndex + 1).join(",");
-  }, [diamondFilter?.color]);
+  /* ------------------------------------------------------------------
+   * Derived filter fields (single source of truth)
+   * ------------------------------------------------------------------*/
 
-  const getClarityField = useCallback(() => {
-    const currentColorRange = diamondFilter?.clarity as [number, number];
-    const startIndex = clarityMarks.indexOf(currentColorRange[0]?.toString());
-    const endIndex = clarityMarks.indexOf(currentColorRange[1]?.toString());
-    return clarityMarks.slice(startIndex, endIndex + 1).join(",");
-  }, [diamondFilter?.clarity]);
+  const colorFieldValue = useMemo(
+    () => rangeToCsv(diamondFilter?.color as [number, number], colorMarks),
+    [diamondFilter?.color]
+  );
 
-  const getCutField = useCallback(() => {
-    const currentcutRange = diamondFilter?.cut as [number, number];
-    const startIndex = cutMarks.indexOf(currentcutRange[0]?.toString());
-    const endIndex = cutMarks.indexOf(currentcutRange[1]?.toString());
-    return cutMarks.slice(startIndex, endIndex + 1).join(",");
-  }, [diamondFilter?.cut]);
+  const clarityFieldValue = useMemo(
+    () => rangeToCsv(diamondFilter?.clarity as [number, number], clarityMarks),
+    [diamondFilter?.clarity]
+  );
 
-  /**GraphQL query (pure & memoized) */
+  const cutFieldValue = useMemo(
+    () => rangeToCsv(diamondFilter?.cut as [number, number], cutMarks),
+    [diamondFilter?.cut]
+  );
+
+  const polishFieldValue = useMemo(
+    () => rangeToCsv(diamondFilter?.polish as [number, number], qualityMarks),
+    [diamondFilter?.polish]
+  );
+
+  const fluorescenceFieldValue = useMemo(
+    () =>
+      rangeToCsv(diamondFilter?.fluorescence as [number, number], qualityMarks),
+    [diamondFilter?.fluorescence]
+  );
+
+  const symmetryFieldValue = useMemo(
+    () => rangeToCsv(diamondFilter?.symmetry as [number, number], qualityMarks),
+    [diamondFilter?.symmetry]
+  );
+
+  /* ------------------------------------------------------------------
+   * Query Builder (YOUR LOGIC – CLEANLY WIRED)
+   * ------------------------------------------------------------------*/
+
   const buildDiamondListQuery = useCallback(
     ({
       pageNumber,
@@ -86,9 +132,17 @@ export const useDiamonds = () => {
         args.push(`carat:"${filters.carat[0]},${filters.carat[1]}"`);
       }
 
-      if (!!getClarityField()) args.push(`clarity:"${getClarityField()}"`);
-      if (filters?.symmetry) args.push(`symmetry:"${filters.symmetry}"`);
-      if (filters?.polish) args.push(`polish:"${filters.polish}"`);
+      if (clarityFieldValue) {
+        args.push(`clarity:"${clarityFieldValue}"`);
+      }
+
+      if (symmetryFieldValue) {
+        args.push(`symmetry:"${symmetryFieldValue}"`);
+      }
+
+      if (polishFieldValue) {
+        args.push(`polish:"${polishFieldValue}"`);
+      }
 
       if (filters?.table?.length === 2) {
         args.push(
@@ -102,15 +156,18 @@ export const useDiamonds = () => {
         );
       }
 
-      if (shapes?.includes("round") && filters?.cut) {
-        args.push(`cut:"${getCutField()}"`);
+      if (shapes?.includes("round") && cutFieldValue) {
+        args.push(`cut:"${cutFieldValue}"`);
       }
 
-      if (filters?.fluorescence) {
-        args.push(`fluoroscence:"${filters.fluorescence}"`);
+      if (fluorescenceFieldValue) {
+        args.push(`fluoroscence:"${fluorescenceFieldValue}"`);
       }
 
-      if (filters?.lab) args.push(`lab:"${filters.lab}"`);
+      if (filters?.lab?.length) {
+        args.push(`lab:"${filters?.lab?.join(",")}"`);
+      }
+
       if (tab) args.push(`diamondType:"${tab}"`);
       if (filters?.sort_order) args.push(`sortBy:"${filters.sort_order}"`);
       if (graphqlSortField) args.push(`orderBy:"${graphqlSortField}"`);
@@ -127,13 +184,13 @@ export const useDiamonds = () => {
           diamondsReturned
           pageNo
           diamond {
-
             diamondId
             shape
             caratWeight
             color
             clarity
             cut
+            finalPriceEur
             symmetry
             polish
             deptPerc
@@ -161,76 +218,177 @@ export const useDiamonds = () => {
       }
     `;
     },
+    [clarityFieldValue, cutFieldValue]
+  );
+
+  const buildDiamondDetailQuery = useCallback(
+    (diamondType: string, diamondId: string) => {
+      return `
+    {
+        diamondById(
+        diamondType:"${diamondType}",
+        diamondId:"${diamondId}"
+      ) {
+        diamond {
+          diamondId
+          shape
+          caratWeight
+          color
+          clarity
+          cut
+          finalPriceEur
+          symmetry
+          polish
+          deptPerc
+          tablePerc
+          length
+          width
+          depth
+          ratio
+          girdleMin
+          girdleMax
+          culet
+          fancyColor
+          flourIntensity
+          certificateFile
+          ${graphQLCurrencyFields()}
+          lab
+          ${GLOBAL_CONFIG.priceKey}
+          certificateNumber
+          stockNumber
+          diamondImage
+          diamondVideo
+          diamondType
+          currencyCode
+          currencySymbol
+          sellerName
+        }
+      }
+    }`;
+    },
     []
   );
 
-  /** Main loader (stable, reusable) */
-  const loadDiamonds = useCallback(async () => {
-    if (debounceRef.current) clearTimeout(debounceRef.current);
+  const loadDiamondDetail = useCallback(
+    (diamondType: string, diamondId: string) => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      if (abortRef.current) abortRef.current.abort();
 
-    debounceRef.current = setTimeout(async () => {
-      try {
-        dispatch(requestDiamonds());
-        const query = buildDiamondListQuery({
-          pageNumber: diamondPageInfo.page,
-          shapes: (diamondFilter.shape as string) || "",
-          filters: diamondFilter,
-          tab: diamondFilter.type || "",
-          colorField: "color",
-          colorValue: (getColorField() as string) || "",
-          colorFlag: "",
-          minAppliedPrice: diamondFilter.price[0],
-          maxAppliedPrice: diamondFilter.price[1],
-          graphqlSortField: "",
-          currencyCode: GLOBAL_CONFIG.currencyCode,
-        });
+      debounceRef.current = setTimeout(async () => {
+        dispatch(requestDiamondDetail());
+        abortRef.current = new AbortController();
 
-        const res = await axios.post(
-          GLOBAL_CONFIG.productFetchApi,
-          { query },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "X-Shopify-Storefront-Access-Token":
-                GLOBAL_CONFIG.storefrontApiAccessToken,
-            },
-            cancelToken: cancelTokenRef.current?.token,
+        try {
+          const query = buildDiamondDetailQuery(diamondType, diamondId);
+
+          const res = await axios.post(
+            GLOBAL_CONFIG.productFetchApi,
+            { query },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                "X-Shopify-Access-Token":
+                  GLOBAL_CONFIG.storefrontApiAccessToken,
+              },
+              signal: abortRef.current.signal,
+            }
+          );
+
+          dispatch(receiveDiamondDetail(res.data.data.diamondById.diamond));
+        } catch (error) {
+          dispatch(resetDiamondDetail());
+          if (axios.isCancel(error)) {
+            console.log("Request canceled");
+            return;
           }
-        );
+        }
+      }, DEBOUNCE_DELAY);
+    },
+    []
+  );
 
-        console.log(res?.data, res?.status, "actualRes=");
-        if (res?.status === 200) {
-          const actualRes = res?.data?.data;
+  /* ------------------------------------------------------------------
+   * Loader
+   * ------------------------------------------------------------------*/
+
+  const loadDiamonds = useCallback(
+    ({
+      pageNumber,
+      loadMore = false,
+    }: {
+      pageNumber: number;
+      loadMore?: boolean;
+    }) => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      if (abortRef.current) abortRef.current.abort();
+
+      debounceRef.current = setTimeout(async () => {
+        dispatch(requestDiamonds());
+        abortRef.current = new AbortController();
+
+        try {
+          const query = buildDiamondListQuery({
+            pageNumber,
+            shapes: (diamondFilter.shape as string) || "",
+            filters: diamondFilter,
+            tab: diamondFilter.type || "",
+            colorField: "color",
+            colorValue: colorFieldValue,
+            colorFlag: "",
+            minAppliedPrice: diamondFilter.price[0],
+            maxAppliedPrice: diamondFilter.price[1],
+            graphqlSortField: "",
+            currencyCode: GLOBAL_CONFIG.currencyCode,
+          });
+
+          const res = await axios.post(
+            GLOBAL_CONFIG.productFetchApi,
+            { query },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                "X-Shopify-Storefront-Access-Token":
+                  GLOBAL_CONFIG.storefrontApiAccessToken,
+              },
+              signal: abortRef.current.signal,
+            }
+          );
+
+          const diamondData = res?.data?.data?.diamondData;
+
+          if (!diamondData) {
+            dispatch(setNoDataFound());
+            return;
+          }
 
           dispatch(
             receiveDiamonds({
-              diamonds: actualRes?.diamondData?.diamond,
+              diamonds: diamondData.diamond,
               pageInfo: {
-                dataCount: actualRes?.diamondData?.dataCount,
-                diamondsReturned: actualRes?.diamondData?.diamondsReturned,
-                page: Number(
-                  actualRes?.diamondData?.pageNo || diamondPageInfo.page
-                ),
+                dataCount: diamondData.dataCount,
+                diamondsReturned: diamondData.diamondsReturned,
+                page: Number(diamondData.pageNo || pageNumber),
               },
-              dataCount: actualRes?.diamondData?.dataCount,
+              dataCount: diamondData.dataCount,
+              loadMore,
             })
           );
-        } else {
-          dispatch(setNoDataFound());
+        } catch (err: any) {
+          if (err?.name !== "CanceledError") {
+            console.error("Diamond fetch failed", err);
+            dispatch(setNoDataFound());
+          }
         }
-      } catch (err) {
-        dispatch(setNoDataFound());
-        if (!axios.isCancel(err)) {
-          console.error("Engagement fetch failed", err);
-        }
-      }
-    }, DEBOUNCE_DELAY);
-  }, [dispatch, diamondFilter, diamondPageInfo, buildDiamondListQuery]);
+      }, DEBOUNCE_DELAY);
+    },
+    [dispatch, diamondFilter, colorFieldValue, buildDiamondListQuery]
+  );
 
   return useMemo(
     () => ({
       loadDiamonds,
+      loadDiamondDetail,
     }),
-    [loadDiamonds]
+    [loadDiamonds, loadDiamondDetail]
   );
 };

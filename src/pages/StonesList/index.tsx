@@ -6,43 +6,31 @@ import StoneFilterComp from "@/components/stone/list/StoneFilterComp";
 import StoneGrid from "@/components/stone/list/StoneGrid";
 import StoneHeader from "@/components/stone/list/StoneHeader";
 import StoneTypeTabs from "@/components/stone/list/StoneTypeTabs";
-import { Separator } from "@/components/ui/separator";
-import { useDiamonds } from "@/hooks/useDiamonds";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { selectPriceSort } from "@/store/filters/filters.selectors";
 import { setDiamondSingle } from "@/store/filters/filters.slice";
 import { getPriceLabel } from "@/utils/constants";
-import { useEffect } from "react";
 
 const StonesList = () => {
   const dispatch = useAppDispatch();
   const priceSort = useAppSelector(selectPriceSort);
 
-  const { loadDiamonds } = useDiamonds();
-
-  useEffect(() => {
-    loadDiamonds({});
-  }, [loadDiamonds]);
-
   return (
     <>
       <div>
         <StoneHeader />
-        <div className="py-2">
+        <div className="rb:py-2">
           <StoneTypeTabs />
         </div>
-        <div className="py-6!">
+        <div className="rb:py-6!">
           <StoneCategoryGrid />
         </div>
         <ResetDivider />
-        <div className="py-6!">
+        <div className="rb:pt-6! rb:pb-2!">
           <StoneFilterComp />
         </div>
-        <div className="py-3!">
-          <Separator />
-        </div>
-        <div className="py-1! flex flex-col gap-5">
-          <div className="flex items-center justify-end">
+        <div className="rb:py-1! rb:flex rb:flex-col rb:gap-5">
+          <div className="rb:flex rb:items-center rb:justify-end">
             <FilterDropdown
               filterKey="price"
               triggerLabel={getPriceLabel(priceSort)}

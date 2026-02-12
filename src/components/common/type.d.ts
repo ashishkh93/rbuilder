@@ -178,6 +178,7 @@ declare global {
     shouldHaveGradient?: boolean;
     additionalInfoComp?: React.ReactNode;
     imageContainerClass?: string;
+    isVideo?: boolean;
   }
 
   interface CommonCTAProps extends ButtonHTMLAttributes<HTMLButtonElement> {

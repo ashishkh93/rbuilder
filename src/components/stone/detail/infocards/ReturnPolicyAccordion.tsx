@@ -6,11 +6,11 @@ const ReturnPolicyAccordion = () => {
     <CustomAccordionItem
       value="return-policy"
       title="Return Policy"
-      icon={<RotateCcw className="h-5 w-5" />}
+      icon={<RotateCcw className="rb:h-5 rb:w-5" />}
     >
-      <p className="text-xs">
+      <p className="rb:text-xs">
         Received an item you don't like? <strong>RBUILDER</strong> is proud to
-        offer free returns within <strong className="text-gray-700">30 days
+        offer free returns within <strong className="rb:text-gray-700">30 days
         from receiving your item.</strong> Contact our support team to issue a
         return.
       </p>

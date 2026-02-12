@@ -30,10 +30,10 @@ const SettingOptionsRenderer = ({
 
   return (
     <div
-      className={`md:w-full gap-2 whitespace-nowrap snap-start hiddenScroll overflow-x-auto overflow-y-hidden scroll-smooth p-px md:p-0.5 flex md:grid ${columnsClass} md:justify-center md:snap-center`}
+      className={`rb:md:w-full rb:gap-2 rb:whitespace-nowrap rb:snap-start rb:hiddenScroll rb:overflow-x-auto rb:overflow-y-hidden rb:scroll-smooth rb:p-px rb:md:p-0.5 rb:flex rb:md:grid ${columnsClass} rb:md:justify-center rb:md:snap-center`}
     >
       {isMobile ? (
-        <HorizontalScroller className="gap-2! px-6!">
+        <HorizontalScroller className="rb:gap-2! rb:px-6!">
           {optsRenders}
         </HorizontalScroller>
       ) : (

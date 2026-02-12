@@ -1,5 +1,7 @@
 import { VirtuosoGrid } from "react-virtuoso";
 import { forwardRef } from "react";
+import { Button } from "../ui/button";
+import { Spinner } from "../ui/spinner";
 
 /**
  * IMPORTANT:
@@ -13,7 +15,7 @@ export const virtuosoGridComponents = {
         ref={ref}
         {...props}
         style={style}
-        className={context?.listClassName || "flex flex-wrap w-full"}
+        className={context?.listClassName || "rb:flex rb:flex-wrap rb:w-full"}
       >
         {children}
       </div>
@@ -21,7 +23,7 @@ export const virtuosoGridComponents = {
   ),
 
   Item: ({ children, ...props }: any) => (
-    <div {...props} className="w-full h-full">
+    <div {...props} className="rb:w-full rb:h-full">
       {children}
     </div>
   ),
@@ -43,24 +45,35 @@ const VirtualizedInfiniteGrid = <T,>({
   }
 
   return (
-    <VirtuosoGrid
-      data={data}
-      useWindowScroll
-      overscan={overscan}
-      endReached={() => {
-        if (!hasMore || isLoading) return;
-        loadMore();
-      }}
-      itemContent={itemContent}
-      context={{ listClassName }}
-      components={{
-        ...virtuosoGridComponents,
-        Footer: () =>
-          hasMore && isLoading ? (
-            <div className="w-full">{footerLoader}</div>
-          ) : null,
-      }}
-    />
+    <>
+      <VirtuosoGrid
+        data={data}
+        useWindowScroll
+        overscan={overscan}
+        endReached={() => {
+          if (!hasMore || isLoading) return;
+          // loadMore();
+        }}
+        itemContent={itemContent}
+        context={{ listClassName }}
+        components={virtuosoGridComponents}
+      />
+      {hasMore && (
+        <div className="rb:flex rb:justify-center rb:mt-6">
+          <Button
+            className={`rb:w-full rb:md:w-30! ${isLoading ? "btn-disabled" : "rb:cursor-pointer rb:hover:bg-primary rb:hover:scale-105 rb:transition-all rb:duration-300 rb:ease-in-out"}`}
+            onClick={loadMore}
+          >
+            <span>Load More</span>
+            {isLoading && (
+              <div className="rb:flex rb:items-center rb:justify-center">
+                <Spinner />
+              </div>
+            )}
+          </Button>
+        </div>
+      )}
+    </>
   );
 };
 
