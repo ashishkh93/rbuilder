@@ -20,7 +20,7 @@ const RingConfigurator = () => {
           className="rb:bg-black! rb:text-white!"
           label="Add Center Stone"
           onClick={() => {
-            navigate(`/${ROUTES.defauktDiamondType}`, { viewTransition: true });
+            navigate(`/${ROUTES.defaultDiamondType}`, { viewTransition: true });
           }}
         />
         <StickyCTA

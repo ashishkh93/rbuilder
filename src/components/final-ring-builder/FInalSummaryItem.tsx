@@ -22,9 +22,9 @@ const FinalSummaryItem = ({
 
           {/* Text */}
           <div className="rb:flex-1 rb:text-left">
-            <h2 className="rb:mb-0.5 rb:text-[15px]! rb:font-semibold rb:leading-tight rb:text-black md:rb:text-base">
+            <p className="rb:mb-0.5 rb:text-[15px]! rb:font-semibold rb:leading-tight rb:text-black md:rb:text-base">
               {title}
-            </h2>
+            </p>
 
             <p className="rb:text-[15px]! rb:leading-tight rb:text-[#404040] md:rb:text-base">
               {subtitle}

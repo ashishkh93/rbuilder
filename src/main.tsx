@@ -7,7 +7,8 @@ import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "./theme/ThemeProvider.tsx";
 import { Provider } from "react-redux";
-import { store } from "./store";
+import { store, persistor } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
 import { storeBaseUrl } from "./utils/common.util.ts";
 
 createRoot(document.getElementById("r-builder-app")!).render(
@@ -15,7 +16,9 @@ createRoot(document.getElementById("r-builder-app")!).render(
     <ThemeProvider>
       <BrowserRouter basename={storeBaseUrl}>
         <Provider store={store}>
-          <App />
+          <PersistGate loading={null} persistor={persistor}>
+            <App />
+          </PersistGate>
         </Provider>
       </BrowserRouter>
     </ThemeProvider>

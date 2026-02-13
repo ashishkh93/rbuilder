@@ -1,117 +1,301 @@
-import FilterDropdown from "@/components/engagement/filter/FilterDropdown";
-import RingSizeFilter from "@/components/engagement/filter/RingSizeFilter";
-import { getBandWidths, RING_SIZES } from "@/utils/constants";
-import React from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { AppSelect } from "@/components/common";
+import { BAND_WIDTHS, RING_SIZES } from "@/utils/constants";
+import CommonCTA from "@/components/common/CommonCTA";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { selectBuilderCompletedSteps } from "@/store/builder/builder.selectors";
+import { shallowEqual } from "react-redux";
+import { getCurrentWindowOrigin, getFinalPageUrl } from "@/utils/common.util";
+import { ROUTES } from "@/config/global-config";
+import { selectDiamondId } from "@/store/diamonds/diamonds.selectors";
+import { selectSettingDetail } from "@/store/products/products.slice";
+import { cn } from "@/lib/utils";
+import { selectedSettingDetail } from "@/store/products/products.selectors";
+import { selectSetting } from "@/store/builder/builder.slice";
 
-interface ChooseSettingUIProps {
-  ringSize: string;
-  bandWidth: string;
+const parseScriptJSON = <T,>(id: string): T | null => {
+  const el = document.getElementById(id);
+  if (!el?.textContent) return null;
 
-  showRingSizeError?: boolean;
-  showBandWidthError?: boolean;
+  try {
+    return JSON.parse(el.textContent) as T;
+  } catch (err) {
+    console.error(`Failed to parse JSON from script#${id}`, err);
+    return null;
+  }
+};
 
-  isLoading?: boolean;
-  isBand?: boolean;
+const getVariantIdFromURL = (): number | null => {
+  const params = new URLSearchParams(window.location.search);
+  const variant = params.get("variant");
+  return variant ? Number(variant) : null;
+};
 
-  onRingSizeChange?: (value: string) => void;
-  onBandWidthChange?: (value: string) => void;
-  onPrimaryAction?: () => void;
-}
+const ChooseSettingFeature = () => {
+  const [ringSize, setRingSize] = useState<string | undefined>();
+  const [bandWidth, setBandWidth] = useState<string | undefined>();
+  const [product, setProduct] = useState<ShopifyProduct | null>(null);
+  const [secondShapes, setSecondShapes] = useState<SecondShape[]>([]);
+  const [isBand, setIsBand] = useState(false);
+  const [errors, setErrors] = useState({ ringSize: false, bandWidth: false });
 
-const ChooseSettingFeature: React.FC<ChooseSettingUIProps> = ({
-  ringSize,
-  bandWidth,
+  const diamondId = useAppSelector(selectDiamondId);
+  const selectedSetting = useAppSelector(selectedSettingDetail);
 
-  showRingSizeError = false,
-  showBandWidthError = false,
+  const dispatch = useAppDispatch();
 
-  isLoading = false,
-  isBand = false,
+  const completedSteps = useAppSelector(
+    selectBuilderCompletedSteps,
+    shallowEqual
+  );
 
-  onRingSizeChange,
-  onBandWidthChange,
-  onPrimaryAction,
-}) => {
+  const ringSizeRef = useRef<HTMLSelectElement>(null);
+  const bandWidthRef = useRef<HTMLSelectElement>(null);
+
+  const isDiamondSelected = useMemo(() => {
+    return completedSteps[2] === true;
+  }, [completedSteps]);
+
+  useEffect(() => {
+    if (selectedSetting) {
+      setRingSize((selectedSetting.ringSize as string) || "");
+      setBandWidth((selectedSetting.bandWidth as string) || "");
+    }
+  }, [selectedSetting]);
+
+  /* -------------------------------
+   * Load Shopify data
+   * ------------------------------- */
+  useEffect(() => {
+    const productData = parseScriptJSON<ShopifyProduct>("setting-data");
+    const secondShapesData = parseScriptJSON<SecondShape[]>("second-shapes");
+
+    if (productData) setProduct(productData);
+    if (secondShapesData) setSecondShapes(secondShapesData);
+  }, []);
+
+  useEffect(() => {
+    if (!product) return;
+
+    // Normalize and check product type safely
+    const type = product?.type?.toLowerCase().trim();
+
+    if (type === "engagement rings" || type === "engagement ring") {
+      setIsBand(false);
+      const quantitySection = document.querySelector(
+        ".product-form__quantity-submit"
+      ) as HTMLElement;
+
+      if (quantitySection) {
+        quantitySection.style.display = "none";
+      }
+    } else if (type === "band" || type === "bands" || type.includes("band")) {
+      setIsBand(true);
+      // default fallback (in case product.type is undefined)
+      const quantitySection = document.querySelector(
+        ".product-form__quantity-submit"
+      ) as HTMLElement;
+      if (quantitySection) {
+        quantitySection.style.display = "none";
+      }
+    } else {
+      setIsBand(false);
+    }
+  }, [product]);
+
+  /* -------------------------------
+   * Derived variant data
+   * ------------------------------- */
+  const selectedVariant: Partial<EnrichedVariant> | null = useMemo(() => {
+    if (!product || !product.variants.length) return null;
+
+    const variantId = getVariantIdFromURL();
+
+    const baseVariant =
+      product.variants.find((v) => v.id === variantId) ?? product.variants[0];
+
+    const validFirstShapes = Array.from(
+      new Set(
+        product.variants
+          .map((v) => v.option2?.toLowerCase())
+          .filter(Boolean) as string[]
+      )
+    );
+
+    const validSecondShapes = Array.from(
+      new Set(
+        secondShapes
+          .map((shape) => Object.values(shape)[0]?.toLowerCase())
+          .filter(Boolean) as string[]
+      )
+    );
+
+    return {
+      ...baseVariant,
+      tags: product.tags,
+      validFirstShapes,
+      validSecondShapes,
+    };
+  }, [product, secondShapes]);
+
+  const addToCartHandler = useCallback(async () => {
+    let newErrors = { ringSize: false, bandWidth: false };
+    let valid = true;
+
+    // --- Validation ---
+    if (!ringSize) {
+      newErrors.ringSize = true;
+      valid = false;
+      ringSizeRef.current?.focus();
+    }
+
+    if (!bandWidth) {
+      newErrors.bandWidth = true;
+      valid = false;
+      if (ringSize) bandWidthRef.current?.focus();
+    }
+
+    setErrors(newErrors);
+    if (!valid) return;
+
+    try {
+      // --- Shopify Cart Add Logic ---
+      const payload = {
+        id: selectedVariant?.id,
+        quantity: 1,
+        properties: {
+          "Band Width": bandWidth,
+          "Ring Size": ringSize,
+        },
+      };
+
+      // @ts-ignore
+      const res = await fetch(`${window?.Shopify?.routes.root}cart/add.js`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to add to cart");
+      }
+
+      const data = await res.json();
+
+      // ✅ Redirect to cart
+      window.location.href = "/cart";
+    } catch (err) {
+      console.error("Error adding to cart:", err);
+      alert("Something went wrong while adding to cart. Please try again.");
+    }
+  }, [selectedVariant, ringSize, bandWidth]);
+
+  const settingChooseHandler = useCallback(() => {
+    let newErrors = { ringSize: false, bandWidth: false };
+    let valid = true;
+
+    // Ring size validation
+    if (!ringSize) {
+      newErrors.ringSize = true;
+      valid = false;
+      ringSizeRef.current?.focus();
+    }
+
+    // Band width validation
+    if (!bandWidth) {
+      newErrors.bandWidth = true;
+      valid = false;
+      if (ringSize) bandWidthRef.current?.focus(); // Focus only if ring size is valid
+    }
+
+    setErrors(newErrors);
+
+    if (!valid) return;
+
+    const currentUrl = window.location.href;
+    const data = { ...selectedVariant, currentUrl, ringSize, bandWidth };
+
+    // addSetting(data);
+    dispatch(selectSettingDetail(data as EnrichedVariant));
+    dispatch(
+      selectSetting({
+        type: "select",
+        id: selectedVariant?.id?.toString() || "",
+        meta: selectedVariant?.title || "",
+        price: Number(selectedVariant?.price),
+      })
+    );
+
+    if (!isDiamondSelected) {
+      // window.location.href = "/collections/lab-diamonds";
+      window.location.href = `${getCurrentWindowOrigin()}/collections/${ROUTES.defaultDiamondType}`;
+    } else {
+      const url = getFinalPageUrl(
+        diamondId?.toString() || "",
+        selectedVariant?.id?.toString() || ""
+      );
+      window.location.href = url;
+    }
+  }, [
+    selectedVariant,
+    ringSize,
+    bandWidth,
+    isDiamondSelected,
+    diamondId,
+    dispatch,
+  ]);
+
   return (
-    <div className="rb:space-y-6">
+    <div className="rb:grid rb:grid-cols-1 rb:gap-4 rb:mb-4!">
       {/* Ring Size */}
-      <div className="rb:space-y-2">
-        <label className="rb:text-sm rb:font-medium rb:text-gray-900">Ring Size</label>
-
-        <div className="rb:flex rb:items-center rb:gap-3">
-          <FilterDropdown
-            filterKey="ringSize"
-            triggerLabel="Ring Size"
-            options={[]}
-            customDropDownComponent={
-              <RingSizeFilter onChange={() => {}} value={""} />
-            }
-          />
-          {/* <select
-            value={ringSize}
-            onChange={(e) => onRingSizeChange?.(e.target.value)}
-            className={`w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2
-              ${
-                showRingSizeError
-                  ? "border-red-500 focus:ring-red-400"
-                  : "border-gray-300 focus:ring-black"
-              }`}
-          >
-            <option value="">Select Ring Size</option>
-            {getRingSizes.map((size) => (
-              <option key={size} value={size}>
-                {size}
-              </option>
-            ))}
-          </select> */}
-
-          <a
-            href="/pages/ring-size-guide"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rb:whitespace-nowrap rb:text-sm rb:font-medium rb:underline"
-          >
-            Size Guide
-          </a>
-        </div>
+      <div>
+        <p className="rb:mb-1 rb:text-sm rb:font-medium">Ring Size</p>
+        <AppSelect
+          value={ringSize}
+          placeholder="Select ring size"
+          options={RING_SIZES}
+          onChange={setRingSize}
+          error={errors.ringSize}
+        />
       </div>
 
       {/* Band Width */}
-      <div className="rb:space-y-2">
-        <label className="rb:text-sm rb:font-medium rb:text-gray-900">Band Width</label>
-
-        <select
+      <div>
+        <p className="rb:mb-1 rb:text-sm rb:font-medium">Band Width</p>
+        <AppSelect
+          ref={bandWidthRef}
           value={bandWidth}
-          onChange={(e) => onBandWidthChange?.(e.target.value)}
-          className={`w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2
-            ${
-              showBandWidthError
-                ? "border-red-500 focus:ring-red-400"
-                : "border-gray-300 focus:ring-black"
-            }`}
-        >
-          <option value="">Select Band Width</option>
-          {getBandWidths.map((width) => (
-            <option key={width} value={width}>
-              {width}
-            </option>
-          ))}
-        </select>
+          placeholder="Select band width"
+          options={BAND_WIDTHS}
+          onChange={setBandWidth}
+          error={errors.bandWidth}
+        />
       </div>
 
-      {/* CTA */}
-      <button
-        type="button"
-        disabled={isLoading}
-        onClick={onPrimaryAction}
-        className="rb:w-full rb:rounded-md rb:bg-black rb:py-3 rb:text-sm rb:font-semibold rb:text-white rb:transition-opacity disabled:rb:cursor-not-allowed disabled:rb:opacity-50"
-      >
-        {isLoading
-          ? "Loading..."
-          : isBand
-            ? "Add To Cart"
-            : "Select This Setting"}
-      </button>
+      <div className="rb:space-y-3">
+        {isBand ? (
+          <CommonCTA
+            label="Add to Cart"
+            onClick={addToCartHandler}
+            className={cn(
+              "shopify-theme-primary-bg",
+              "rb:font-bold!",
+              "rb:text-white!"
+            )}
+          />
+        ) : (
+          <CommonCTA
+            label="Select This Setting"
+            onClick={settingChooseHandler}
+            // className="rb:font-bold!"
+            // className={cn(
+            //   "shopify-theme-primary-bg",
+            //   "rb:font-bold!",
+            //   "rb:text-white!"
+            // )}
+          />
+        )}
+      </div>
     </div>
   );
 };

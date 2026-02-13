@@ -145,6 +145,10 @@
   .object-view-crop {
     object-view-box: inset(-2% 0% -10% 0%);
   }
+
+  .shopify-theme-primary-bg {
+    background-color: var(--shopify-theme-primary-bg);
+  }
 }
 
 /* ---------------- BASE ---------------- */
@@ -197,6 +201,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --shopify-theme-primary-bg: #22326d;
 }
 
 .dark {

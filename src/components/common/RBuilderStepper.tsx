@@ -13,11 +13,11 @@ const RBuilderStepper = () => {
 
   const onClickChange = useCallback((stepId: number) => {
     if (Number(stepId) === 1) {
-      navigate("/engagement-rings");
+      navigate(ROUTES.engagementRings);
     } else if (Number(stepId) === 2) {
-      navigate(`/${ROUTES.defauktDiamondType}`);
+      navigate(`/${ROUTES.defaultDiamondType}`);
     } else if (Number(stepId) === 3) {
-    navigate("/complete-ring-builder");
+    navigate(ROUTES.finalRingBuilder);
     }
   }, []);
 

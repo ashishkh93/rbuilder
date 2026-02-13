@@ -194,4 +194,20 @@ declare global {
     dotClassName?: string;
     activeDotClassName?: string;
   }
+
+  type SelectOption = {
+    id: string;
+    label: string;
+  };
+
+  type AppSelectProps = {
+    value?: string;
+    placeholder?: string;
+    options: SelectOption[];
+    onChange: (value: string) => void;
+    disabled?: boolean;
+    className?: string;
+    dropdownMaxHeight?: number;
+    error?: boolean;
+  };
 }

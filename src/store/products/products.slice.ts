@@ -17,6 +17,8 @@ const initialState: ProductsState = {
     hasNextPage: false,
     hasPreviousPage: false,
   },
+
+  settingDetail: null,
 };
 
 const productsSlice = createSlice({
@@ -54,6 +56,10 @@ const productsSlice = createSlice({
       state.topSellingItems = action.payload;
     },
 
+    selectSettingDetail(state, action: PayloadAction<EnrichedVariant>) {
+      state.settingDetail = action.payload;
+    },
+
     resetProducts() {
       return initialState;
     },
@@ -65,6 +71,7 @@ export const {
   receiveProducts,
   setTopSellingItems,
   resetProducts,
+  selectSettingDetail,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

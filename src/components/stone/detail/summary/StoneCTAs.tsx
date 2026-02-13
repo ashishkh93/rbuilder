@@ -10,6 +10,12 @@ import {
 } from "@/store/diamonds/diamonds.selectors";
 import { selectBuilderCompletedSteps } from "@/store/builder/builder.selectors";
 import { ROUTES } from "@/config/global-config";
+import {
+  buildPayload,
+  getFinalPageUrl,
+  storeBaseUrl,
+} from "@/utils/common.util";
+import { selectedSettingDetail } from "@/store/products/products.selectors";
 
 const StoneCTAs = () => {
   const navigate = useNavigate();
@@ -17,6 +23,7 @@ const StoneCTAs = () => {
   const diamondPrice = useAppSelector(selectDiamondPrice);
   const diamondId = useAppSelector(selectDiamondId);
   const completedSteps = useAppSelector(selectBuilderCompletedSteps);
+  const selectedSetting = useAppSelector(selectedSettingDetail);
 
   const { title: diamondTitle } = useAppSelector(selectDiamondTitle);
 
@@ -31,9 +38,17 @@ const StoneCTAs = () => {
     );
 
     if (completedSteps[1]) {
-      navigate(ROUTES.completeRingBuilder);
+      const encodedPayload = buildPayload(
+        diamondId?.toString() || "",
+        selectedSetting?.id?.toString() || ""
+      );
+
+      navigate(
+        `/${ROUTES.finalRingBuilder}?data=${encodedPayload}`,
+        { replace: true }
+      );
     } else {
-      navigate(ROUTES.engagementRings);
+      navigate(`/${ROUTES.engagementRings}`, { replace: true });
     }
   }, [dispatch, navigate]);
 

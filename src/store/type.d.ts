@@ -22,7 +22,7 @@ type SelectSettingPayload =
   | {
       type: "select";
       id: string;
-      name: string;
+      meta: string;
       price: number;
     }
   | {
@@ -231,6 +231,8 @@ type ProductsState = {
   page: number;
   diamondCount: number;
   pageInfo: PageInfo;
+
+  settingDetail: EnrichedVariant | null;
 };
 
 type DiamondsState = {

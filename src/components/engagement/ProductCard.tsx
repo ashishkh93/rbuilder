@@ -12,14 +12,11 @@ const ProductCard = ({
   onClick,
 }: ProductCardProps) => {
   return (
-    <Link
-      // to={`/rings/${id}`}
-      to={`${ROUTES.engagementRings}/products/${id}`}
+    <div
       onClick={(e) => {
         e.stopPropagation();
         onClick?.(id);
       }}
-      viewTransition={true}
       className="rb:group rb:rounded-2xl rb:bg-white rb:overflow-hidden rb:hover:shadow-gray-200 rb:transition-all rb:duration-500 rb:shadow-xl rb:p-2 rb:cursor-pointer"
     >
       {/* Image area */}
@@ -78,7 +75,7 @@ const ProductCard = ({
           <span className="rb:w-4 rb:h-4 rb:rounded-full rb:bg-rose-300" />
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

@@ -273,9 +273,9 @@ export const useDiamonds = () => {
     (diamondType: string, diamondId: string) => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
       if (abortRef.current) abortRef.current.abort();
+      dispatch(requestDiamondDetail());
 
       debounceRef.current = setTimeout(async () => {
-        dispatch(requestDiamondDetail());
         abortRef.current = new AbortController();
 
         try {

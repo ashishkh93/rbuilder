@@ -3,7 +3,7 @@ import MediaTile from "../common/MediaTile";
 const FinalRingNStoneGallery = () => {
   return (
     <div className="rb:space-y-6">
-      <div className="rb:grid rb:grid-cols-1 sm:rb:grid-cols-2 rb:gap-2">
+      <div className="rb:grid rb:grid-cols-1 rb:sm:grid-cols-2 rb:gap-2">
         {Array.from({ length: 4 }).map((_, i) => (
           <MediaTile
             key={i}

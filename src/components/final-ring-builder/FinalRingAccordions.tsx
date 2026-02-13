@@ -4,7 +4,7 @@ import RingDetailsAccordion from "./RingDetailsAccordion";
 
 const FinalRingAccordions = () => {
   return (
-    <div className="rb:space-y-3">
+    <div className="rb:flex rb:flex-col rb:gap-2">
       <RingDetailsAccordion />
       <ShippingAccordion />
       <ReturnPolicyAccordion />

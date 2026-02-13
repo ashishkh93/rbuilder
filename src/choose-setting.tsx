@@ -4,19 +4,19 @@ import "./index.css";
 import "./styles/theme.css";
 
 import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "./theme/ThemeProvider.tsx";
 import { Provider } from "react-redux";
-import { store } from "./store/index.ts";
+import { store, persistor } from "./store/index.ts";
 import ChooseSettingFeature from "./features/ChooseSettingFeature.tsx";
+import { PersistGate } from "redux-persist/integration/react";
 
 createRoot(document.getElementById("r-builder-app-choose-setting")!).render(
   <StrictMode>
-    {/* <ThemeProvider> */}
     <BrowserRouter>
       <Provider store={store}>
-        <ChooseSettingFeature ringSize="" bandWidth="" />
+        <PersistGate loading={null} persistor={persistor}>
+          <ChooseSettingFeature />
+        </PersistGate>
       </Provider>
     </BrowserRouter>
-    {/* </ThemeProvider> */}
   </StrictMode>
 );

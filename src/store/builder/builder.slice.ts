@@ -46,7 +46,7 @@ const builderSlice = createSlice({
 
       state.selectedSettingId = action.payload.id;
       state.stepData[1] = {
-        meta: action.payload.name,
+        meta: action.payload.meta,
         price: action.payload.price,
       };
 

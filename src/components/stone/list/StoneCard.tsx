@@ -19,7 +19,7 @@ const StoneCard = ({ stone }: StoneCardProps) => {
             <img
               src={stone?.diamondImage || ""}
               alt={`${stone?.caratWeight} Carat ${stone?.color} ${stone?.clarity} ${stone?.shape}`}
-              className="rb:absolute rb:inset-0 rb:w-full rb:h-full! rb:object-contain rb:transition-opacity rb:duration-700 rb:opacity-100 rb:mix-blend-multiply rb:aspect-285/364!"
+              className="rb:absolute rb:inset-0 rb:w-full rb:h-full! rb:object-contain rb:transition-opacity rb:duration-700 rb:opacity-100 rb:mix-blend-multiply "
               // className="rb:absolute rb:inset-0 rb:w-full rb:h-full! rb:object-contain rb:transition-opacity rb:duration-700 rb:opacity-100 rb:group-hover:opacity-0 rb:mix-blend-multiply rb:aspect-285/364!"
             />
 

@@ -8,7 +8,7 @@ const FinalRingBuilder = () => {
   return (
     <div className="rb:max-w-[1200px] rb:px-1 rb:py-2 rb:md:py-8">
       <div className="rb:grid rb:grid-cols-1 rb:lg:grid-cols-[1.5fr_1fr] rb:gap-10">
-        <div className="rb:relative rb:lg:sticky rb:xl:sticky rb:top-6 rb:self-start">
+        <div className="rb:relative rb:lg:sticky rb:xl:sticky rb:top-28! rb:self-start">
           <FinalRingNStoneGallery />
         </div>
 

@@ -1,4 +1,4 @@
-import { GLOBAL_CONFIG } from "@/config/global-config";
+import { GLOBAL_CONFIG, ROUTES } from "@/config/global-config";
 
 const getBaseUrl = () => {
   const path = window.location.pathname;
@@ -56,4 +56,46 @@ export const getDiamondTitle = (diamond: Diamond, isTitle = false) => {
   } else {
     return `${diamond?.caratWeight}CT ${diamond?.shape} Cut ${getDiamondType(diamond?.diamondType)} Diamond`;
   }
+};
+
+export const getCurrentWindowOrigin = () => {
+  return window.location.origin;
+};
+
+export const encode = <T>(value: T): string | null => {
+  try {
+    const json = JSON.stringify(value);
+    const bytes = new TextEncoder().encode(json);
+    const binary = String.fromCharCode(...bytes);
+    return btoa(binary);
+  } catch (error) {
+    console.error("Encoding failed:", error);
+    return null;
+  }
+};
+
+export const decode = <T = unknown>(encoded: string): T | null => {
+  try {
+    const binary = atob(encoded);
+    const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
+    const json = new TextDecoder().decode(bytes);
+    return JSON.parse(json) as T;
+  } catch (error) {
+    console.error("Decoding failed:", error);
+    return null;
+  }
+};
+
+export const buildPayload = (diamondId: string, settingId: string) => {
+  const payload = {
+    diamondId,
+    settingId,
+  };
+
+  return encode(payload);
+};
+
+export const getFinalPageUrl = (diamondId: string, settingId: string) => {
+  const encodedPayload = buildPayload(diamondId, settingId);
+  return `${getCurrentWindowOrigin()}/collections/${ROUTES.finalRingBuilder}?data=${encodedPayload}`;
 };

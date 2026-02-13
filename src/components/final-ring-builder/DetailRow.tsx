@@ -5,7 +5,7 @@ const DetailRow = ({ label, value }: DetailRowProps) => {
       <div className="rb:w-41 rb:text-13 rb:text-gray-500">{label}</div>
 
       {/* Value */}
-      <div className="rb:text-xs rb:font-semibold rb:text-secondary">{value}</div>
+      <div className="rb:text-xs rb:font-semibold rb:text-gray-600">{value}</div>
     </div>
   );
 };

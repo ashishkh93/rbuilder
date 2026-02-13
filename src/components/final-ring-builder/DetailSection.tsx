@@ -4,7 +4,7 @@ const DetailSection = ({ title, rows }: DetailSectionProps) => {
   return (
     <div>
       {/* Section Title */}
-      <h3 className="rb:mb-4 rb:text-13 rb:font-semibold rb:text-black">{title}</h3>
+      <div className="rb:mb-4 rb:text-13 rb:font-semibold rb:text-black">{title}</div>
 
       {/* Rows */}
       <div className="rb:space-y-2">

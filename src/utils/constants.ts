@@ -230,4 +230,8 @@ export const RING_SIZES: FilterOption[] = [
   { id: "Z 1/2", label: "Z 1/2" },
 ];
 
-export const getBandWidths = ["1.8 mm", "2 mm", "2.2 mm"];
+export const BAND_WIDTHS: FilterOption[] = [
+  { id: "1.8 mm", label: "1.8 mm" },
+  { id: "2 mm", label: "2 mm" },
+  { id: "2.2 mm", label: "2.2 mm" },
+];

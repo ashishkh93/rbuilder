@@ -46,3 +46,8 @@ export const selectProductCards = createSelector(
       currency: item.currency,
     }))
 );
+
+export const selectedSettingDetail = createSelector(
+  selectProductsState,
+  (products) => products.settingDetail
+);

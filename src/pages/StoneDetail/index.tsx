@@ -18,7 +18,7 @@ const StoneDetails = () => {
 
   useEffect(() => {
     const tab = diamondTab
-      ? diamondTab === ROUTES.defauktDiamondType
+      ? diamondTab === ROUTES.defaultDiamondType
         ? "lab"
         : "natural"
       : "";

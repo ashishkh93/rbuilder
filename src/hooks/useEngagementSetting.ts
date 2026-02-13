@@ -92,14 +92,6 @@ export const useEngagementSetting = () => {
                     }
                   }
                 }
-                metafields(identifiers: [
-                    { namespace: "custom", key: "sales_count" }
-                ]) {
-                    key 
-                    namespace
-                    type
-                    value
-                }
               }
             }
           }
@@ -146,11 +138,11 @@ export const useEngagementSetting = () => {
               `https://${GLOBAL_CONFIG.storeDomain}/api/${GLOBAL_CONFIG.apiVersion}/graphql.json`,
               { query },
               {
-                headers: {
-                  "Content-Type": "application/json",
-                  "X-Shopify-Storefront-Access-Token":
-                    GLOBAL_CONFIG.storefrontApiAccessToken,
-                },
+                // headers: {
+                //   "Content-Type": "application/json",
+                //   "X-Shopify-Storefront-Access-Token":
+                //     GLOBAL_CONFIG.storefrontApiAccessToken,
+                // },
                 cancelToken: cancelTokenRef.current?.token,
               }
             );

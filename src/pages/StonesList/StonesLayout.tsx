@@ -14,7 +14,7 @@ const StonesLayout = () => {
       dispatch(
         setDiamondSingle({
           key: "type",
-          value: diamondType === ROUTES.defauktDiamondType ? "lab" : "natural",
+          value: diamondType === ROUTES.defaultDiamondType ? "lab" : "natural",
         })
       );
   }, [diamondType]);
