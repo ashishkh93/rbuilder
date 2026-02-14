@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import EngagementHeader from "../../components/engagement/EngagementHeader";
 import { useEngagementSetting } from "../../hooks/useEngagementSetting";
 import FilterSection from "../../components/engagement/filter/FilterSection";

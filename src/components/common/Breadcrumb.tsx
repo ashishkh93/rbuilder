@@ -8,19 +8,18 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
           const isLast = index === items.length - 1;
 
           return (
-            <li
-              key={index}
-              className="rb:flex rb:items-center rb:space-x-2 rb:cursor-pointer"
-            >
+            <li key={index} className="rb:flex rb:items-center rb:space-x-2 ">
               {item.path && !isLast ? (
                 <Link
-                  to={item.path}
-                  className="rb:text-xs rb:text-black! rb:underline! rb:underline-offset-2 hover:rb:text-black rb:transition"
+                  to={(item.path as string) || ""}
+                  className="rb:text-xs rb:text-black! rb:underline! rb:underline-offset-2 hover:rb:text-black rb:transition rb:cursor-pointer"
                 >
-                  {item.label}
+                  {item.label?.toString() || ""}
                 </Link>
               ) : (
-                <span className="rb:text-gray-400 rb:font-medium rb:text-xs">{item.label}</span>
+                <span className="rb:text-gray-400 rb:font-medium rb:text-xs">
+                  {item.label?.toString() || ""}
+                </span>
               )}
 
               {!isLast && <span className="rb:text-gray-400">›</span>}

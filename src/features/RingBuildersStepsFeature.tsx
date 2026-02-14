@@ -2,9 +2,9 @@ import RBuilderStepper from "@/components/common/RBuilderStepper";
 
 const RingBuildersStepsFeature = () => {
   return (
-    <>
-      <RBuilderStepper />
-    </>
+    <div className="rb:mb-8">
+      <RBuilderStepper forceNavigation={true} />
+    </div>
   );
 };
 

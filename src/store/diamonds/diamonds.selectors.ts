@@ -83,3 +83,23 @@ export const selectDiamondTitle = createSelector(
     )} Diamond`,
   })
 );
+
+export const selectDiamondSubtitle = createSelector(
+  selectDiamondDetail,
+  (diamond) => ({
+    subTitle: `${diamond?.caratWeight}CT ${diamond?.color} ${diamond?.clarity}`,
+  })
+);
+
+export const selectCenterDiamondDetailForRing = createSelector(
+  selectDiamondDetail,
+  (diamond) => ({
+    size: diamond?.caratWeight,
+    type: "Diamond",
+    color: diamond?.color,
+    clarity: diamond?.clarity,
+    shape: diamond?.shape,
+    lwRatio: `${diamond?.length}/${diamond?.width}`,
+    ratio: diamond?.ratio,
+  })
+);

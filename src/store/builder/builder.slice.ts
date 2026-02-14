@@ -51,7 +51,7 @@ const builderSlice = createSlice({
       };
 
       state.completedSteps[1] = true;
-      state.currentStep = 2;
+      state.currentStep = action.payload.nextStep ?? 2;
     },
 
     selectStone(state, action: PayloadAction<SelectStonePayload>) {
@@ -70,7 +70,7 @@ const builderSlice = createSlice({
       };
 
       state.completedSteps[2] = true;
-      state.currentStep = 3;
+      state.currentStep = action.payload.nextStep ?? 3;
     },
 
     resetBuilder() {

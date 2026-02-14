@@ -6,6 +6,7 @@ import { selectFiltersForQuery } from "@/store/filters/filters.selectors";
 import {
   requestProducts,
   receiveProducts,
+  selectSettingDetail,
 } from "@/store/products/products.slice";
 import { GLOBAL_CONFIG } from "@/config/global-config";
 import { RING_PRODUCTS_GRAPHQL_RESP } from "@/mock/engagement-ring";
@@ -24,6 +25,7 @@ export const useEngagementSetting = () => {
   const cancelTokenRef = useRef<ReturnType<
     typeof axios.CancelToken.source
   > | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
 
   /** Build GraphQL query (pure & memoized) */
   const buildQuery = useCallback(
@@ -101,6 +103,88 @@ export const useEngagementSetting = () => {
     []
   );
 
+  const buildSettingDetailQuery = useCallback(() => {
+    return `
+        query getVariant($id: ID!) {
+          node(id: $id) {
+            ... on ProductVariant {
+              id
+              title
+              sku
+              availableForSale
+              price { amount currencyCode }
+              compareAtPrice { amount }
+              image {
+                url
+                altText
+              }
+              selectedOptions {
+                name
+                value
+              }
+              product {
+                id
+                title
+                handle
+                tags
+              }
+            }
+          }
+        }
+      `;
+  }, []);
+
+  const loadEngagementDetail = useCallback(
+    (variantId: string) => {
+      // cancel previous request
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      if (abortRef.current) abortRef.current.abort();
+
+      debounceRef.current = setTimeout(async () => {
+        abortRef.current = new AbortController();
+
+        try {
+          const query = buildSettingDetailQuery();
+
+          const res = await axios.post(
+            `https://${GLOBAL_CONFIG.storeDomain}/api/${GLOBAL_CONFIG.apiVersion}/graphql.json`,
+            {
+              query,
+              variables: {
+                id: `gid://shopify/ProductVariant/${variantId}`,
+              },
+            },
+            {
+              // headers: {
+              //   "Content-Type": "application/json",
+              //   "X-Shopify-Access-Token":
+              //     GLOBAL_CONFIG.storefrontApiAccessToken,
+              // },
+              signal: abortRef.current.signal,
+            }
+          );
+
+          const finalRes = res.data.data;
+
+          dispatch(
+            // @ts-ignore
+            selectSettingDetail({
+              currencyCode: finalRes.node.price.currencyCode,
+            } as EnrichedVariant)
+          );
+
+          console.log(res.data, "res==");
+        } catch (error) {
+          if (axios.isCancel(error)) {
+            console.log("Request canceled");
+            return;
+          }
+        }
+      }, DEBOUNCE_DELAY);
+    },
+    [buildSettingDetailQuery]
+  );
+
   /** Main loader (stable, reusable) */
   const loadEngagementSettings = useCallback(
     async ({
@@ -176,8 +260,9 @@ export const useEngagementSetting = () => {
                 handle: node.handle,
                 name: node.title,
                 tags: node.tags,
-                currency: v?.price?.currencyCode || GLOBAL_CONFIG.currencyCode,
-                price: v?.price?.amount,
+                currency:
+                  v?.priceV2?.currencyCode || GLOBAL_CONFIG.currencyCode,
+                price: v?.priceV2?.amount,
                 sku: v?.sku ?? "",
                 image: v?.image?.url || node.images.edges[0]?.node?.url,
                 hoverImage: node.images.edges[1]?.node?.url,
@@ -206,7 +291,8 @@ export const useEngagementSetting = () => {
   return useMemo(
     () => ({
       loadEngagementSettings,
+      loadEngagementDetail,
     }),
-    [loadEngagementSettings]
+    [loadEngagementSettings, loadEngagementDetail]
   );
 };

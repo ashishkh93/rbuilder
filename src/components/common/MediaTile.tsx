@@ -1,3 +1,5 @@
+import HoverZoomImage from "./HoverZoomImage";
+
 /**
  * MediaTile
  * - Handles corner rounding based on grid index
@@ -8,7 +10,7 @@ const MediaTile = ({
   src,
   alt = "Stone image",
   index = 0,
-  className = "",
+  className = "rb:bg-white",
   shouldHaveGradient = false,
   additionalInfoComp,
   imageContainerClass = "",
@@ -44,13 +46,16 @@ const MediaTile = ({
         )}
 
         {!isVideo ? (
-          <img
-            src={src}
-            alt={alt}
-            className="rb:absolute rb:inset-0 rb:h-full! rb:w-full! rb:object-contain! rb:mix-blend-multiply rb:transition-opacity rb:duration-700"
-            loading="lazy"
-          />
+          <div className="rb:relative rb:w-full rb:h-full">
+            <HoverZoomImage src={src} zoomScale={2} />
+          </div>
         ) : (
+          // <img
+          //   src={src}
+          //   alt={alt}
+          //   className="rb:absolute rb:inset-0 rb:h-full! rb:w-full! rb:object-contain! rb:mix-blend-multiply rb:transition-opacity rb:duration-700"
+          //   loading="lazy"
+          // />
           <div className="rb:absolute rb:inset-0 rb:overflow-hidden">
             <iframe
               src={src}

@@ -5,6 +5,7 @@ const BaseSettingCard = ({
   desc,
   fullWidth,
   Icon,
+  descClassName = "rb:mt-10",
 }: BaseCardProps) => {
   return (
     <div
@@ -24,7 +25,9 @@ const BaseSettingCard = ({
       {children}
 
       {desc && (
-        <p className="rb:mt-10 rb:w-full! rb:text-xs rb:text-gray-500 rb:flex rb:flex-1 rb:items-end!">
+        <p
+          className={`rb:w-full! rb:text-xs rb:text-gray-500 rb:flex rb:flex-1 rb:items-end! ${descClassName}`}
+        >
           {desc}
         </p>
       )}

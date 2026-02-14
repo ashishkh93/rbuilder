@@ -58,10 +58,6 @@ export const getDiamondTitle = (diamond: Diamond, isTitle = false) => {
   }
 };
 
-export const getCurrentWindowOrigin = () => {
-  return window.location.origin;
-};
-
 export const encode = <T>(value: T): string | null => {
   try {
     const json = JSON.stringify(value);
@@ -97,5 +93,17 @@ export const buildPayload = (diamondId: string, settingId: string) => {
 
 export const getFinalPageUrl = (diamondId: string, settingId: string) => {
   const encodedPayload = buildPayload(diamondId, settingId);
-  return `${getCurrentWindowOrigin()}/collections/${ROUTES.finalRingBuilder}?data=${encodedPayload}`;
+  return `${getWindowOrigin()}/collections/${ROUTES.finalRingBuilder}?data=${encodedPayload}`;
+};
+
+export const getShopifyFormatePrice = (price: number | string) => {
+  if (!price) return 0;
+  return (Number(price) / 100).toFixed(2);
+};
+
+export const getWindowOrigin = () => {
+  console.log(typeof window, "windowType---");
+
+  if (typeof window === "undefined") return "";
+  return window.location.origin;
 };

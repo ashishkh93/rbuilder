@@ -57,7 +57,7 @@ const productsSlice = createSlice({
     },
 
     selectSettingDetail(state, action: PayloadAction<EnrichedVariant>) {
-      state.settingDetail = action.payload;
+      state.settingDetail = { ...state.settingDetail, ...action.payload };
     },
 
     resetProducts() {

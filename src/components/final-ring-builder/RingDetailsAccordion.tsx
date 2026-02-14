@@ -1,8 +1,52 @@
 import CustomAccordionItem from "@/components/common/CustomAccordionItem";
 import DetailSection from "./DetailSection";
 import { COMMON_ICONS } from "../shared/icons/common";
+import { useAppSelector } from "@/store";
+import { selectCenterDiamondDetailForRing } from "@/store/diamonds/diamonds.selectors";
+import { useMemo } from "react";
+import { selectSettingDetailForFinalPage } from "@/store/products/products.selectors";
 
 const RingDetailsAccordion = () => {
+  const centerDiaDetail = useAppSelector(selectCenterDiamondDetailForRing);
+  const settingDetail = useAppSelector(selectSettingDetailForFinalPage);
+
+  const centerDiaRows = useMemo(() => {
+    const labelMapping: Record<string, string> = {
+      size: "Size",
+      type: "Type",
+      color: "Color",
+      clarity: "Clarity",
+      shape: "Shape",
+      lwRatio: "L/W (mm)",
+      ratio: "Ratio",
+    };
+
+    return Object.keys(centerDiaDetail).map((key) => {
+      return {
+        label: labelMapping[key] ?? "",
+        value: centerDiaDetail[key as keyof typeof centerDiaDetail] ?? "",
+      };
+    });
+  }, [centerDiaDetail]);
+
+  const settingRows = useMemo(() => {
+    const labelMapping: Record<string, string> = {
+      sku: "SKU",
+      width: "Width",
+      centerStoneShape: "Center Stone Shape",
+      material: "Material",
+      style: "Style",
+      profile: "Profile",
+    };
+
+    return Object.keys(settingDetail).map((key) => {
+      return {
+        label: labelMapping[key] ?? "",
+        value: settingDetail[key as keyof typeof settingDetail] ?? "",
+      };
+    });
+  }, [settingDetail]);
+
   return (
     <CustomAccordionItem
       value="ring-details"
@@ -10,30 +54,9 @@ const RingDetailsAccordion = () => {
       icon={<img src={COMMON_ICONS.ring} className="rb:h-6 rb:w-6 rb:mt-0.5" />}
     >
       <div className="rb:space-y-6">
-        <DetailSection
-          title="Center Stone Details"
-          rows={[
-            { label: "Size", value: "2.09ct" },
-            { label: "Type", value: "Diamond" },
-            { label: "Color", value: "F" },
-            { label: "Clarity", value: "VVS2" },
-            { label: "Shape", value: "Radiant" },
-            { label: "L/W (mm)", value: "9.31/6.21" },
-            { label: "Ratio", value: "1.5" },
-          ]}
-        />
+        <DetailSection title="Center Stone Details" rows={centerDiaRows} />
 
-        <DetailSection
-          title="Setting Details"
-          rows={[
-            { label: "SKU", value: "405Q-ER-RAD-YG-14" },
-            { label: "Width", value: "1.5mm" },
-            { label: "Center Stone Shape", value: "Radiant" },
-            { label: "Material", value: "14k Yellow Gold" },
-            { label: "Style", value: "Solitaire" },
-            { label: "Profile", value: "High" },
-          ]}
-        />
+        <DetailSection title="Setting Details" rows={settingRows} />
 
         <DetailSection
           title="Side Stones"

@@ -5,7 +5,7 @@ import CommonCTA from "@/components/common/CommonCTA";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { selectBuilderCompletedSteps } from "@/store/builder/builder.selectors";
 import { shallowEqual } from "react-redux";
-import { getCurrentWindowOrigin, getFinalPageUrl } from "@/utils/common.util";
+import { getFinalPageUrl } from "@/utils/common.util";
 import { ROUTES } from "@/config/global-config";
 import { selectDiamondId } from "@/store/diamonds/diamonds.selectors";
 import { selectSettingDetail } from "@/store/products/products.slice";
@@ -215,20 +215,23 @@ const ChooseSettingFeature = () => {
     const currentUrl = window.location.href;
     const data = { ...selectedVariant, currentUrl, ringSize, bandWidth };
 
-    // addSetting(data);
+    // for final ring data
     dispatch(selectSettingDetail(data as EnrichedVariant));
+
+    // for stepper data
     dispatch(
       selectSetting({
         type: "select",
         id: selectedVariant?.id?.toString() || "",
         meta: selectedVariant?.title || "",
         price: Number(selectedVariant?.price),
+        nextStep: !isDiamondSelected ? 2 : 3,
       })
     );
 
     if (!isDiamondSelected) {
       // window.location.href = "/collections/lab-diamonds";
-      window.location.href = `${getCurrentWindowOrigin()}/collections/${ROUTES.defaultDiamondType}`;
+      window.location.href = `${window.location.origin}/collections/${ROUTES.defaultDiamondType}`;
     } else {
       const url = getFinalPageUrl(
         diamondId?.toString() || "",

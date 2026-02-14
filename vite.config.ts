@@ -7,6 +7,7 @@ import path from "path";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
+    dedupe: ["react", "react-dom"],
     alias: {
       "@": path.resolve(__dirname, "src"),
     },
@@ -15,7 +16,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         "ring-builder": "src/main.tsx",
-        // "choose-setting": 'src/choose-setting.jsx',
+        // "choose-setting": "src/choose-setting.tsx",
+        // "ring-builder-steps": "src/ring-builder-steps.tsx",
       },
       output: {
         dir: "../assets",

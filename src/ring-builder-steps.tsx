@@ -4,19 +4,20 @@ import "./index.css";
 import "./styles/theme.css";
 
 import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "./theme/ThemeProvider.tsx";
 import { Provider } from "react-redux";
-import { store } from "./store/index.ts";
+import { persistor, store } from "./store/index.ts";
 import RingBuildersStepsFeature from "./features/RingBuildersStepsFeature.tsx";
+import { PersistGate } from "redux-persist/integration/react";
+import { storeBaseUrl } from "./utils/common.util.ts";
 
 createRoot(document.getElementById("r-builder-app-steps")!).render(
   <StrictMode>
-    <ThemeProvider>
-      <BrowserRouter>
-        <Provider store={store}>
+    <BrowserRouter basename={storeBaseUrl}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
           <RingBuildersStepsFeature />
-        </Provider>
-      </BrowserRouter>
-    </ThemeProvider>
+        </PersistGate>
+      </Provider>
+    </BrowserRouter>
   </StrictMode>
 );

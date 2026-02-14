@@ -1,14 +1,15 @@
-import setting from "@/assets/setting-icon.svg";
-import completed from "@/assets/completed.svg";
-import stone from "@/assets/stone.svg";
-import ring from "@/assets/ring.svg";
-import labgrown from "@/assets/labgrown.svg";
-import dropAHint from "@/assets/drop-a-hint.svg";
-import metal from "@/assets/metal.svg";
-import width from "@/assets/width.svg";
-import carat from "@/assets/carat.svg";
-import profile from "@/assets/profile.svg";
-import accentGems from "@/assets/accent-gems.svg";
+import setting from "@/static-assets/setting-icon.svg";
+import completed from "@/static-assets/completed.svg";
+import stone from "@/static-assets/stone.svg";
+import ring from "@/static-assets/ring.svg";
+import labgrown from "@/static-assets/labgrown.svg";
+import dropAHint from "@/static-assets/drop-a-hint.svg";
+import metal from "@/static-assets/metal.svg";
+import width from "@/static-assets/width.svg";
+import carat from "@/static-assets/carat.svg";
+import profile from "@/static-assets/profile.svg";
+import stoneProfile from "@/static-assets/stone-profile.svg";
+import accentGems from "@/static-assets/accent-gems.svg";
 
 export const COMMON_ICONS = {
   setting,
@@ -21,5 +22,6 @@ export const COMMON_ICONS = {
   width,
   carat,
   profile,
+  stoneProfile,
   accentGems,
 } as const;

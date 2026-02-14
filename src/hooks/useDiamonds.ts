@@ -285,11 +285,11 @@ export const useDiamonds = () => {
             GLOBAL_CONFIG.productFetchApi,
             { query },
             {
-              headers: {
-                "Content-Type": "application/json",
-                "X-Shopify-Access-Token":
-                  GLOBAL_CONFIG.storefrontApiAccessToken,
-              },
+              // headers: {
+              //   "Content-Type": "application/json",
+              //   "X-Shopify-Access-Token":
+              //     GLOBAL_CONFIG.storefrontApiAccessToken,
+              // },
               signal: abortRef.current.signal,
             }
           );
@@ -345,11 +345,11 @@ export const useDiamonds = () => {
             GLOBAL_CONFIG.productFetchApi,
             { query },
             {
-              headers: {
-                "Content-Type": "application/json",
-                "X-Shopify-Storefront-Access-Token":
-                  GLOBAL_CONFIG.storefrontApiAccessToken,
-              },
+              // headers: {
+              //   "Content-Type": "application/json",
+              //   "X-Shopify-Storefront-Access-Token":
+              //     GLOBAL_CONFIG.storefrontApiAccessToken,
+              // },
               signal: abortRef.current.signal,
             }
           );

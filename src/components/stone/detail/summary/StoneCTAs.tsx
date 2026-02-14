@@ -10,11 +10,7 @@ import {
 } from "@/store/diamonds/diamonds.selectors";
 import { selectBuilderCompletedSteps } from "@/store/builder/builder.selectors";
 import { ROUTES } from "@/config/global-config";
-import {
-  buildPayload,
-  getFinalPageUrl,
-  storeBaseUrl,
-} from "@/utils/common.util";
+import { buildPayload } from "@/utils/common.util";
 import { selectedSettingDetail } from "@/store/products/products.selectors";
 
 const StoneCTAs = () => {
@@ -34,6 +30,7 @@ const StoneCTAs = () => {
         id: diamondId?.toString() || "",
         meta: diamondTitle,
         price: Number(diamondPrice),
+        nextStep: !completedSteps[1] ? 3 : 1,
       })
     );
 
@@ -43,14 +40,13 @@ const StoneCTAs = () => {
         selectedSetting?.id?.toString() || ""
       );
 
-      navigate(
-        `/${ROUTES.finalRingBuilder}?data=${encodedPayload}`,
-        { replace: true }
-      );
+      navigate(`/${ROUTES.finalRingBuilder}?data=${encodedPayload}`, {
+        replace: true,
+      });
     } else {
       navigate(`/${ROUTES.engagementRings}`, { replace: true });
     }
-  }, [dispatch, navigate]);
+  }, [dispatch, navigate, completedSteps, diamondId, selectedSetting]);
 
   return (
     <div className="rb:space-y-3">

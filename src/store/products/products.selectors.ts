@@ -51,3 +51,39 @@ export const selectedSettingDetail = createSelector(
   selectProductsState,
   (products) => products.settingDetail
 );
+
+export const selectedSettingTitle = createSelector(
+  (state: RootState) => state.products.settingDetail,
+  (d) => ({
+    title: `${d?.bandWidth} ${(d?.name ?? "").split("-")[0]}`,
+    // title: `${d?.bandWidth} ${(d?.name ?? "").split("-")[0]} ${d?.tags?.[0]}`,
+  })
+);
+
+export const selectedSettingSubtitle = createSelector(
+  (state: RootState) => state.products.settingDetail,
+  (d) => ({
+    subTtitle: `${d?.option1} Gold`,
+  })
+);
+
+export const selectedSettingPrice = (state: RootState) =>
+  state.products.settingDetail?.price;
+
+export const selectedSettingCurrency = (state: RootState) =>
+  state.products.settingDetail?.currencyCode;
+
+export const selectSettingBandWidth = (state: RootState) =>
+  state.products.settingDetail?.bandWidth;
+
+export const selectSettingDetailForFinalPage = createSelector(
+  (state: RootState) => state.products.settingDetail,
+  (d) => ({
+    sku: d?.sku || "",
+    width: d?.bandWidth || "",
+    centerStoneShape: d?.option2 || "",
+    material: `${d?.option1} Gold` || "",
+    style: d?.tags?.[0] || "",
+    profile: (d?.profile as string) || "High",
+  })
+);

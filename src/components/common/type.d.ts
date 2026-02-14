@@ -1,9 +1,12 @@
 import type { ButtonHTMLAttributes, PropsWithChildren, ReactNode } from "react";
 
 declare global {
+  type BreadcrumbContext = {
+    title?: string;
+  };
   interface BreadcrumbItem {
-    label: string;
-    path?: string;
+    label: string | ((ctx: BreadcrumbContext) => string);
+    path?: string | ((ctx: BreadcrumbContext) => string);
   }
 
   interface ListPageHeaderProps {

@@ -24,6 +24,7 @@ type SelectSettingPayload =
       id: string;
       meta: string;
       price: number;
+      nextStep: BuilderStep;
     }
   | {
       type: "reset";
@@ -35,6 +36,7 @@ type SelectStonePayload =
       id: string;
       meta: string;
       price: number;
+      nextStep: BuilderStep;
     }
   | {
       type: "reset";

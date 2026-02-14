@@ -8,6 +8,9 @@ const formatPrice = (price?: number) =>
 export const selectBuilderCompletedSteps = (state: RootState) =>
   state.builder.completedSteps;
 
+export const selectCurrentStep = (state: RootState) =>
+  state.builder.currentStep;
+
 export const selectBuilderSteps = createSelector(
   (state: RootState) => state.builder,
   (builder) => {

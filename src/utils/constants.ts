@@ -1,3 +1,5 @@
+import { ROUTES } from "@/config/global-config";
+
 export const RING_CATEGORIES = [
   { id: "solitaire", label: "Solitaire", icon: "solitaire" },
   { id: "pave", label: "Pave", icon: "pave" },
@@ -235,3 +237,39 @@ export const BAND_WIDTHS: FilterOption[] = [
   { id: "2 mm", label: "2 mm" },
   { id: "2.2 mm", label: "2.2 mm" },
 ];
+
+export const BUILDER_BREADCRUMBS: Record<
+  BuilderStep,
+  (args?: { isDetailsPage?: boolean }) => BreadcrumbItem[]
+> = {
+  1: () => [
+    { label: "Homepage", path: ROUTES.home },
+    { label: "Engagement Rings", path: ROUTES.engagementRings },
+  ],
+
+  2: ({ isDetailsPage = false } = {}) => {
+    return [
+      { label: "Homepage", path: ROUTES.home },
+      { label: "Diamonds", path: ROUTES.defaultDiamondType },
+      ...(isDetailsPage
+        ? [
+            {
+              label: (ctx: BreadcrumbContext) => ctx.title ?? "",
+            },
+          ]
+        : []),
+    ];
+  },
+
+  3: () => [
+    { label: "Homepage", path: ROUTES.home },
+    { label: "Complete Ring" },
+  ],
+};
+
+export const CURRENCY_SYMBOLS: Record<string, string> = {
+  USD: "$",
+  EUR: "€",
+  GBP: "£",
+  INR: "₹",
+};

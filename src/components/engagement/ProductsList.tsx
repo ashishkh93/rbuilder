@@ -14,7 +14,6 @@ import { useEngagementSetting } from "@/hooks/useEngagementSetting";
 import { shallowEqual } from "react-redux";
 import { useCallback } from "react";
 import { ROUTES } from "@/config/global-config";
-import { getCurrentWindowOrigin } from "@/utils/common.util";
 
 const ProductsList = () => {
   const isMobile = useMediaQuery(MEDIA_QUERIES.xSmall);
@@ -57,9 +56,7 @@ const ProductsList = () => {
               const product = products.find((p) => p.id === id);
               if (!product) return;
 
-              console.log(getCurrentWindowOrigin(), "url--");
-
-              window.location.href = `${getCurrentWindowOrigin()}/collections/${ROUTES.engagementRings}/products/${id}`;
+              window.location.href = ROUTES.settingDetail(id);
               // @ts-ignore
               // dispatch(
               //   setStepData({

@@ -58,7 +58,7 @@ const FinalSummaryItem = ({
 
         {/* RIGHT */}
         <div className="rb:flex rb:shrink-0 rb:flex-col rb:gap-0.5 rb:text-right">
-          <p className="rb:text-sm rb:flex rb:justify-start rb:font-medium rb:leading-tight rb:text-black md:rb:text-xl">
+          <p className="rb:text-sm rb:flex rb:justify-start rb:font-semibold rb:leading-tight rb:text-black md:rb:text-xl">
             {price}
           </p>
 

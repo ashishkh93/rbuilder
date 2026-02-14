@@ -1,3 +1,5 @@
+import { getWindowOrigin } from "@/utils/common.util";
+
 export const GLOBAL_CONFIG = {
   shouldAPICall: true,
   currencySymbol: import.meta.env.VITE_SHOPIFY_CURRENCY_SYMBOL,
@@ -26,13 +28,31 @@ export const GLOBAL_CONFIG = {
     .VITE_SHOPIFY_STOREFRONT_API_ACCESS_TOKEN,
   adminApiAccessToken: import.meta.env.VITE_SHOPIFY_ADMIN_API_ACCESS_TOKEN,
   diamondDetailApiFunc: "diamondById",
+  discountedPrice: import.meta.env.VITE_SHOPIFY_DISCOUNTED_PRICE,
 };
 
 export const ROUTES = {
+  home: "engagement-rings",
   engagementRings: "engagement-rings",
   engagementRingDetail: ":setting",
   diamondType: ":diamondType",
   defaultDiamondType: "lab-diamond",
   shape: ":shape",
   finalRingBuilder: "final-ring",
+
+  // force navigation routes
+  settingDetail: (id: string) =>
+    `${getWindowOrigin()}/collections/engagement-rings/products/${id}`,
+  diamondDetail: (id: string) =>
+    `${getWindowOrigin()}/collections/lab-diamond/diamonds?id=${id}`,
+  finalRing: (encodedPayload: string) =>
+    `${getWindowOrigin()}/collections/final-ring?data=${encodedPayload}`,
+
+  settingsList: (force?: boolean) =>
+    force
+      ? `${getWindowOrigin()}/collections/engagement-rings`
+      : "engagement-rings",
+
+  diamondsList: (force?: boolean) =>
+    force ? `${getWindowOrigin()}/collections/lab-diamond` : "lab-diamond",
 };

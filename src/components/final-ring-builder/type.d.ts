@@ -10,8 +10,6 @@ interface FinalSummaryItemProps {
 }
 
 interface FinalCheckoutSummaryProps {
-  totalPrice: number;
-  originalPrice?: number;
   shippingText?: string;
   onAddToBag?: () => void;
 }
@@ -41,4 +39,5 @@ interface BaseCardProps {
   desc?: string;
   fullWidth?: boolean;
   Icon?: React.ReactNode;
+  descClassName?: string;
 }
